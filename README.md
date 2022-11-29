@@ -4,8 +4,6 @@
 
 # Biblioteca Marciano-Tecchia
 
-![istockphoto-468543276-612x612.jpg](Progetto%20Basi%20di%20Dati%20e%20Object%20Orientation%20b5e432d43f174be8b74453267ad6d785/istockphoto-468543276-612x612.jpg)
-
 ## Object Orientation
 
 Progettazione e sviluppo di un applicativo in Java dotato di GUI per la gestione di una biblioteca digitale
