@@ -4,7 +4,7 @@
 
 # Biblioteca Marciano-Tecchia
 
-![istockphoto-468543276-612x612.jpg](Progetto%20Basi%20di%20Dati%20e%20Object%20Orientation%20b5e432d43f174be8b74453267ad6d785/istockphoto-468543276-612x612.jpg)
+<img src="istockphoto-468543276-612x612" align="right"/> 
 
 ## Object Orientation
 
