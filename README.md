@@ -4,8 +4,6 @@
 
 # Biblioteca Marciano-Tecchia
 
-<img src="icona.png" align="right"/> 
-
 ## Object Orientation
 
 Progettazione e sviluppo di un applicativo in Java dotato di GUI per la gestione di una biblioteca digitale
