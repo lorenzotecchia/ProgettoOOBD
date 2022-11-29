@@ -1,8 +1,7 @@
 # Progetto Basi di Dati e Object Orientation
 
 ---
-<img src="icona.png" align="center"/> 
-# Biblioteca Marciano-Tecchia
+# Biblioteca Marciano-Tecchia <img src="icona.png" align="center"/> 
 
 ## Object Orientation
 
