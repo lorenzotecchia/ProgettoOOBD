@@ -4,7 +4,7 @@
 
 # Biblioteca Marciano-Tecchia
 
-<img src="istockphoto-468543276-612x612" align="right"/> 
+<img src="icona.png" align="right"/> 
 
 ## Object Orientation
 
