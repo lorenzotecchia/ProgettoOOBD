@@ -36,3 +36,5 @@ Mirko Marciano: N86004019 →m.marciano@studenti.unina.it
 - Corso di Laurea in Informatica
     - Object Orientation → P. Tramontana
     - Basi di Dati → S. Barra
+
+https://gist.github.com/trandaison/40b1d83618ae8e3d2da59df8c395093a
