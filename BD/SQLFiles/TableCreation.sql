@@ -1,8 +1,9 @@
+drop schema MarcianoTecchiaLibrary cascade;
 create schema MarcianoTecchiaLibrary;
 
 create type marcianotecchialibrary.AccessMode as enum (
-    'Audio'
-        'Digital'
+        'Audio',
+        'Digital',
         'Paper'
     );
 
@@ -10,8 +11,8 @@ create table marcianotecchialibrary.Event
 (
     "CodEvent"         serial
         primary key,
-    "StartDate"        date,
-    "EndDate"          date,
+    "StartDate"        timestamp,
+    "EndDate"          timestamp,
     "LocationPromoter" varchar(20),
     "Manager"          varchar(20)
 );
@@ -20,24 +21,24 @@ comment on table marcianotecchialibrary.event is 'Creation of the table event';
 
 create table marcianotecchialibrary.Book
 (
-    "Doi_B"           varchar(20)
+    "Doi_B"           varchar(50)
         primary key,
     ISBN_B            varchar(20)
         unique,
     "Edtion"          int,
-    "ReleaseDate"     date,
+    "ReleaseDate"     timestamp,
     "PublishingHouse" varchar(20),
     "Author"          varchar(60),
     "AccessMode"      marcianotecchialibrary.AccessMode,
     "Title"           varchar(10),
     "Argument"        varchar(10),
-    "Reprin"          boolean,
+    "Reprint"          boolean,
     "FK_Series"       varchar(20)
 );
 
 create table marcianotecchialibrary.Series
 (
-    ISSN_S       varchar(20),
+    ISSN_S       varchar(20) primary key,
     "Curator"    varchar(20),
     "Edition"    int,
     "Name"       varchar(10),
@@ -45,12 +46,11 @@ create table marcianotecchialibrary.Series
 );
 create table marcianotecchialibrary.Magazine
 (
-    ISSN_M        varchar(20),
+    ISSN_M        varchar(20) primary key,
     "Argument"    varchar(10),
     "Manager"     varchar(20),
-    "YearRelease" date,
-    column_5      int,
-    "NameS"       varchar(10),
+    "YearRelease" timestamp,
+    "NameM"       varchar(10),
     "AccessMode"  marcianotecchialibrary.accessmode
 );
 
@@ -60,9 +60,9 @@ create table marcianotecchialibrary.Article
 (
     "Doi_A"       varchar(20)
         primary key,
-    "Title"       varchar(10),
+    "Title"       varchar(40),
     "AccessMode"  marcianotecchialibrary.accessmode,
-    "YearRelease" date,
+    "YearRelease" timestamp,
     "Editor"      varchar(10),
     "Author"      varchar(60),
     "FK_Magazine" varchar(20)
@@ -74,18 +74,20 @@ create table marcianotecchialibrary.Loan
 (
     "LoanCode"  serial
         primary key,
-    "StartLoan" date,
-    "EndLoan"   date,
-    "FK_User"   varchar(20)
+    "StartLoan" timestamp,
+    "EndLoan"   timestamp,
+    "FK_User"   varchar(11),
+
+    constraint LoanFK foreign key ("FK_User") references marcianotecchialibrary.User ("SSN")
 );
 
 comment on table marcianotecchialibrary.Loan is 'Creation of the table Loan';
 
 create table marcianotecchialibrary.User
 (
-    "FCUser" varchar(20)
+    "SSN" varchar(20)
         primary key,
-    password varchar(20)
+    password varchar(100)
         unique
 );
 
