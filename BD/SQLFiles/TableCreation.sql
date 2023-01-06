@@ -15,6 +15,7 @@ create table mtl.Event
     "EndDate"          timestamp,
     "LocationPromoter" varchar(20),
     "Manager"          varchar(20)
+
 );
 
 comment on table mtl.event is 'Creation of the table event';
