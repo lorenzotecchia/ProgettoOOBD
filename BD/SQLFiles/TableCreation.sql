@@ -13,8 +13,8 @@ create table mtl.Event
         primary key,
     StartDate        timestamp,
     EndDate          timestamp,
-    LocationPromoter varchar(20),
-    Manager          varchar(20)
+    LocationPromoter varchar(50),
+    Manager          varchar(30)
 
 );
 
@@ -31,8 +31,8 @@ create table mtl.Book
     PublishingHouse varchar(20),
     Author          varchar(60),
     AccessMode      mtl.AccessMode,
-    Title           varchar(10),
-    Argument        varchar(10),
+    Title           varchar(30),
+    Argument        varchar(20),
     Reprint         boolean,
     FK_Series       varchar(20)
 );
@@ -51,7 +51,7 @@ create table mtl.Magazine
     Argument    varchar(10),
     Manager     varchar(20),
     YearRelease timestamp,
-    NameM       varchar(10),
+    NameM       varchar(30),
     AccessMode  mtl.accessmode
 );
 
@@ -64,7 +64,7 @@ create table mtl.Article
     Title       varchar(40),
     AccessMode  mtl.accessmode,
     YearRelease timestamp,
-    Editor      varchar(10),
+    Editor      varchar(30),
     Author      varchar(60),
     FK_Magazine varchar(20)
 );
@@ -130,7 +130,6 @@ create table mtl.Drawing
     constraint DrawingFK_3 foreign key (Fk_Book) references mtl.Book (Doi_B),
     constraint DrawingFK_4 foreign key (Fk_Series) references mtl.Series (issn_s),
     constraint DrawingFK_5 foreign key (Fk_Magazine) references mtl.Magazine (issn_m)
-    --chiedere al professore on delete cascade perchè non funziona
 );
 
 comment on table mtl.Drawing is 'Creation of the table Drawing';
