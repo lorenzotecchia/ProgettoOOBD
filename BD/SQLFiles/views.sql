@@ -36,8 +36,3 @@ create view mtl.available_magazine as
     except
         (select distinct b.fk_magazine
         from mtl.drawing b);
-
-
-
-select distinct b.Title
-from mtl.available_books av natural join mtl.book b;

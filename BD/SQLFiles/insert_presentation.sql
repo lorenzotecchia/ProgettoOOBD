@@ -1,50 +1,51 @@
-INSERT INTO mtl.presentation (fk_event, fk_book) VALUES (69, '1010254634');
-INSERT INTO mtl.presentation (fk_event, fk_book) VALUES (25, '1969764193');
-INSERT INTO mtl.presentation (fk_event, fk_book) VALUES (73, '1046347390');
-INSERT INTO mtl.presentation (fk_event, fk_book) VALUES (21, '2002754987');
-INSERT INTO mtl.presentation (fk_event, fk_book) VALUES (54, '1900147296');
-INSERT INTO mtl.presentation (fk_event, fk_book) VALUES (61, '1633289494');
-INSERT INTO mtl.presentation (fk_event, fk_book) VALUES (72, '1477197173');
-INSERT INTO mtl.presentation (fk_event, fk_book) VALUES (39, '1396947667');
-INSERT INTO mtl.presentation (fk_event, fk_book) VALUES (28, '1749706689');
-INSERT INTO mtl.presentation (fk_event, fk_book) VALUES (3, '1126510966');
-INSERT INTO mtl.presentation (fk_event, fk_book) VALUES (74, '1833707580');
-INSERT INTO mtl.presentation (fk_event, fk_book) VALUES (88, '1445159782');
-INSERT INTO mtl.presentation (fk_event, fk_book) VALUES (2, '1844484729');
-INSERT INTO mtl.presentation (fk_event, fk_book) VALUES (77, '1436758619');
-INSERT INTO mtl.presentation (fk_event, fk_book) VALUES (87, '1709867884');
-INSERT INTO mtl.presentation (fk_event, fk_book) VALUES (9, '1384166052');
-INSERT INTO mtl.presentation (fk_event, fk_book) VALUES (93, '1443041022');
-INSERT INTO mtl.presentation (fk_event, fk_book) VALUES (60, '1133482378');
-INSERT INTO mtl.presentation (fk_event, fk_book) VALUES (65, '1477703442');
-INSERT INTO mtl.presentation (fk_event, fk_book) VALUES (10, '1762538084');
-INSERT INTO mtl.presentation (fk_event, fk_book) VALUES (46, '1734570119');
-INSERT INTO mtl.presentation (fk_event, fk_book) VALUES (5, '1147209488');
-INSERT INTO mtl.presentation (fk_event, fk_book) VALUES (19, '1995577185');
-INSERT INTO mtl.presentation (fk_event, fk_book) VALUES (7, '1695398108');
-INSERT INTO mtl.presentation (fk_event, fk_book) VALUES (65, '1018835858');
-INSERT INTO mtl.presentation (fk_event, fk_book) VALUES (94, '1721516782');
-INSERT INTO mtl.presentation (fk_event, fk_book) VALUES (72, '1828280251');
-INSERT INTO mtl.presentation (fk_event, fk_book) VALUES (27, '1090535144');
-INSERT INTO mtl.presentation (fk_event, fk_book) VALUES (2, '1806492097');
-INSERT INTO mtl.presentation (fk_event, fk_book) VALUES (78, '1944035375');
-INSERT INTO mtl.presentation (fk_event, fk_book) VALUES (25, '1334823045');
-INSERT INTO mtl.presentation (fk_event, fk_book) VALUES (69, '1220766468');
-INSERT INTO mtl.presentation (fk_event, fk_book) VALUES (85, '1072289994');
-INSERT INTO mtl.presentation (fk_event, fk_book) VALUES (34, '1951333545');
-INSERT INTO mtl.presentation (fk_event, fk_book) VALUES (36, '1661095332');
-INSERT INTO mtl.presentation (fk_event, fk_book) VALUES (90, '1931234323');
-INSERT INTO mtl.presentation (fk_event, fk_book) VALUES (43, '2030175478');
-INSERT INTO mtl.presentation (fk_event, fk_book) VALUES (44, '1220604774');
-INSERT INTO mtl.presentation (fk_event, fk_book) VALUES (49, '1164459671');
-INSERT INTO mtl.presentation (fk_event, fk_book) VALUES (64, '1776616295');
-INSERT INTO mtl.presentation (fk_event, fk_book) VALUES (74, '1896240602');
-INSERT INTO mtl.presentation (fk_event, fk_book) VALUES (64, '1715389236');
-INSERT INTO mtl.presentation (fk_event, fk_book) VALUES (87, '1202646393');
-INSERT INTO mtl.presentation (fk_event, fk_book) VALUES (57, '1541776485');
-INSERT INTO mtl.presentation (fk_event, fk_book) VALUES (40, '1121229861');
-INSERT INTO mtl.presentation (fk_event, fk_book) VALUES (78, '1470962016');
-INSERT INTO mtl.presentation (fk_event, fk_book) VALUES (36, '1442722307');
-INSERT INTO mtl.presentation (fk_event, fk_book) VALUES (90, '1114440148');
-INSERT INTO mtl.presentation (fk_event, fk_book) VALUES (69, '1730811347');
-INSERT INTO mtl.presentation (fk_event, fk_book) VALUES (96, '1018314800');
+INSERT INTO mtl.presentation (fk_event, fk_book)
+VALUES  (69, '1010254634'),
+        (25, '1969764193'),
+        (73, '1046347390'),
+        (21, '2002754987'),
+        (54, '1900147296'),
+        (61, '1633289494'),
+        (72, '1477197173'),
+        (39, '1396947667'),
+        (28, '1749706689'),
+        (3, '1126510966'),
+        (74, '1833707580'),
+        (88, '1445159782'),
+        (2, '1844484729'),
+        (77, '1436758619'),
+        (87, '1709867884'),
+        (9, '1384166052'),
+        (93, '1443041022'),
+        (60, '1133482378'),
+        (65, '1477703442'),
+        (10, '1762538084'),
+        (46, '1734570119'),
+        (5, '1147209488'),
+        (19, '1995577185'),
+        (7, '1695398108'),
+        (65, '1018835858'),
+        (94, '1721516782'),
+        (72, '1828280251'),
+        (27, '1090535144'),
+        (2, '1806492097'),
+        (78, '1944035375'),
+        (25, '1334823045'),
+        (69, '1220766468'),
+        (85, '1072289994'),
+        (34, '1951333545'),
+        (36, '1661095332'),
+        (90, '1931234323'),
+        (43, '2030175478'),
+        (44, '1220604774'),
+        (49, '1164459671'),
+        (64, '1776616295'),
+        (74, '1896240602'),
+        (64, '1715389236'),
+        (87, '1202646393'),
+        (57, '1541776485'),
+        (40, '1121229861'),
+        (78, '1470962016'),
+        (36, '1442722307'),
+        (90, '1114440148'),
+        (69, '1730811347'),
+        (96, '1018314800')

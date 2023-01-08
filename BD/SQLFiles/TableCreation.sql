@@ -2,9 +2,9 @@ drop schema mtl cascade;
 create schema mtl;
 
 create type mtl.AccessMode as enum (
-        'Audio',
-        'Digital',
-        'Paper'
+    'Audio',
+    'Digital',
+    'Paper'
     );
 
 create table mtl.Event
@@ -24,22 +24,22 @@ create table mtl.Book
 (
     Doi_B           varchar(50)
         primary key,
-    ISBN_B            varchar(20)
+    ISBN_B          varchar(20)
         unique,
-    Edtion          int,
+    Edition          int,
     ReleaseDate     timestamp,
     PublishingHouse varchar(20),
     Author          varchar(60),
     AccessMode      mtl.AccessMode,
     Title           varchar(10),
     Argument        varchar(10),
-    Reprint          boolean,
+    Reprint         boolean,
     FK_Series       varchar(20)
 );
 
 create table mtl.Series
 (
-    ISSN_S       varchar(20) primary key,
+    ISSN_S     varchar(20) primary key,
     Curator    varchar(20),
     Edition    int,
     NameS      varchar(10),
@@ -47,7 +47,7 @@ create table mtl.Series
 );
 create table mtl.Magazine
 (
-    ISSN_M        varchar(20) primary key,
+    ISSN_M      varchar(20) primary key,
     Argument    varchar(10),
     Manager     varchar(20),
     YearRelease timestamp,
@@ -73,7 +73,7 @@ comment on table mtl.Article is 'Creation of table Article';
 
 create table mtl.User
 (
-    SSN varchar(20)
+    SSN      varchar(20)
         primary key,
     password varchar(100)
         unique
@@ -84,12 +84,12 @@ comment on table mtl.User is 'Creation of the table User';
 create table mtl.Loan
 (
     LoanCode  serial
-        primary key,
+        primary key ,
     StartLoan timestamp,
     EndLoan   timestamp,
     FK_User   varchar(11),
 
-    constraint LoanFK foreign key (FK_User) references mtl.User (SSN)
+    constraint LoanFK foreign key (FK_User) references mtl.User (SSN) on delete cascade
 );
 
 
@@ -100,19 +100,18 @@ create table mtl.Discussion
     FK_Event   serial,
     FK_Article varchar(20),
 
-    constraint DiscussionFK_1 foreign key (FK_Event) references mtl.Event (CodEvent),
+    constraint DiscussionFK_1 foreign key (FK_Event) references mtl.Event (CodEvent) on delete cascade ,
     constraint DiscussionFK_2 foreign key (FK_Article) references mtl.article (Doi_A)
 );
 
 comment on table mtl.Discussion is 'Creation of the table';
-
 
 create table mtl.Presentation
 (
     FK_Event serial,
     FK_Book  varchar(20),
 
-    constraint PresentationFK_1 foreign key (FK_Event) references mtl.Event (CodEvent),
+    constraint PresentationFK_1 foreign key (FK_Event) references mtl.Event (CodEvent)on delete cascade,
     constraint PresentationFK_2 foreign key (FK_Book) references mtl.Book (Doi_B)
 );
 
@@ -126,11 +125,12 @@ create table mtl.Drawing
     Fk_Magazine varchar(20),
     Fk_Book     varchar(20),
 
-    constraint DrawingFK_1 foreign key (FK_LoanCode) references mtl.Loan (LoanCode),
+    constraint DrawingFK_1 foreign key (FK_LoanCode) references mtl.Loan (LoanCode) on delete cascade,
     constraint DrawingFK_2 foreign key (FK_Article) references mtl.Article (Doi_A),
     constraint DrawingFK_3 foreign key (Fk_Book) references mtl.Book (Doi_B),
     constraint DrawingFK_4 foreign key (Fk_Series) references mtl.Series (issn_s),
     constraint DrawingFK_5 foreign key (Fk_Magazine) references mtl.Magazine (issn_m)
+    --chiedere al professore on delete cascade perchè non funziona
 );
 
 comment on table mtl.Drawing is 'Creation of the table Drawing';
