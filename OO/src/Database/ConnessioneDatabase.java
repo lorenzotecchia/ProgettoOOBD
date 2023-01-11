@@ -3,6 +3,7 @@ package Database;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+import java.sql.Statement;
 
 public class ConnessioneDatabase {
 
@@ -26,7 +27,6 @@ public class ConnessioneDatabase {
         }
 
     }
-
 
     public static ConnessioneDatabase getInstance() throws SQLException {
         if (instance == null) {
