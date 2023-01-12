@@ -3,6 +3,8 @@ package GUI;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 public class LoginForm {
     private JPanel LogIN;
@@ -10,6 +12,7 @@ public class LoginForm {
     private JPasswordField passwordField1;
     private JButton OKButton;
     private JButton cancelButton;
+    private JButton backButton;
 
     public LoginForm() {
 
@@ -39,6 +42,17 @@ public class LoginForm {
             public void actionPerformed(ActionEvent e) {
                 System.out.println("Authentication cancelled");
                 System.exit(0);
+            }
+        });
+        backButton.addMouseListener(new MouseAdapter() {
+            /**
+             * @param e the event to be processed
+             */
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                super.mouseClicked(e);
+                frame.dispose();
+                new StartPage();
             }
         });
     }

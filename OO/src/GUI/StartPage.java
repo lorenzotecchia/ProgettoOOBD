@@ -52,6 +52,17 @@ public class StartPage {
 
             }
         });
+        catalogoButton.addMouseListener(new MouseAdapter() {
+            /**
+             * @param e the event to be processed
+             */
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                super.mouseClicked(e);
+                frame.setVisible(false);
+                new EsploraCatalogo();
+            }
+        });
     }
 
     public static void main(String[] args) {
