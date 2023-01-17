@@ -37,4 +37,4 @@ Mirko Marciano: N86004019 →m.marciano@studenti.unina.it
     - Object Orientation → P. Tramontana
     - Basi di Dati → S. Barra
     
-    [link_codice](https://github.com/lorenzotecchia/ProgettoOOBD/blob/2b376b8d8369612c48b6cacf5145dff550d9b895/BD/SQLFiles/TableCreation.sql#L10-L19)
+
