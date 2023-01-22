@@ -59,6 +59,60 @@
     \include{Argomenti/Capitolo2}
     \include{Argomenti/Capitolo3}
     \include{Argomenti/Capitolo4}
+    \documentclass[a4paper.12pt]{article}
+
+\usepackage[letterpaper,top=2cm,bottom=2cm,left=3cm,right=3cm,marginparwidth=1.75cm]{geometry}
+
+
+\usepackage{amsmath}
+\usepackage{graphicx}
+\usepackage[colorlinks=true, allcolors=blue]{hyperref}
+
+\title{Logic Schema}
+\author{Marciano-Tecchia library}
+
+\begin{document}
+\maketitle
+																			
+
+\begin{itemize}
+
+
+\item Author
+
+
+(\textbf{IDAuthor}, FName, LName)
+
+
+
+
+\item Book
+
+
+(\textbf{DOI}, ISBN, PublishingHouse, Language, AccessMode, Title, Argument, Reprint, Edition, ReleaseDate, ReleaseLocation, PresentationName, \underline{AuthorID})
+
+
+\item Article
+
+(\textbf{DOI} , Title, AccessMode, YearRelease, Editor, Topic, ReleaseDate, ReleaseLocatione, ConferenceName , \underline{AuthorID})
+
+
+
+\item Series
+
+
+(\textbf{ISSN}, Curator. Edition, Code, Name)
+
+
+
+\item Magazine
+
+
+(\textbf{ISSN}, Name , Argument, Manager, YearRelease, PublicationPeriod, AccessMode,
+PublishingHouse)
+
+
+
+\end{itemize}
     \include{Argomenti/Capitolo5}
     
-\end{document}
