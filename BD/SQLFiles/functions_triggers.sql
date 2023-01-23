@@ -1,59 +1,104 @@
-create function mtl.function_1() returns trigger as
-
+create or replace function mtl.function_1() returns trigger as
 $$
+declare
+    stringa_in   varchar(13) = new.isbn_b;
+    sum          integer     := 0;
+    var_appoggio integer;
+    resto        integer;
 begin
-
-end;
+    stringa_in := replace(stringa_in, '-', '');
+    for i in 1..13
+        loop
+            var_appoggio = cast(substring(stringa_in from i for 1) as int);
+            if (i % 2 = 0) then
+                sum := sum + var_appoggio * 3;
+            else
+                sum := sum + var_appoggio;
+            end if;
+        end loop;
+    resto = sum % 10;
+    if (resto != 0) then
+        delete from mtl.book where doi_b = new.doi_b;
+    end if;
+    return new;
+end
 $$
-language plpgsql;
+    language plpgsql;
 
-create trigger trigger_books
+create trigger validity_isbn
     after insert
     on mtl.book
+    for each row
 execute procedure mtl.function_1();
 
+create or replace function mtl.function_2() returns trigger as
+$$
+declare
+    stringa_in   varchar(13) = new.issn_s;
+    sum          integer     := 0;
+    var_appoggio integer;
+    resto        integer;
+begin
+    stringa_in := replace(stringa_in, '-', '');
+    for i in 1..8
+        loop
+            if substr(stringa_in, 8, 1) = 'X' then
+                sum = sum + 10;
+            end if;
+            var_appoggio = cast(substring(stringa_in from i for 1) as int);
+            if (i = 8) then
+                sum = sum + 0;
+            else
+                sum := sum + var_appoggio * (9 - i);
+            end if;
+        end loop;
+    resto = sum % 11;
+    if (resto != 0) then
+        delete from mtl.series where issn_s = new.issn_s;
+    end if;
+    return new;
+end
+$$
+    language plpgsql;
 
--- create function info_libro_per_autore(nome_in mtl.author.fname%TYPE, cognome_in mtl.author.lname%TYPE)
---     returns table(last_name varchar,isbn varchar, doi varchar, title varchar, edition integer, release date) as
--- $$
---     begin
---     return (select a.lname,b.isbn_b,b.doi_b,b.title,b.edition,date(b.releasedate)
---             from mtl.book b, mtl.author a
---             where a.fname = nome_in and a.lname = cognome_in and a.codauthor = b.fk_author);
---     end;
---     $$
---     language plpgsql;
---
--- create function info_articoli_per_autore(nome_in mtl.author.fname%TYPE, cognome_in mtl.author.lname%TYPE)
---     returns table(last_name varchar,isbn varchar, doi varchar, title varchar, edition integer, release date) as
--- $$
---     begin
---     return (select a.lname,ar.doi_a,ar.title,ar.editor,date(ar.yearrelease)
---             from mtl.article ar, mtl.author a
---             where a.fname = nome_in and a.lname = cognome_in and a.codauthor = ar.fk_author);
---     end;
---     $$
---     language plpgsql;
---
--- create function info_libro_per_argomento(argomento_in mtl.book.argument%TYPE)return as
--- $$
---     begin
---     return query (select a.lname,b.isbn_b,b.doi_b,b.title,b.edition,date(b.releasedate)
---             from mtl.book b, mtl.author a
---             where b.argument=argomento_in and a.codauthor = b.fk_author);
---     end;
---     $$
---     language plpgsql;
---
--- create function info_articoli_per_argomento(argomento_in mtl.article.topic%TYPE)
---     returns table(last_name varchar,isbn varchar, doi varchar, title varchar, edition integer, release date) as
--- $$
---     begin
---     return (select a.lname,ar.doi_a,ar.title,ar.editor,date(ar.yearrelease)
---             from mtl.article ar, mtl.author a
---             where ar.topic=argomento_in and a.codauthor = ar.fk_author);
---     end;
---     $$
---     language plpgsql;
---
---
+create trigger validity_issn_s
+    after insert
+    on mtl.series
+    for each row
+execute procedure mtl.function_2();
+
+create or replace function mtl.function_3() returns trigger as
+$$
+declare
+    stringa_in   varchar(13) = new.issn_m;
+    sum          integer     := 0;
+    var_appoggio integer;
+    resto        integer;
+begin
+    stringa_in := replace(stringa_in, '-', '');
+    for i in 1..8
+        loop
+            if substr(stringa_in, 8, 1) = 'X' then
+                sum = sum + 10;
+            end if;
+            var_appoggio = cast(substring(stringa_in from i for 1) as int);
+            if (i = 8) then
+                sum = sum + 0;
+            else
+                sum := sum + var_appoggio * (9 - i);
+            end if;
+        end loop;
+    resto = sum % 11;
+    if (resto != 0) then
+        delete from mtl.magazine where issn_m = new.issn_m;
+    end if;
+    return new;
+end
+$$
+    language plpgsql;
+
+create trigger validity_issn_m
+    after insert
+    on mtl.magazine
+    for each row
+execute procedure mtl.function_3();
