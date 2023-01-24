@@ -33,28 +33,19 @@
 	\end{SCfigure}
 
 \newpage
+
+
+\begin{table}[]
 \section{Dizionario delle classi}
-
-\begin{longtable}[c]{|l|l|l|}
-
 \caption{Dizionario delle Classi}
-\label{tab:DizionarioClassi}\\
+\label{tab:DizionarioClassi}
+\resizebox{\linewidth}{!}{%
+\begin{tabular}{|l|l|l|}
 \hline
 \rowcolor[HTML]{A9F6F3} 
 \textbf{Classe} &
   \textbf{Spiegazione} &
   \textbf{Attributi} \\ \hline
-\endfirsthead
-%
-\multicolumn{3}{c}%
-{{\bfseries Table \thetable\ continued from previous page}} \\
-\hline
-\rowcolor[HTML]{A9F6F3} 
-\textbf{Classe} &
-  \textbf{Spiegazione} &
-  \textbf{Attributi} \\ \hline
-\endhead
-%
 \textbf{Author} &
   Autore di libri o articoli &
   \begin{tabular}[c]{@{}l@{}}ID\_Author (Serial): Author's identification code. \\ FName (String): Author's first  name. \\ LName (String): Author's last name.\end{tabular} \\ \hline
@@ -70,32 +61,29 @@
 \textbf{Article} &
   Articoli di ricerca Scientifica &
   \begin{tabular}[c]{@{}l@{}}DOI (String): Digital object Identifier of the book.\\ Title (String): Book title.\\ AccessMode (AccessMode): Fruition method. \\ YearRelease (Date):Publication year. \\ Editor (String):Article editor. \\ ReleaseDate (Date):Publication date.\\ ReleaseLocation (String):Place of publication of the book.\\ ConferenceName (String): Name of pesentation in which books are presented.\end{tabular} \\ \hline
-  
-\end{longtable}
-\section{Dizionario delle associazioni}
+\end{tabular}%
+}
+\end{table}
 
-\begin{longtable}[c]{|l|l|l|}
+\newpage
+
+
+\begin{table}
+\section{Dizionario delle associazioni}
+\centering
 \caption{Tabella delle Associazioni}
-\label{tab:TabellaAssociazioni}\\
+\resizebox{\linewidth}{!}{%
+\begin{tabular}{|l|l|l|}	
 \hline
-\rowcolor[HTML]{A9F6F3} 
-\multicolumn{1}{|r|}{\cellcolor[HTML]{A9F6F3}Nome} &
-  Descrizione &
-  Classi Coinvolte \\ \hline
-\endfirsthead
-%
-\endhead
-%
-composes/is\_composed &
-  \begin{tabular}[c]{@{}l@{}}Una collana è composta da uno o più libri/\\ Un libro può comporre oppure no una collana\end{tabular} &
-  Series/Book \\ \hline
-writes/is\_written &
-  \begin{tabular}[c]{@{}l@{}}Un libro è scritto da uno o più autori/\\ Un autore scrive molti oppure nessun libro\end{tabular} &
-  Book/Author \\ \hline
-is\_written/writes &
-  \begin{tabular}[c]{@{}l@{}}Un autore scrive molti oppure nessun articolo/\\ Un articolo è scritto da uno o più autori\end{tabular} &
-  Author/Article \\ \hline
-composes/is\_composed &
-  \begin{tabular}[c]{@{}l@{}}Un articolo puo comporre oppure no una rivista/\\ Una rivista è composta da uno o più articoli\end{tabular} &
-  Article/Magazine \\ \hline
-\end{longtable}
+\rowcolor[rgb]{0.663,0.965,0.953} \multicolumn{1}{|r|}{Nome} & Descrizione                                                                                                                            & Classi Coinvolte  \\
+composes/is\_composed                                        & \begin{tabular}[c]{@{}l@{}}Una collana è composta da uno o più libri/\\ Un libro può comporre oppure no una collana\end{tabular}       & Series/Book       \\ 
+\hline
+writes/is\_written                                           & \begin{tabular}[c]{@{}l@{}}Un libro è scritto da uno o più autori/\\ Un autore scrive molti oppure nessun libro\end{tabular}           & Book/Author       \\ 
+\hline
+is\_written/writes                                           & \begin{tabular}[c]{@{}l@{}}Un autore scrive molti oppure nessun articolo/\\ Un articolo è scritto da uno o più autori\end{tabular}     & Author/Article    \\ 
+\hline
+composes/is\_composed                                        & \begin{tabular}[c]{@{}l@{}}Un articolo puo comporre oppure no una rivista/\\ Una rivista è composta da uno o più articoli\end{tabular} & Article/Magazine  \\
+\hline
+\end{tabular}
+}
+\end{table}
