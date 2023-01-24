@@ -1,5 +1,5 @@
 create domain issn as varchar(9)
-check ( value like '%-%' );
+check ( value like '[0-9]-[0-9]' );
 
 create domain isbn as varchar(17)
 check ( value like '%-_-%-%-_');
