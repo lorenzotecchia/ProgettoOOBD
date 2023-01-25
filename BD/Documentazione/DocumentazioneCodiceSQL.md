@@ -52,7 +52,7 @@ Questa vuole essere una documentazione al codice sql da accompagnare alla vision
 
 [Names](https://github.com/lorenzotecchia/ProgettoOOBD/blob/13b1b81e5a403fe981fcf7016a458db3a17ff69a/BD/SQLFiles/domains.sql#L14-L15)→ Dominio che controlla il corretto inserimento dei titoli all’interno delle tuple, sono esclusi i caratteri speciali. Secondo il seguente esempio: NomeFantasia 
 
-Location→Dominio che controlla il corretto inserimento delle location all’interno delle tuple. Devono essere inserite secondo il seguente esempio: Viale dei Platani, 1, Cercola, 80040, Italia.
+[Location](https://github.com/lorenzotecchia/ProgettoOOBD/blob/13b1b81e5a403fe981fcf7016a458db3a17ff69a/BD/SQLFiles/domains.sql#L17-L18)→Dominio che controlla il corretto inserimento delle location all’interno delle tuple. Devono essere inserite secondo il seguente esempio: Viale dei Platani, 1, Cercola, 80040, Italia.
 
 ---
 
