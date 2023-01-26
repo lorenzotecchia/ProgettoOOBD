@@ -1,10 +1,10 @@
 \chapter{Progettazione Fisica}
 \section{Creazione delle Tabelle}
+\footnote{\href{https://github.com/lorenzotecchia/ProgettoOOBD/blob/main/BD/Documentazione/DocumentazioneCodiceSQL.md#documentazione-codice-sql}{[1]}Documentazione del codice SQL}}
 \begin{lstlisting}
 drop schema mtl cascade;
 create schema mtl;
 
---create table mtl.author
 create table mtl.author
 (
     CodAuthor serial
@@ -13,7 +13,6 @@ create table mtl.author
     LName     varchar(20)
 );
 
--- create table mtl.series
 create table mtl.series
 (
     ISSN_S  issn primary key,
@@ -22,7 +21,7 @@ create table mtl.series
     Code_S  varchar(10),
     Name_S  names
 );
---create table mtl.magazine
+
 create table mtl.magazine
 (
     ISSN_M            issn primary key,
@@ -35,8 +34,6 @@ create table mtl.magazine
     PublishingHouse   names
 );
 
-
---create table mtl.book
 create table mtl.book
 (
     Doi_B            doi
@@ -60,7 +57,6 @@ create table mtl.book
     constraint BookFK_3 foreign key (FK_Series) references mtl.Series (ISSN_S) on delete set null
 );
 
---create table mtl.article
 create table mtl.article
 (
     Doi_A           doi
@@ -80,6 +76,8 @@ create table mtl.article
     constraint ArticleFK_2 foreign key (FK_Magazine) references mtl.Magazine (ISSN_M) on delete set null
 );
 \end{lstlisting}
+\footnote{\href{https://github.com/lorenzotecchia/ProgettoOOBD/blob/main/BD/Documentazione/DocumentazioneCodiceSQL.md#documentazione-del-file-tablecreationsql}{[2]}Documentaizone per la creazione delle tabelle}
+
 \section{Creazione dei domini}
 \begin{lstlisting}
 	create domain issn as varchar(9)
@@ -101,7 +99,7 @@ check ( value not similar to '%[@!#$ˆ∗%&]+%');
 create domain location as varchar(50)
 check ( value like '%,[0-9],%,[0-9],%');
 \end{lstlisting}
-
+\footnote{\href{https://github.com/lorenzotecchia/ProgettoOOBD/blob/main/BD/Documentazione/DocumentazioneCodiceSQL.md#documentazione-del-file-viewssql}{[3]}Documentazione per la creazione delle viste}
 \section{Creazione delle viste}
 \begin{lstlisting}
 create view mtl.bibliography as
@@ -150,7 +148,7 @@ select ar.title,a.fname,a.lname, ar.conferencename, ar.releaselocation, ar.relea
 from mtl.article ar join mtl.author a on a.codauthor = ar.fk_author
 order by a.lname;
 \end{lstlisting}
-
+\footnote{\href{https://github.com/lorenzotecchia/ProgettoOOBD/blob/main/BD/Documentazione/DocumentazioneCodiceSQL.md#documentazione-del-file-viewssql}{[4]}Documentazione per la creazione delle viste}
 \section{Creazione di funzioni e trigger}
 \begin{lstlisting}
 	create or replace function mtl.function_1() returns trigger as
@@ -258,3 +256,4 @@ create trigger validity_issn_m
     for each row
 execute procedure mtl.function_3();
 \end{lstlisting}
+\footnote{\href{https://github.com/lorenzotecchia/ProgettoOOBD/blob/main/BD/Documentazione/DocumentazioneCodiceSQL.md#documentazione-del-file-functions_triggerssql}{[5]}Documentazione per la creazione di funzioni e trigger}
