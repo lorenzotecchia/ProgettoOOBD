@@ -1,57 +1,47 @@
 package Model;
 
 public class Author {
-    private String name;
-    private String surname;
-    private String email;
-    private String affiliation;
-    private String doi_A;
+    private String authorID;
+    private String fName;
+    private String lName;
 
-    public Author(String name, String surname, String email, String affiliation, String doi_A) {
-        this.name = name;
-        this.surname = surname;
-        this.email = email;
-        this.affiliation = affiliation;
-        this.doi_A = doi_A;
+
+    public Author(String authorID, String fName, String lName) {
+        this.authorID = authorID;
+        this.fName = fName;
+        this.lName = lName;
+
     }
 
-    public String getName() {
-        return name;
+    public String getAuthorID() {
+        return authorID;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setEmail(String authorID) {
+        this.authorID = authorID;
+    }
+    public String getFName() {
+        return fName;
     }
 
-    public String getSurname() {
-        return surname;
+    public void setFName(String fName) {
+        this.fName = fName;
     }
 
-    public void setSurname(String surname) {
-        this.surname = surname;
+    public String getlName() {
+        return lName;
     }
 
-    public String getEmail() {
-        return email;
+    public void setlName(String lName) {
+        this.lName = lName;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public String getAffiliation() {
-        return affiliation;
-    }
-
-    public void setAffiliation(String affiliation) {
-        this.affiliation = affiliation;
-    }
-
-    public String getDoi_A() {
-        return doi_A;
-    }
-
-    public void setDoi_A(String doi_A) {
-        this.doi_A = doi_A;
+    @Override
+    public String toString() {
+        return "Author{" +
+                "authorID='" + authorID + '\'' +
+                ", fName='" + fName + '\'' +
+                ", lName='" + lName + '\'' +
+                '}';
     }
 }
