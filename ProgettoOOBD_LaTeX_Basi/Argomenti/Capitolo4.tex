@@ -1,6 +1,5 @@
 \chapter{Progettazione Fisica}
 \section{Creazione delle Tabelle}
-\footnote{\href{https://github.com/lorenzotecchia/ProgettoOOBD/blob/main/BD/Documentazione/DocumentazioneCodiceSQL.md#documentazione-codice-sql}{[1]}Documentazione del codice SQL}}
 \begin{lstlisting}
 drop schema mtl cascade;
 create schema mtl;
@@ -76,7 +75,7 @@ create table mtl.article
     constraint ArticleFK_2 foreign key (FK_Magazine) references mtl.Magazine (ISSN_M) on delete set null
 );
 \end{lstlisting}
-\footnote{\href{https://github.com/lorenzotecchia/ProgettoOOBD/blob/main/BD/Documentazione/DocumentazioneCodiceSQL.md#documentazione-del-file-tablecreationsql}{[2]}Documentaizone per la creazione delle tabelle}
+\marginpar{Documentazione creazione delle \href{https://github.com/lorenzotecchia/ProgettoOOBD/blob/main/BD/Documentazione/DocumentazioneCodiceSQL.md#documentazione-codice-sql}{tabelle}.}
 
 \section{Creazione dei domini}
 \begin{lstlisting}
@@ -99,7 +98,10 @@ check ( value not similar to '%[@!#$ˆ∗%&]+%');
 create domain location as varchar(50)
 check ( value like '%,[0-9],%,[0-9],%');
 \end{lstlisting}
-\footnote{\href{https://github.com/lorenzotecchia/ProgettoOOBD/blob/main/BD/Documentazione/DocumentazioneCodiceSQL.md#documentazione-del-file-viewssql}{[3]}Documentazione per la creazione delle viste}
+
+\marginpar{Documentazione per la creazione dei \href{https://github.com/lorenzotecchia/ProgettoOOBD/blob/main/BD/Documentazione/DocumentazioneCodiceSQL.md#documentazione-del-file-domainssql}{domini}.}
+
+
 \section{Creazione delle viste}
 \begin{lstlisting}
 create view mtl.bibliography as
@@ -148,7 +150,10 @@ select ar.title,a.fname,a.lname, ar.conferencename, ar.releaselocation, ar.relea
 from mtl.article ar join mtl.author a on a.codauthor = ar.fk_author
 order by a.lname;
 \end{lstlisting}
-\footnote{\href{https://github.com/lorenzotecchia/ProgettoOOBD/blob/main/BD/Documentazione/DocumentazioneCodiceSQL.md#documentazione-del-file-viewssql}{[4]}Documentazione per la creazione delle viste}
+
+\marginpar{Documentazione per la creazione delle \href{https://github.com/lorenzotecchia/ProgettoOOBD/blob/main/BD/Documentazione/DocumentazioneCodiceSQL.md#documentazione-del-file-viewssql}{viste}.}
+
+
 \section{Creazione di funzioni e trigger}
 \begin{lstlisting}
 	create or replace function mtl.function_1() returns trigger as
@@ -256,4 +261,5 @@ create trigger validity_issn_m
     for each row
 execute procedure mtl.function_3();
 \end{lstlisting}
-\footnote{\href{https://github.com/lorenzotecchia/ProgettoOOBD/blob/main/BD/Documentazione/DocumentazioneCodiceSQL.md#documentazione-del-file-functions_triggerssql}{[5]}Documentazione per la creazione di funzioni e trigger}
+
+\marginpar{Documentazione per la creazione di \href{https://github.com/lorenzotecchia/ProgettoOOBD/blob/main/BD/Documentazione/DocumentazioneCodiceSQL.md#documentazione-del-file-functions_triggerssql}{funzioni.}}
