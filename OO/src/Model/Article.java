@@ -6,7 +6,6 @@ public class Article {
     private String doi_A;
     private String title;
     private String accessMode;
-    private Timestamp yearRelease;
     private String editor;
     private String topic;
     private Timestamp releaseDate;
@@ -15,11 +14,10 @@ public class Article {
     private String FK_author;
     private String FK_Magazine;
 
-    public Article(String doi_A, String title, String accessMode, Timestamp yearRelease, String editor, String topic, Timestamp releaseDate, String releaseLocation, String conferenceName, String FK_author, String FK_Magazine) {
+    public Article(String doi_A, String title, String accessMode, String editor, String topic, Timestamp releaseDate, String releaseLocation, String conferenceName, String FK_author, String FK_Magazine) {
         this.doi_A = doi_A;
         this.title = title;
         this.accessMode = accessMode;
-        this.yearRelease = yearRelease;
         this.editor = editor;
         this.topic = topic;
         this.releaseDate = releaseDate;
@@ -51,14 +49,6 @@ public class Article {
 
     public void setAccessMode(String accessMode) {
         this.accessMode = accessMode;
-    }
-
-    public Timestamp getYearRelease() {
-        return yearRelease;
-    }
-
-    public void setYearRelease(Timestamp yearRelease) {
-        this.yearRelease = yearRelease;
     }
 
     public String getEditor() {
@@ -115,7 +105,6 @@ public class Article {
         return "Article{" +
                 "doi_B='" + doi_A + '\'' +
                 ", title='" + title + '\'' +
-                ", yearRelease='" + yearRelease + '\'' +
                 ", accessMode='" + accessMode + '\'' +
                 ", editor='" + editor + '\'' +
                 ", topic='" + topic + '\'' +
