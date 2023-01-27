@@ -60,7 +60,6 @@ create table mtl.article
         primary key,
     Title           varchar(40),
     AccessMode      access,
-    YearRelease     timestamp,
     Editor          names,
     Topic           names,
     ReleaseDate     timestamp,

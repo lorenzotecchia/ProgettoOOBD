@@ -38,9 +38,9 @@ public class BookDAO {
         }
     }
 
-    public List<Book> readAll() throws SQLException {
+    public ArrayList<Book> readAll() throws SQLException {
         String query = "SELECT * FROM mtl.Book";
-        List<Book> books = new ArrayList<>();
+        ArrayList<Book> books = new ArrayList<>();
         try (PreparedStatement statement = connection.prepareStatement(query)) {
             ResultSet resultSet = statement.executeQuery();
             while (resultSet.next()) {

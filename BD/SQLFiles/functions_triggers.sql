@@ -102,3 +102,6 @@ create trigger validity_issn_m
     on mtl.magazine
     for each row
 execute procedure mtl.function_3();
+
+
+<

@@ -58,27 +58,35 @@ public class Article {
     public void setEditor(String editor) {
         this.editor = editor;
     }
+
     public String getTopic() {
         return topic;
     }
+
     public void setTopic(String topic) {
         this.topic = topic;
     }
+
     public Timestamp getReleaseDate() {
         return releaseDate;
     }
+
     public void setReleaseDate(Timestamp releaseDate) {
         this.releaseDate = releaseDate;
     }
+
     public String getReleaseLocation() {
         return releaseLocation;
     }
+
     public void setReleaseLocation(String releaseLocation) {
         this.releaseLocation = releaseLocation;
     }
+
     public String getConferenceName() {
         return conferenceName;
     }
+
     public void setConferenceName(String conferenceName) {
         this.conferenceName = conferenceName;
     }
