@@ -17,13 +17,18 @@ public class BookDAO {
         this.connection = connection;
     }
 
-    public void create(String doi_B, String ISBN_B, int edition, String publishingHouse, String language, String title, String accessMode, String argument, boolean reprint, Timestamp releaseDate, String releaseLocation, String PresentationName, String FK_author, String FK_Series) throws SQLException {
-        String query = "INSERT INTO mtl.Book (Doi_B, ISBN_B, Edition, PublishingHouse, Language, Title, Argument, AccessMode, Reprint, ReleaseDate, ReleaseLocation, PresentationName, FK_author, FK_Series) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+    public void create(String doi_B, String ISBN_B, int edition, String publishingHouse,
+                       String language, String title, String accessMode, String argument,
+                       boolean reprint, Timestamp releaseDate, String releaseLocation, String PresentationName,
+                       String FK_author, String FK_Series) throws SQLException {
+        String query = "INSERT INTO mtl.Book (Doi_B, ISBN_B, Edition, PublishingHouse, Language, Title, Argument, AccessMode, " +
+                "Reprint, ReleaseDate, ReleaseLocation, PresentationName, FK_author, FK_Series) " +
+                "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
         try (PreparedStatement statement = connection.prepareStatement(query)) {
             statement.setString(1, doi_B);
             statement.setString(2, ISBN_B);
             statement.setInt(3, edition);
-            statement.setString(4 , publishingHouse);
+            statement.setString(4, publishingHouse);
             statement.setString(5, language);
             statement.setString(6, title);
             statement.setString(7, argument);
@@ -39,7 +44,7 @@ public class BookDAO {
     }
 
     public ArrayList<Book> readAll() throws SQLException {
-        String query = "SELECT * FROM mtl.Book";
+        String query = "SELECT * FROM mtl.Book b ";
         ArrayList<Book> books = new ArrayList<>();
         try (PreparedStatement statement = connection.prepareStatement(query)) {
             ResultSet resultSet = statement.executeQuery();
@@ -58,9 +63,12 @@ public class BookDAO {
                 String presentationName = resultSet.getString("PresentationName");
                 String Fk_author = resultSet.getString("FK_author");
                 String FK_Series = resultSet.getString("FK_Series");
-                books.add(new Book(doi_B, ISBN_B, edition, publishingHouse,language, title, argument, accessMode, reprint, releaseDate, releaseLocation, presentationName,Fk_author, FK_Series));
+                books.add(new Book(doi_B, ISBN_B, edition, publishingHouse, language, title,
+                        argument, accessMode, reprint, releaseDate, releaseLocation,
+                        presentationName, Fk_author, FK_Series));
             }
         }
         return books;
     }
+
 }

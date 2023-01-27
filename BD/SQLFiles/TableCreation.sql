@@ -35,7 +35,7 @@ create table mtl.book
 (
     Doi_B            doi
         primary key,
-    ISBN_B           varchar(13)
+    ISBN_B           isbn
         unique,
     PublishingHouse  names,
     Language         names,

@@ -1,2 +1,2 @@
-INSERT INTO mtl.book (Doi_B, isbn_b, edition, ReleaseDate, PublishingHouse, AccessMode, Title, Argument, Reprint, FK_Series,fk_author)
-VALUES  ('1176457088', '360-53-73640-48-5', 8, '2022-07-08 10:55:29.000000', 'Facebook', 'Stephen King', 'Paper', 'Great Expe', 'objectivis', false, '248-77-26648-24-0'),
+insert into mtl.book(doi_b, isbn_b, publishinghouse, language, accessmode, title, argument, reprint, edition, releasedate, releaselocation, presentationname, fk_author, fk_series)
+VALUES  ('10.123/lorenzo', '978-8-8503-3475-9', 'Pippo', 'italiano', 'Paper', 'Mamma', 'novel', false,8, '2022-07-08 10:55:29.000000','Viale Michelangelo, 31, Cercola, 80040, Napoli', 'Presentaizione', 1, '0000-0051');

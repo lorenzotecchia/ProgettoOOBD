@@ -7,6 +7,7 @@ import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+import DAO.BibliographyDAO;
 import DAO.BookDAO;
 import Database.ConnessioneDatabase;
 
@@ -56,8 +57,8 @@ public class CatalogoLibri {
         DefaultListModel<Model.Book> model = new DefaultListModel<>();
         try {
             Connection connection = ConnessioneDatabase.getInstance().connection;
-            BookDAO bookDAO = new BookDAO(connection);
-            ArrayList listaLibri = bookDAO.readAll();
+            BibliographyDAO bibliographyDAO = new BibliographyDAO(connection);
+            ArrayList listaLibri = bibliographyDAO.readAllBibliography();
             model.addAll(listaLibri);
         } catch (SQLException e) {
             e.printStackTrace();

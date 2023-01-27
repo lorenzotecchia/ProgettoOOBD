@@ -4,6 +4,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 import java.net.URI;
+import com.formdev.flatlaf.FlatDarkLaf;
 
 public class StartPage {
     private JPanel panel1;
@@ -116,6 +117,7 @@ public class StartPage {
     }
 
     public static void main(String[] args) {
+        FlatDarkLaf.setup();
         new StartPage();
     }
 }
