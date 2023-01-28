@@ -44,9 +44,9 @@ public class StartPage {
             public void mouseClicked(MouseEvent e) {
                 super.mouseClicked(e);
                 frame.setVisible(false);
-                new LoginForm();
             }
         });
+
         catalogoButton.addMouseListener(new MouseAdapter() {
             /**
              * @param e the event to be processed
