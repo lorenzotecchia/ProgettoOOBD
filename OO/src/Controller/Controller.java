@@ -10,20 +10,6 @@ import java.util.List;
 
 public class Controller {
     private Connection connection;
-    private BookDAO bookDAO;
-    private ArticleDAO articleDAO;
-    private MagazineDAO magazineDAO;
-    private SeriesDAO seriesDAO;
-
-    public Controller(Connection connection) {
-        this.connection = connection;
-        bookDAO = new BookDAO(connection);
-        articleDAO = new ArticleDAO(connection);
-        magazineDAO = new MagazineDAO(connection);
-        seriesDAO = new SeriesDAO(connection);
-    }
-
-
 
 
 

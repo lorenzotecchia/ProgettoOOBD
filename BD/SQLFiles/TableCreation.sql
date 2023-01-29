@@ -14,7 +14,7 @@ create table mtl.series
     ISSN_S  issn primary key,
     Curator names,
     Edition int,
-    Code_S  varchar(10),
+    Code_S  varchar(10) unique,
     Name_S  names
 );
 

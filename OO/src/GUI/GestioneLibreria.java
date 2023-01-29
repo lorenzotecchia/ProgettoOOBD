@@ -6,8 +6,7 @@ import java.awt.*;
 
 public class GestioneLibreria extends JFrame{
     private JPanel panel1;
-
-    private JTable table;
+    private JTable table1;
 
     public GestioneLibreria()  {
         JFrame frame = new JFrame("GestioneLibreria");
@@ -38,15 +37,15 @@ public class GestioneLibreria extends JFrame{
              "Pool", 10, false}
         };
 
-        table = new JTable(data, columnNames);
-        JTableHeader header = table.getTableHeader();
+        table1 = new JTable(data, columnNames);
+        JTableHeader header = table1.getTableHeader();
         header.setBackground(Color.yellow);
 
-        table.setPreferredScrollableViewportSize(new Dimension(500, 70));
-        table.setFillsViewportHeight(true);
+        table1.setPreferredScrollableViewportSize(new Dimension(500, 70));
+        table1.setFillsViewportHeight(true);
 
         //Create the scroll pane and add the table to it.
-        JScrollPane scrollPane = new JScrollPane(table);
+        JScrollPane scrollPane = new JScrollPane(table1);
 
         //Add the scroll pane to this panel.
         panel1.add(scrollPane);

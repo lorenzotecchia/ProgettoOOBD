@@ -4,7 +4,6 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 import java.net.URI;
-import com.formdev.flatlaf.FlatDarkLaf;
 
 public class StartPage {
     private JPanel panel1;
@@ -59,17 +58,7 @@ public class StartPage {
 
             }
         });
-        catalogoButton.addMouseListener(new MouseAdapter() {
-            /**
-             * @param e the event to be processed
-             */
-            @Override
-            public void mouseClicked(MouseEvent e) {
-                super.mouseClicked(e);
-                frame.setVisible(false);
-                new EsploraCatalogo();
-            }
-        });
+
         documentazioneButton.addActionListener(new ActionListener() {
             /**
              * @param e the event to be processed
@@ -117,7 +106,6 @@ public class StartPage {
     }
 
     public static void main(String[] args) {
-        FlatDarkLaf.setup();
         new StartPage();
     }
 }

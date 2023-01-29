@@ -105,8 +105,8 @@ public class Book {
 
     public void setLanguage(String language) { this.language = language; }
 
-    public String getISBN_b() { return ISBN_b; }
-    public void setISBN_b(String ISBN_b) { this.ISBN_b = ISBN_b; }
+    public String getISBN_B() { return ISBN_b; }
+    public void setISBN_B(String ISBN_b) { this.ISBN_b = ISBN_b; }
     public String getPublishingHouse() { return publishingHouse; }
     public void setPublishingHouse(String publishingHouse) { this.publishingHouse = publishingHouse; }
     public String getReleaseLocation() { return releaseLocation; }
@@ -133,4 +133,9 @@ public class Book {
                 ", FK_author='" + FK_author + '\'' +
                 '}';
     }
+
+    public void setFK_author(String fkAuthor) {
+
+    }
+
 }
