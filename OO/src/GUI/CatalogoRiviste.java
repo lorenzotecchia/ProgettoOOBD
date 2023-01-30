@@ -7,20 +7,26 @@ import Model.Magazine;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumnModel;
-import java.awt.event.ActionListener;
-import java.awt.event.InputMethodListener;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 
+/**
+ * The type Catalogo riviste.
+ */
 public class CatalogoRiviste {
     private JPanel panel1;
     private JTable table1;
     private JTextField textField1;
     private JButton cercaButton;
-    private JComboBox comboBox1;
+    private JComboBox periodicitBox;
 
 
+    /**
+     * Instantiates a new Catalogo riviste.
+     */
     public CatalogoRiviste() {
         JFrame frame = new JFrame("CatalogoRiviste");
         frame.setContentPane(panel1);
@@ -47,17 +53,35 @@ public class CatalogoRiviste {
                 DefaultTableModel model = (DefaultTableModel) table1.getModel();
                 model.setRowCount(0);
                 for (Magazine magazine : magazines) {
-                    model.addRow(new Object[]{magazine.getISSN_M(), magazine.getName(), magazine.getArgument(), magazine.getManager(), magazine.getYearRelease(), magazine.getPublicationPeriod(), magazine.getAccessMode(), magazine.getPublishingHouse()});
+                    model.addRow(new Object[]{magazine.getISSN_M(), magazine.getName(), magazine.getArgument(), magazine.getManager(),
+                            magazine.getYearRelease(), magazine.getPublicationPeriod(), magazine.getAccessMode(), magazine.getPublishingHouse()});
                 }
             }
         });
     }
 
+    /**
+     * The entry point of application.
+     *
+     * @param args the input arguments
+     */
+    public static void main(String[] args) {
+        new CatalogoRiviste();
+    }
+
+    /**
+     * Gets panel 1.
+     *
+     * @return the panel 1
+     */
     public JPanel getPanel1() {
         return panel1;
     }
 
-    void createTable(){
+    /**
+     * Create table.
+     */
+    void createTable() {
         DefaultTableModel model = new DefaultTableModel();
         model.addColumn("ISSN Magazine");
         model.addColumn("Name Magazine");
@@ -80,6 +104,9 @@ public class CatalogoRiviste {
         cols.getColumn(7);
     }
 
+    /**
+     * Show table.
+     */
     void ShowTable() {
         DefaultTableModel model = (DefaultTableModel) table1.getModel();
         model.setRowCount(0);
@@ -92,16 +119,23 @@ public class CatalogoRiviste {
     }
 
 
-
+    /**
+     * Create combo box.
+     */
     private void createComboBox() {
-        comboBox1.addItem("Nome Rivista");
-        comboBox1.addItem("Periodicità");
-
-        
-    }
-
-
-    public static void main(String[] args) {
-        new CatalogoRiviste();
+        ArrayList<Magazine> periodicities = new ArrayList<>();
+        ImplementazioneMagazine implementazioneMagazine = new ImplementazioneMagazine();
+        periodicities = implementazioneMagazine.getAllPeriodicities();
+        for (Magazine magazine : periodicities) {
+            periodicitBox.addItem(magazine.getPublicationPeriod());
+        }
+        periodicitBox.addItemListener(new ItemListener() {
+            @Override
+            public void itemStateChanged(ItemEvent e) {
+                if (e.getStateChange() == ItemEvent.SELECTED) {
+                    ShowTable();
+                }
+            }
+        });
     }
 }
