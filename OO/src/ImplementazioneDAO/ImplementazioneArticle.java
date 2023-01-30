@@ -22,8 +22,7 @@ public class ImplementazioneArticle implements ArticleDAO {
 
     public static String SEARCH_ARTICLE_BY_EDITOR = "SELECT * FROM mtl.article WHERE editor = '%'||?||'%'";
     public static String SEARCH_ARTICLE_BY_MAGAZINE_NAME = "SELECT * FROM mtl.article a JOIN mtl.magazine m ON a.fk_magazine = m.issn_m WHERE m.name ='%'||?||'%'";
-
-
+    public static String GET_ALL_TOPICS = "SELECT DISTINCT topic FROM mtl.article";
     public ImplementazioneArticle() {
         try {
             connection = ConnessioneDatabase.getInstance().connection;
@@ -225,6 +224,26 @@ public class ImplementazioneArticle implements ArticleDAO {
         }
         return articles;
     }
+
+    /**
+     * @return
+     */
+    @Override
+    public ArrayList<String> getAllTopics() {
+        ArrayList<String> topics = new ArrayList<>();
+        try (PreparedStatement statement = connection.prepareStatement(GET_ALL_TOPICS)) {
+            ResultSet resultSet = statement.executeQuery();
+            while (resultSet.next()) {
+                String topic = resultSet.getString("Topic");
+                topics.add(topic);
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return topics;
+    }
+
+
 }
 
 

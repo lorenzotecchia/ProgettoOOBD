@@ -28,4 +28,6 @@ public interface ArticleDAO {
 
     ArrayList<Article> CercaPerMagazine(String magazine);
 
+    ArrayList<String> getAllTopics();
+
 }

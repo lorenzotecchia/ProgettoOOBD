@@ -21,4 +21,6 @@ public interface SeriesDAO {
 
     void delete(String ISSN_S);
 
+    ArrayList<String> getAllEditions();
+
 }

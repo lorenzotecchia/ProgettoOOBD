@@ -24,7 +24,7 @@ public class Series {
         this.ISSN_S = ISSN_S;
     }
 
-    public String curator() {
+    public String getCurator() {
         return Curator;
     }
 

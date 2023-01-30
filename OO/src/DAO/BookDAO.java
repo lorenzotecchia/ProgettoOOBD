@@ -29,4 +29,11 @@ public interface BookDAO {
                        boolean reprint, Timestamp releaseDate, String releaseLocation, String PresentationName,
                        String FK_author, String FK_Series);
     ArrayList<Book> SearchByAuthor(String author);
+
+    ArrayList<String> getAllArguments();
+
+    ArrayList<String> getAllLanguages();
+
+    ArrayList<String> getAllAccess();
+
 }

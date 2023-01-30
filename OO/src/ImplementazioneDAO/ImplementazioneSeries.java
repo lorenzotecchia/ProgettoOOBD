@@ -2,7 +2,6 @@ package ImplementazioneDAO;
 
 import DAO.SeriesDAO;
 import Database.ConnessioneDatabase;
-import Model.Book;
 import Model.Series;
 
 import java.io.Serial;
@@ -11,17 +10,16 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.List;
 
 
 public class ImplementazioneSeries implements SeriesDAO {
-    private Connection connection;
+    private static String GET_ALL_EDITIONS = "SELECT DISTINCT EDITION FROM MTL.SERIES";
     private static String GET_ALL_SERIES = "SELECT * FROM MTL.SERIES";
     private static String SEARCH_SERIES_BY_NAME = "SELECT * FOMR MTL.SERIES WHERE NAME_S = ?";
-
     private static String DELETE_SERIES = "DELETE FROM MTL.SEREIS WHERE ISSN_S = ?";
     private static String CREATE_SERIES = "INSERT INTO mtl.Series (ISSN_S, Curator, Edition, NameS, Code) VALUES (?, ?, ?, ?, ?)";
     private static String UPDATE_SERIES = "UPDATE mtl.series SET curator = ?, edition = ?, code_s = ?, name_s = ? WHERE issn_s = ?;";
+    private Connection connection;
 
 
     public ImplementazioneSeries() {
@@ -66,8 +64,8 @@ public class ImplementazioneSeries implements SeriesDAO {
                 String ISSN_S = rs.getString("ISSN_S");
                 String Curator = rs.getString("Curator");
                 int Edition = rs.getInt("Edition");
-                String NameS = rs.getString("NameS");
-                String Code = rs.getString("Code");
+                String NameS = rs.getString("Name_S");
+                String Code = rs.getString("Code_S");
                 series.add(new Series(ISSN_S, Curator, Edition, NameS, Code));
             }
         } catch (SQLException e) {
@@ -133,5 +131,23 @@ public class ImplementazioneSeries implements SeriesDAO {
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
+    }
+
+    /**
+     * @return
+     */
+    @Override
+    public ArrayList<String> getAllEditions() {
+        ArrayList<String> editions = new ArrayList<>();
+        try (PreparedStatement statement = connection.prepareStatement(GET_ALL_EDITIONS)){
+            ResultSet rs = statement.executeQuery();
+            while (rs.next()) {
+                editions.add(rs.getString("edition"));
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return editions;
+
     }
 }

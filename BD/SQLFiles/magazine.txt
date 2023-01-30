@@ -60,3 +60,26 @@
 "Astronomy & Astrophysics" - 2006: Un articolo sull'esplorazione dei pianeti extrasolari scritto da Federico Rossi e Antonio Marino
 "IEEE Transactions on Electrical and Computer Engineering" - 2005: Un articolo sullo sviluppo di nuove tecnologie per l'energia rinnovabile scritto da Laura Bianchi e Davide Giordano
 "IEEE Transactions on Automatic
+
+
+issn validi :
+1952-1664
+2641-9552
+3426-1548
+4815-2634
+5521-4632
+6412-5326
+7315-2416
+1624-5317
+2617-3415
+3415-8162
+4216-7531
+5134-2678
+6142-7853
+7152-4836
+8151-2467
+9261-7351
+1075-3426
+1156-2418
+1238-1745
+1357-1428

@@ -1,16 +1,12 @@
 package GUI;
 
-import Controller.Controller;
 import ImplementazioneDAO.ImplementazioneMagazine;
 import Model.Magazine;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumnModel;
-import java.awt.event.ItemEvent;
-import java.awt.event.ItemListener;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
+import java.awt.event.*;
 import java.util.ArrayList;
 
 /**
@@ -22,6 +18,7 @@ public class CatalogoRiviste {
     private JTextField textField1;
     private JButton cercaButton;
     private JComboBox periodicitBox;
+    private JButton backButton;
 
 
     /**
@@ -30,7 +27,7 @@ public class CatalogoRiviste {
     public CatalogoRiviste() {
         JFrame frame = new JFrame("CatalogoRiviste");
         frame.setContentPane(panel1);
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
         frame.pack();
         frame.setVisible(true);
         frame.setLocationRelativeTo(null);
@@ -56,6 +53,16 @@ public class CatalogoRiviste {
                     model.addRow(new Object[]{magazine.getISSN_M(), magazine.getName(), magazine.getArgument(), magazine.getManager(),
                             magazine.getYearRelease(), magazine.getPublicationPeriod(), magazine.getAccessMode(), magazine.getPublishingHouse()});
                 }
+            }
+        });
+        backButton.addActionListener(new ActionListener() {
+            /**
+             * @param e the event to be processed
+             */
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                frame.setVisible(false);
+                new StartPage();
             }
         });
     }
@@ -108,10 +115,9 @@ public class CatalogoRiviste {
      * Show table.
      */
     void ShowTable() {
-        
+
         DefaultTableModel model = (DefaultTableModel) table1.getModel();
         model.setRowCount(0);
-        Controller controller = new Controller();
         ImplementazioneMagazine implementazioneMagazine = new ImplementazioneMagazine();
         ArrayList<Magazine> magazines = implementazioneMagazine.readAll();
         for (Magazine magazine : magazines) {

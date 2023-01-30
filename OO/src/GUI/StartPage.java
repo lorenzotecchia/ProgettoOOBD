@@ -2,20 +2,20 @@ package GUI;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.net.URI;
 
 public class StartPage {
     private JPanel panel1;
-    private JButton prestitiButton;
-    //fill the jpanel with an image
-    private JButton gestioneButton;
     private JButton catalogoButton;
     private JButton documentazioneButton;
     private JButton lorenzoTecchiaButton;
     private JButton mirkoMarcianoButton;
 
-    public StartPage(){
+    public StartPage() {
 
         JFrame frame = new JFrame("StartPage");
         frame.setContentPane(panel1);
@@ -25,25 +25,16 @@ public class StartPage {
         frame.setLocationRelativeTo(null);
         frame.setResizable(false);
 
-        prestitiButton.addMouseListener(new MouseAdapter() {
-            /**
-             * @param e the event to be processed
-             */
-            @Override
-            public void mouseClicked(MouseEvent e) {
-                super.mouseClicked(e);
-                frame.setVisible(false);
-            }
-        });
-        gestioneButton.addMouseListener(new MouseAdapter() {
-            /**
-             * @param e the event to be processed
-             */
-            @Override
-            public void mouseClicked(MouseEvent e) {
-                super.mouseClicked(e);
-                frame.setVisible(false);
 
+        catalogoButton.addMouseListener(new MouseAdapter() {
+            /**
+             * @param e the event to be processed
+             */
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                super.mouseClicked(e);
+                frame.setVisible(false);
+                new EsploraCatalogo();
             }
         });
 

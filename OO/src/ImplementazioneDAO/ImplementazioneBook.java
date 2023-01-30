@@ -11,20 +11,19 @@ import java.sql.Timestamp;
 import java.util.ArrayList;
 
 public class ImplementazioneBook implements BookDAO {
-    private Connection connection;
-
+    private static final String GET_ALL_ACCESS = "SELECT DISTINCT accessmode FROM mtl.book;";
+    private static final String GET_ALL_ARGUMENTS = "SELECT  DISTINCT argument FROM mtl.book;";
+    private static final String GET_ALL_LANGUAGES = "SELECT DISTINCT language FROM mtl.book;";
     public static String INSERT_BOOK = "INSERT INTO mtl.Book (Doi_B, ISBN_B, Edition, PublishingHouse, Language, Title, Argument, AccessMode, " +
             "Reprint, ReleaseDate, ReleaseLocation, PresentationName, FK_author, FK_Series) " +
             "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);";
     public static String READ_ALL_BOOK = "SELECT * FROM mtl.Book b ";
-
     public static String UPDATE_BOOK = "UPDATE mtl.Book SET Doi_B = ?, ISBN_B = ?, Edition = ?, PublishingHouse = ?, Language = ?, Title = ?, Argument = ?, AccessMode = ?, " +
             "Reprint = ?, ReleaseDate = ?, ReleaseLocation = ?, PresentationName = ?, FK_author = ?, FK_Series = ? WHERE Doi_B = ?;";
     public static String DELETE_BOOK = "DELETE FROM mtl.Book WHERE Doi_B = ?;";
-
     public static String SEARCH_BY_TITLE = "SELECT * FROM mtl.Book b WHERE b.Title = '%'||?||'%';";
-
     public static String SEARCH_BY_AUTHOR = "SELECT * FROM mtl.Book b JOIN mtl.author a ON b.fk_author = a.codauthor WHERE a.lname = ? OR a.fname = ?;";
+    private Connection connection;
 
     public ImplementazioneBook() {
         try {
@@ -167,6 +166,61 @@ public class ImplementazioneBook implements BookDAO {
             throw new RuntimeException(e);
         }
         return books;
+    }
+
+    /**
+     * @param
+     * @return
+     */
+    @Override
+    public ArrayList<String> getAllArguments() {
+        ArrayList<String> arguments = new ArrayList<>();
+        try (PreparedStatement statement = connection.prepareStatement(GET_ALL_ARGUMENTS)) {
+            statement.executeQuery();
+            while (statement.getResultSet().next()) {
+                String argument1 = statement.getResultSet().getString("Argument");
+                arguments.add(argument1);
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return arguments;
+    }
+
+    /**
+     * @return
+     */
+    @Override
+    public ArrayList<String> getAllLanguages() {
+        ArrayList<String> languages = new ArrayList<>();
+        try (PreparedStatement statement = connection.prepareStatement(GET_ALL_LANGUAGES)) {
+            statement.executeQuery();
+            while (statement.getResultSet().next()) {
+                String language = statement.getResultSet().getString("Language");
+                languages.add(language);
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return languages;
+    }
+
+    /**
+     * @return
+     */
+    @Override
+    public ArrayList<String> getAllAccess() {
+ ArrayList<String> access = new ArrayList<>();
+        try (PreparedStatement statement = connection.prepareStatement(GET_ALL_ACCESS)) {
+            statement.executeQuery();
+            while (statement.getResultSet().next()) {
+                String accessMode = statement.getResultSet().getString("AccessMode");
+                access.add(accessMode);
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return access;
     }
 
     public void deleteBook(String Doi_B) {
