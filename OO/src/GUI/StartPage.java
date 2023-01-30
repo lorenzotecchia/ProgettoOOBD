@@ -25,19 +25,6 @@ public class StartPage {
         frame.setLocationRelativeTo(null);
         frame.setResizable(false);
 
-
-        catalogoButton.addMouseListener(new MouseAdapter() {
-            /**
-             * @param e the event to be processed
-             */
-            @Override
-            public void mouseClicked(MouseEvent e) {
-                super.mouseClicked(e);
-                frame.setVisible(false);
-                new EsploraCatalogo();
-            }
-        });
-
         catalogoButton.addMouseListener(new MouseAdapter() {
             /**
              * @param e the event to be processed
@@ -86,9 +73,9 @@ public class StartPage {
              */
             @Override
             public void actionPerformed(ActionEvent e) {
-                //open the github profile
+                //open the Github profile
                 try {
-                    Desktop.getDesktop().browse(new URI("https://github.com/Lgegmbh"));
+                    Desktop.getDesktop().browse(new URI("https://github.com/Lgegmb"));
                 } catch (Exception ex) {
                     ex.printStackTrace();
                 }
