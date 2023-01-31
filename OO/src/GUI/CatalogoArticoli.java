@@ -29,7 +29,7 @@ public class CatalogoArticoli {
     public CatalogoArticoli() {
         JFrame frame = new JFrame("CatalogoArticoli");
         frame.setContentPane(panel1);
-            frame.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
+        frame.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
         frame.pack();
         frame.setVisible(true);
         frame.setLocationRelativeTo(null);

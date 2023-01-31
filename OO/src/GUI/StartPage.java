@@ -8,6 +8,9 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.net.URI;
 
+/**
+ * The type Start page.
+ */
 public class StartPage {
     private JPanel panel1;
     private JButton catalogoButton;
@@ -15,6 +18,9 @@ public class StartPage {
     private JButton lorenzoTecchiaButton;
     private JButton mirkoMarcianoButton;
 
+    /**
+     * Instantiates a new Start page.
+     */
     public StartPage() {
 
         JFrame frame = new JFrame("StartPage");
@@ -84,6 +90,11 @@ public class StartPage {
         });
     }
 
+    /**
+     * The entry point of application.
+     *
+     * @param args the input arguments
+     */
     public static void main(String[] args) {
         new StartPage();
     }
