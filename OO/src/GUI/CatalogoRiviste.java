@@ -1,14 +1,17 @@
 package GUI;
 
 import Controller.Controller;
-import ImplementazioneDAO.ImplementazioneMagazine;
 import Model.Magazine;
-import Model.Series;
 
 import javax.swing.*;
+import javax.swing.event.DocumentEvent;
+import javax.swing.event.DocumentListener;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumnModel;
-import java.awt.event.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
@@ -16,6 +19,7 @@ import java.util.ArrayList;
  * The type Catalogo riviste.
  */
 public class CatalogoRiviste {
+    JFrame frame;
     private JPanel panel1;
     private JTable table1;
     private JTextField textField1;
@@ -23,7 +27,6 @@ public class CatalogoRiviste {
     private JComboBox periodicitBox;
     private JButton backButton;
     private JComboBox argumentBox;
-    JFrame frame;
 
 
     /**
@@ -37,30 +40,14 @@ public class CatalogoRiviste {
         frame.setVisible(true);
         frame.setLocationRelativeTo(null);
 
+
+        createTextfield(controller);
         createArgumentBox(controller);
         createPeriodicitaBox(controller);
         createTable();
         ShowTable(controller);
 
 
-        cercaButton.addMouseListener(new MouseAdapter() {
-            /**
-             * @param e the event to be processed
-             */
-            @Override
-            public void mouseClicked(MouseEvent e) {
-                super.mouseClicked(e);
-                String name = textField1.getText();
-                ImplementazioneMagazine implementazioneMagazine = new ImplementazioneMagazine();
-                ArrayList<Magazine> magazines = implementazioneMagazine.searchByMagazineName(name);
-                DefaultTableModel model = (DefaultTableModel) table1.getModel();
-                model.setRowCount(0);
-                for (Magazine magazine : magazines) {
-                    model.addRow(new Object[]{magazine.getISSN_M(), magazine.getName(), magazine.getArgument(), magazine.getManager(),
-                            magazine.getYearRelease(), magazine.getPublicationPeriod(), magazine.getAccessMode(), magazine.getPublishingHouse()});
-                }
-            }
-        });
         backButton.addActionListener(new ActionListener() {
             /**
              * @param e the event to be processed
@@ -69,6 +56,20 @@ public class CatalogoRiviste {
             public void actionPerformed(ActionEvent e) {
                 frame.setVisible(false);
                 frameChiamante.setVisible(true);
+            }
+        });
+        argumentBox.addItemListener(new ItemListener() {
+            /**
+             * @param e the event to be processed
+             */
+            @Override
+            public void itemStateChanged(ItemEvent e) {
+                try {
+                    ShowTable(controller);
+                } catch (SQLException throwables) {
+                    throwables.printStackTrace();
+                }
+
             }
         });
     }
@@ -112,10 +113,13 @@ public class CatalogoRiviste {
      * Show table.
      */
     void ShowTable(Controller controller) throws SQLException {
-
+        System.out.println("line");
+        String arg = String.valueOf(argumentBox.getSelectedItem());
+        String period = String.valueOf(periodicitBox.getSelectedItem());
+        String name = String.valueOf(textField1.getText());
         DefaultTableModel model = (DefaultTableModel) table1.getModel();
         model.setRowCount(0);
-        ArrayList<Magazine> magazines = controller.readAllMagazines();
+        ArrayList<Magazine> magazines = controller.readAllMagazines(period, arg, name);
         for (Magazine magazine : magazines) {
             model.addRow(new Object[]{magazine.getISSN_M(), magazine.getName(), magazine.getArgument(),
                     magazine.getManager(), magazine.getYearRelease(), magazine.getPublicationPeriod(),
@@ -128,8 +132,8 @@ public class CatalogoRiviste {
      * Create combo box.
      */
     private void createPeriodicitaBox(Controller controller) throws SQLException {
-       ArrayList<String> periodicities = controller.getAllPerioditicitaMagazine();
-        for (String i  : periodicities) {
+        ArrayList<String> periodicities = controller.getAllPerioditicitaMagazine();
+        for (String i : periodicities) {
             periodicitBox.addItem(i);
         }
         periodicitBox.addItemListener(new ItemListener() {
@@ -151,5 +155,43 @@ public class CatalogoRiviste {
         for (String i : array) {
             argumentBox.addItem(i);
         }
+    }
+
+    private void createTextfield(Controller controller) {
+        textField1.getDocument().addDocumentListener(new DocumentListener() {
+                                                         @Override
+                                                         public void insertUpdate(DocumentEvent e) {
+                                                             try {
+                                                                 String name = textField1.getText();
+                                                                 System.out.println(name);
+                                                                 ShowTable(controller);
+                                                             } catch (SQLException ex) {
+                                                                 throw new RuntimeException(ex);
+                                                             }
+                                                         }
+
+                                                         @Override
+                                                         public void removeUpdate(DocumentEvent e) {
+                                                             try {
+                                                                 String name = textField1.getText();
+                                                                 System.out.println(name);
+                                                                 ShowTable(controller);
+                                                             } catch (SQLException ex) {
+                                                                 throw new RuntimeException(ex);
+                                                             }
+                                                         }
+
+                                                         @Override
+                                                         public void changedUpdate(DocumentEvent e) {
+                                                             try {
+                                                                 String name = textField1.getText();
+                                                                 System.out.println(name);
+                                                                 ShowTable(controller);
+                                                             } catch (SQLException ex) {
+                                                                 throw new RuntimeException(ex);
+                                                             }
+                                                         }
+                                                     }
+        );
     }
 }

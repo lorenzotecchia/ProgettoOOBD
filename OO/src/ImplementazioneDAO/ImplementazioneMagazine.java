@@ -14,7 +14,7 @@ public class ImplementazioneMagazine implements MagazineDAO {
     private static String GET_ALL_ARGUMENTS = "SELECT DISTINCT Argument FROM mtl.Magazine";
     public static String INSERT_MAGAZINE = "INSERT INTO mtl.Magazine (ISSN_M, Name_M, Argument, Manager, " +
             "YearRelease, PublicationPeriod, PublishingHouse, AccessMode, FK_author) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
-    public static String READ_ALL_MAGAZINE = "SELECT * FROM mtl.Magazine";
+    public static String READ_ALL_MAGAZINE = "SELECT * FROM mtl.Magazine WHERE PublicationPeriod = ? AND Argument = ? AND name_m LIKE '%'||?||'%'";
     public static String DELETE_MAGAZINE = "DELETE FROM mtl.Magazine WHERE ISSN_M = ?";
     public static String UPDATE_MAGAZINE = "UPDATE mtl.Magazine SET Name_M = ?, Argument = ?, Manager = ?, " +
             "YearRelease = ?, PublicationPeriod = ?, PublishingHouse = ?, AccessMode = ? WHERE ISSN_M = ?";
@@ -60,17 +60,20 @@ public class ImplementazioneMagazine implements MagazineDAO {
     }
 
     @Override
-    public ArrayList<Magazine> readAll() {
+    public ArrayList<Magazine> readAll(String publicationPeriod, String argument, String name_m) {
         ArrayList<Magazine> magazines = new ArrayList<>();
         try (PreparedStatement statement = connection.prepareStatement(READ_ALL_MAGAZINE)) {
+            statement.setString(1, publicationPeriod);
+            statement.setString(2, argument);
+            statement.setString(3, name_m);
             ResultSet rs = statement.executeQuery();
             while (rs.next()) {
                 String ISSN_M = rs.getString("ISSN_M");
                 String name_M = rs.getString("Name_M");
-                String argument = rs.getString("Argument");
+                argument = rs.getString("Argument");
                 String manager = rs.getString("Manager");
                 Timestamp yearRelease = Timestamp.valueOf(rs.getString("YearRelease"));
-                String publicationPeriod = rs.getString("PublicationPeriod");
+                publicationPeriod = rs.getString("PublicationPeriod");
                 String publishingHouse = rs.getString("PublishingHouse");
                 String accessMode = rs.getString("AccessMode");
                 magazines.add(new Magazine(ISSN_M, name_M, argument, manager, yearRelease, publicationPeriod, publishingHouse, accessMode));

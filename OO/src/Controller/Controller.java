@@ -159,9 +159,9 @@ public class Controller {
         magazineDAO.update(ISSN_M, name_M, argument, manager, yearRelease, publicationPeriod, publishingHouse, accessMode);
     }
 
-    public ArrayList<Magazine> readAllMagazines() throws SQLException {
+    public ArrayList<Magazine> readAllMagazines(String publicationPeriod, String argument, String name_m) throws SQLException {
         MagazineDAO magazineDAO = new ImplementazioneMagazine();
-        return magazineDAO.readAll();
+        return magazineDAO.readAll(publicationPeriod, argument, name_m);
     }
     public ArrayList<String> getAllPerioditicitaMagazine() throws SQLException {
         MagazineDAO magazineDAO = new ImplementazioneMagazine();

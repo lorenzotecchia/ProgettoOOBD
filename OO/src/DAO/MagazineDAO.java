@@ -15,7 +15,7 @@ public interface MagazineDAO {
     void update(String ISSN_M, String name_M, String argument, String manager, Timestamp yearRelease,
                 String publicationPeriod, String publishingHouse, String accessMode);
 
-    ArrayList<Magazine> readAll();
+    ArrayList<Magazine> readAll(String publicationPeriod, String argument, String name_m);
 
     ArrayList<Magazine> searchByMagazineName(String name_M);
 
