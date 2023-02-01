@@ -8,6 +8,7 @@ import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumnModel;
 import java.awt.event.*;
+import java.awt.image.renderable.ContextualRenderedImageFactory;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
@@ -15,28 +16,28 @@ import java.util.ArrayList;
  * The type Catalogo riviste.
  */
 public class CatalogoArticoli {
-
     private JPanel panel1;
     private JTable table1;
-    private JComboBox comboBox1;
+    private JComboBox topicsBox;
     private JTextField textField1;
     private JButton cercaButton;
     private JButton backButton;
+    JFrame frame;
 
     /**
      * Instantiates a new Catalogo articoli.
      */
-    public CatalogoArticoli() {
-        JFrame frame = new JFrame("CatalogoArticoli");
+    public CatalogoArticoli(Controller controller, JFrame frameChiamante) throws SQLException {
+        frame = new JFrame("CatalogoArticoli");
         frame.setContentPane(panel1);
-        frame.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.pack();
         frame.setVisible(true);
         frame.setLocationRelativeTo(null);
 
-        createComboBox();
+        createTopicsBOx(controller);
         createTable();
-        ShowTable();
+        ShowTable(controller);
 
 
         cercaButton.addMouseListener(new MouseAdapter() {
@@ -64,20 +65,11 @@ public class CatalogoArticoli {
             @Override
             public void actionPerformed(ActionEvent e) {
                 frame.dispose();
-                new StartPage();
-
+                frameChiamante.setVisible(true);
             }
         });
     }
 
-    /**
-     * The entry point of application.
-     *
-     * @param args the input arguments
-     */
-    public static void main(String[] args) {
-        new CatalogoArticoli();
-    }
 
     /**
      * Gets panel 1.
@@ -122,12 +114,10 @@ public class CatalogoArticoli {
     /**
      * Show table.
      */
-    void ShowTable() {
-
+    void ShowTable(Controller controller) throws SQLException {
         DefaultTableModel model = (DefaultTableModel) table1.getModel();
         model.setRowCount(0);
-        ImplementazioneArticle implementazioneArticle = new ImplementazioneArticle();
-        ArrayList<Article> articles = implementazioneArticle.readAll();
+        ArrayList<Article> articles = controller.readAllArticles();
         for (Article article : articles) {
             model.addRow(new Object[]{article.getDoi_A(), article.getAccessMode(), article.getAccessMode(), article.getEditor()
                     , article.getTopic(), article.getReleaseDate(), article.getReleaseLocation(), article.getConferenceName(),article.getAuthor(),article.getFK_Magazine()});
@@ -138,18 +128,20 @@ public class CatalogoArticoli {
     /**
      * Create combo box.
      */
-    private void createComboBox() {
-        String[] topics;
-        ImplementazioneArticle implementazionearticle = new ImplementazioneArticle();
-        topics = implementazionearticle.getAllTopics().toArray(new String[0]);
+    private void createTopicsBOx(Controller controller) throws SQLException {
+        ArrayList<String> topics = controller.getAllTopicsArticle();
         for (String i  : topics) {
-            comboBox1.addItem(i);
+            topicsBox.addItem(i);
         }
-        comboBox1.addItemListener(new ItemListener() {
+        topicsBox.addItemListener(new ItemListener() {
             @Override
             public void itemStateChanged(ItemEvent e) {
                 if (e.getStateChange() == ItemEvent.SELECTED) {
-                    ShowTable();
+                    try {
+                        ShowTable(controller);
+                    } catch (SQLException ex) {
+                        throw new RuntimeException(ex);
+                    }
                 }
             }
         });

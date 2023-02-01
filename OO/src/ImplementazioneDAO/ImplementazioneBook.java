@@ -4,10 +4,7 @@ import DAO.BookDAO;
 import Database.ConnessioneDatabase;
 import Model.Book;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
-import java.sql.Timestamp;
+import java.sql.*;
 import java.util.ArrayList;
 
 public class ImplementazioneBook implements BookDAO {
@@ -84,8 +81,8 @@ public class ImplementazioneBook implements BookDAO {
     public ArrayList<Book> readAll() {
         ArrayList<Book> books = new ArrayList<>();
         try (PreparedStatement statement = connection.prepareStatement(READ_ALL_BOOK)) {
-            statement.executeQuery();
-            while (statement.getResultSet().next()) {
+            ResultSet rs = statement.executeQuery();
+            while (rs.next()) {
                 String doi_B = statement.getResultSet().getString("Doi_B");
                 String ISBN_B = statement.getResultSet().getString("ISBN_B");
                 int edition = statement.getResultSet().getInt("Edition");
@@ -113,8 +110,8 @@ public class ImplementazioneBook implements BookDAO {
         ArrayList<Book> books = new ArrayList<>();
         try (PreparedStatement statement = connection.prepareStatement(SEARCH_BY_TITLE)) {
             statement.setString(1, Title);
-            statement.executeQuery();
-            while (statement.getResultSet().next()) {
+            ResultSet rs = statement.executeQuery();
+            while (rs.next()) {
                 String doi_B = statement.getResultSet().getString("Doi_B");
                 String ISBN_B = statement.getResultSet().getString("ISBN_B");
                 int edition = statement.getResultSet().getInt("Edition");
@@ -143,8 +140,8 @@ public class ImplementazioneBook implements BookDAO {
         try (PreparedStatement statement = connection.prepareStatement(SEARCH_BY_AUTHOR)) {
             statement.setString(1, Author);
             statement.setString(2, Author);
-            statement.executeQuery();
-            while (statement.getResultSet().next()) {
+            ResultSet rs = statement.executeQuery();
+            while (rs.next()) {
                 String doi_B = statement.getResultSet().getString("Doi_B");
                 String ISBN_B = statement.getResultSet().getString("ISBN_B");
                 int edition = statement.getResultSet().getInt("Edition");
@@ -176,8 +173,8 @@ public class ImplementazioneBook implements BookDAO {
     public ArrayList<String> getAllArguments() {
         ArrayList<String> arguments = new ArrayList<>();
         try (PreparedStatement statement = connection.prepareStatement(GET_ALL_ARGUMENTS)) {
-            statement.executeQuery();
-            while (statement.getResultSet().next()) {
+            ResultSet rs = statement.executeQuery();
+            while (rs.next()) {
                 String argument1 = statement.getResultSet().getString("Argument");
                 arguments.add(argument1);
             }
@@ -194,8 +191,8 @@ public class ImplementazioneBook implements BookDAO {
     public ArrayList<String> getAllLanguages() {
         ArrayList<String> languages = new ArrayList<>();
         try (PreparedStatement statement = connection.prepareStatement(GET_ALL_LANGUAGES)) {
-            statement.executeQuery();
-            while (statement.getResultSet().next()) {
+            ResultSet rs = statement.executeQuery();
+            while (rs.next()) {
                 String language = statement.getResultSet().getString("Language");
                 languages.add(language);
             }
@@ -212,8 +209,8 @@ public class ImplementazioneBook implements BookDAO {
     public ArrayList<String> getAllAccess() {
  ArrayList<String> access = new ArrayList<>();
         try (PreparedStatement statement = connection.prepareStatement(GET_ALL_ACCESS)) {
-            statement.executeQuery();
-            while (statement.getResultSet().next()) {
+            ResultSet rs = statement.executeQuery();
+            while (rs.next()) {
                 String accessMode = statement.getResultSet().getString("AccessMode");
                 access.add(accessMode);
             }

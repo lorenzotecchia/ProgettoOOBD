@@ -1,12 +1,15 @@
 package GUI;
 
+import Controller.Controller;
 import ImplementazioneDAO.ImplementazioneMagazine;
 import Model.Magazine;
+import Model.Series;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumnModel;
 import java.awt.event.*;
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 /**
@@ -19,22 +22,25 @@ public class CatalogoRiviste {
     private JButton cercaButton;
     private JComboBox periodicitBox;
     private JButton backButton;
+    private JComboBox argumentBox;
+    JFrame frame;
 
 
     /**
      * Instantiates a new Catalogo riviste.
      */
-    public CatalogoRiviste() {
-        JFrame frame = new JFrame("CatalogoRiviste");
+    public CatalogoRiviste(Controller controller, JFrame frameChiamante) throws SQLException {
+        frame = new JFrame("CatalogoRiviste");
         frame.setContentPane(panel1);
-        frame.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.pack();
         frame.setVisible(true);
         frame.setLocationRelativeTo(null);
 
-        createComboBox();
+        createArgumentBox(controller);
+        createPeriodicitaBox(controller);
         createTable();
-        ShowTable();
+        ShowTable(controller);
 
 
         cercaButton.addMouseListener(new MouseAdapter() {
@@ -62,18 +68,9 @@ public class CatalogoRiviste {
             @Override
             public void actionPerformed(ActionEvent e) {
                 frame.setVisible(false);
-                new StartPage();
+                frameChiamante.setVisible(true);
             }
         });
-    }
-
-    /**
-     * The entry point of application.
-     *
-     * @param args the input arguments
-     */
-    public static void main(String[] args) {
-        new CatalogoRiviste();
     }
 
     /**
@@ -114,14 +111,15 @@ public class CatalogoRiviste {
     /**
      * Show table.
      */
-    void ShowTable() {
+    void ShowTable(Controller controller) throws SQLException {
 
         DefaultTableModel model = (DefaultTableModel) table1.getModel();
         model.setRowCount(0);
-        ImplementazioneMagazine implementazioneMagazine = new ImplementazioneMagazine();
-        ArrayList<Magazine> magazines = implementazioneMagazine.readAll();
+        ArrayList<Magazine> magazines = controller.readAllMagazines();
         for (Magazine magazine : magazines) {
-            model.addRow(new Object[]{magazine.getISSN_M(), magazine.getName(), magazine.getArgument(), magazine.getManager(), magazine.getYearRelease(), magazine.getPublicationPeriod(), magazine.getAccessMode(), magazine.getPublishingHouse()});
+            model.addRow(new Object[]{magazine.getISSN_M(), magazine.getName(), magazine.getArgument(),
+                    magazine.getManager(), magazine.getYearRelease(), magazine.getPublicationPeriod(),
+                    magazine.getAccessMode(), magazine.getPublishingHouse()});
         }
     }
 
@@ -129,10 +127,8 @@ public class CatalogoRiviste {
     /**
      * Create combo box.
      */
-    private void createComboBox() {
-        String[] periodicities;
-        ImplementazioneMagazine implementazioneMagazine = new ImplementazioneMagazine();
-        periodicities = implementazioneMagazine.getAllPeriodicities().toArray(new String[0]);
+    private void createPeriodicitaBox(Controller controller) throws SQLException {
+       ArrayList<String> periodicities = controller.getAllPerioditicitaMagazine();
         for (String i  : periodicities) {
             periodicitBox.addItem(i);
         }
@@ -140,9 +136,20 @@ public class CatalogoRiviste {
             @Override
             public void itemStateChanged(ItemEvent e) {
                 if (e.getStateChange() == ItemEvent.SELECTED) {
-                    ShowTable();
+                    try {
+                        ShowTable(controller);
+                    } catch (SQLException ex) {
+                        throw new RuntimeException(ex);
+                    }
                 }
             }
         });
+    }
+
+    void createArgumentBox(Controller controller) throws SQLException {
+        ArrayList<String> array = controller.getAllArgumentsMagazine();
+        for (String i : array) {
+            argumentBox.addItem(i);
+        }
     }
 }

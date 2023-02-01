@@ -109,7 +109,6 @@ public class Magazine {
                 ", publicationPeriod='" + publicationPeriod + '\'' +
                 ", publishingHouse='" + publishingHouse + '\'' +
                 ", accessMode='" + accessMode + '\'' +
-                ", FK_author='" + FK_author + '\'' +
                 '}';
     }
 }

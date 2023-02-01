@@ -17,17 +17,18 @@ public interface BookDAO {
                        boolean reprint, Timestamp releaseDate, String releaseLocation, String PresentationName,
                        String FK_author, String FK_Series);
 
-
-    ArrayList<Book> readAll();
-
-    ArrayList<Book> SearchByTitle(String title);
-
     void deleteBook(String doi_B);
 
     void updateBook(String doi_B, String ISBN_B, int edition, String publishingHouse,
                        String language, String title, String accessMode, String argument,
                        boolean reprint, Timestamp releaseDate, String releaseLocation, String PresentationName,
                        String FK_author, String FK_Series);
+
+    ArrayList<Book> readAll();
+
+    ArrayList<Book> SearchByTitle(String title);
+
+
     ArrayList<Book> SearchByAuthor(String author);
 
     ArrayList<String> getAllArguments();

@@ -15,7 +15,7 @@ import java.util.ArrayList;
 public class ImplementazioneSeries implements SeriesDAO {
     private static String GET_ALL_EDITIONS = "SELECT DISTINCT EDITION FROM MTL.SERIES";
     private static String GET_ALL_SERIES = "SELECT * FROM MTL.SERIES";
-    private static String SEARCH_SERIES_BY_NAME = "SELECT * FOMR MTL.SERIES WHERE NAME_S = ?";
+    private static String SEARCH_SERIES_BY_NAME = "SELECT * FROM MTL.SERIES WHERE NAME_S = '%'||?||'%'";
     private static String DELETE_SERIES = "DELETE FROM MTL.SEREIS WHERE ISSN_S = ?";
     private static String CREATE_SERIES = "INSERT INTO mtl.Series (ISSN_S, Curator, Edition, NameS, Code) VALUES (?, ?, ?, ?, ?)";
     private static String UPDATE_SERIES = "UPDATE mtl.series SET curator = ?, edition = ?, code_s = ?, name_s = ? WHERE issn_s = ?;";
@@ -67,6 +67,7 @@ public class ImplementazioneSeries implements SeriesDAO {
                 String NameS = rs.getString("Name_S");
                 String Code = rs.getString("Code_S");
                 series.add(new Series(ISSN_S, Curator, Edition, NameS, Code));
+                connection.close();
             }
         } catch (SQLException e) {
             throw new RuntimeException(e);
@@ -139,11 +140,12 @@ public class ImplementazioneSeries implements SeriesDAO {
     @Override
     public ArrayList<String> getAllEditions() {
         ArrayList<String> editions = new ArrayList<>();
-        try (PreparedStatement statement = connection.prepareStatement(GET_ALL_EDITIONS)){
+        try (PreparedStatement statement = connection.prepareStatement(GET_ALL_EDITIONS)) {
             ResultSet rs = statement.executeQuery();
             while (rs.next()) {
                 editions.add(rs.getString("edition"));
             }
+            connection.close();
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }

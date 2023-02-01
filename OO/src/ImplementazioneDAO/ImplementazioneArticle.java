@@ -9,7 +9,7 @@ import java.util.ArrayList;
 
 public class ImplementazioneArticle implements ArticleDAO {
 
-    private Connection connection;
+    private final Connection connection;
 
     public static String CREATE_ARTICLE = "INSERT INTO mtl.Series (ISSN_S, Curator, Edition, NameS, Code) VALUES (?, ?, ?, ?, ?)";
     public static String DELETE_ARTICLE = "DELETE FROM mtl.article WHERE ISSN_S = ?";
@@ -23,6 +23,7 @@ public class ImplementazioneArticle implements ArticleDAO {
     public static String SEARCH_ARTICLE_BY_EDITOR = "SELECT * FROM mtl.article WHERE editor = '%'||?||'%'";
     public static String SEARCH_ARTICLE_BY_MAGAZINE_NAME = "SELECT * FROM mtl.article a JOIN mtl.magazine m ON a.fk_magazine = m.issn_m WHERE m.name ='%'||?||'%'";
     public static String GET_ALL_TOPICS = "SELECT DISTINCT topic FROM mtl.article";
+
     public ImplementazioneArticle() {
         try {
             connection = ConnessioneDatabase.getInstance().connection;
@@ -55,18 +56,18 @@ public class ImplementazioneArticle implements ArticleDAO {
     public ArrayList<Article> readAll() {
         ArrayList<Article> articles = new ArrayList<>();
         try (PreparedStatement statement = connection.prepareStatement(GET_ALL_ARTICLE)) {
-            ResultSet resultSet = statement.executeQuery();
-            while (resultSet.next()) {
-                String doi_A = resultSet.getString("Doi_A");
-                String title = resultSet.getString("Title");
-                String accessMode = resultSet.getString("AccessMode");
-                String editor = resultSet.getString("Editor");
-                String topic = resultSet.getString("Topic");
-                Timestamp releaseDate = resultSet.getTimestamp("ReleaseDate");
-                String releaseLocation = resultSet.getString("ReleaseLocation");
-                String conferenceName = resultSet.getString("ConferenceName");
-                String FK_author = resultSet.getString("FK_Author");
-                String FK_Magazine = resultSet.getString("FK_Magazine");
+            ResultSet rs = statement.executeQuery();
+            while (rs.next()) {
+                String doi_A = rs.getString("Doi_A");
+                String title = rs.getString("Title");
+                String accessMode = rs.getString("AccessMode");
+                String editor = rs.getString("Editor");
+                String topic = rs.getString("Topic");
+                Timestamp releaseDate = rs.getTimestamp("ReleaseDate");
+                String releaseLocation = rs.getString("ReleaseLocation");
+                String conferenceName = rs.getString("ConferenceName");
+                String FK_author = rs.getString("FK_Author");
+                String FK_Magazine = rs.getString("FK_Magazine");
                 articles.add(new Article(doi_A, title, accessMode, editor, topic, releaseDate, releaseLocation, conferenceName, FK_author, FK_Magazine));
             }
         } catch (SQLException e) {
@@ -80,18 +81,18 @@ public class ImplementazioneArticle implements ArticleDAO {
         ArrayList<Article> articles = new ArrayList<>();
         try (PreparedStatement statement = connection.prepareStatement(SEARCH_ARTICLE_BY_TITLE)) {
             statement.setString(1, title);
-            ResultSet resultSet = statement.executeQuery();
-            while (resultSet.next()) {
-                String doi_A = resultSet.getString("Doi_A");
-                title = resultSet.getString("Title");
-                String accessMode = resultSet.getString("AccessMode");
-                String editor = resultSet.getString("Editor");
-                String topic = resultSet.getString("Topic");
-                Timestamp releaseDate = resultSet.getTimestamp("ReleaseDate");
-                String releaseLocation = resultSet.getString("ReleaseLocation");
-                String conferenceName = resultSet.getString("ConferenceName");
-                String FK_author = resultSet.getString("FK_Author");
-                String FK_Magazine = resultSet.getString("FK_Magazine");
+            ResultSet rs = statement.executeQuery();
+            while (rs.next()) {
+                String doi_A = rs.getString("Doi_A");
+                title = rs.getString("Title");
+                String accessMode = rs.getString("AccessMode");
+                String editor = rs.getString("Editor");
+                String topic = rs.getString("Topic");
+                Timestamp releaseDate = rs.getTimestamp("ReleaseDate");
+                String releaseLocation = rs.getString("ReleaseLocation");
+                String conferenceName = rs.getString("ConferenceName");
+                String FK_author = rs.getString("FK_Author");
+                String FK_Magazine = rs.getString("FK_Magazine");
                 articles.add(new Article(doi_A, title, accessMode, editor, topic, releaseDate, releaseLocation, conferenceName, FK_author, FK_Magazine));
             }
         } catch (SQLException e) {
@@ -105,18 +106,18 @@ public class ImplementazioneArticle implements ArticleDAO {
         ArrayList<Article> articles = new ArrayList<>();
         try (PreparedStatement statement = connection.prepareStatement(SEARCH_ARTICLE_BY_AUTHOR_NAME)) {
             statement.setString(1, nome_generico);
-            ResultSet resultSet = statement.executeQuery();
-            while (resultSet.next()) {
-                String doi_A = resultSet.getString("Doi_A");
-                String title = resultSet.getString("Title");
-                String accessMode = resultSet.getString("AccessMode");
-                String editor = resultSet.getString("Editor");
-                String topic = resultSet.getString("Topic");
-                Timestamp releaseDate = resultSet.getTimestamp("ReleaseDate");
-                String releaseLocation = resultSet.getString("ReleaseLocation");
-                String conferenceName = resultSet.getString("ConferenceName");
-                String FK_author = resultSet.getString("FK_Author");
-                String FK_Magazine = resultSet.getString("FK_Magazine");
+            ResultSet rs = statement.executeQuery();
+            while (rs.next()) {
+                String doi_A = rs.getString("Doi_A");
+                String title = rs.getString("Title");
+                String accessMode = rs.getString("AccessMode");
+                String editor = rs.getString("Editor");
+                String topic = rs.getString("Topic");
+                Timestamp releaseDate = rs.getTimestamp("ReleaseDate");
+                String releaseLocation = rs.getString("ReleaseLocation");
+                String conferenceName = rs.getString("ConferenceName");
+                String FK_author = rs.getString("FK_Author");
+                String FK_Magazine = rs.getString("FK_Magazine");
                 articles.add(new Article(doi_A, title, accessMode, editor, topic, releaseDate, releaseLocation, conferenceName, FK_author, FK_Magazine));
             }
         } catch (SQLException e) {
@@ -157,18 +158,18 @@ public class ImplementazioneArticle implements ArticleDAO {
         ArrayList<Article> articles = new ArrayList<>();
         try (PreparedStatement statement = connection.prepareStatement(SEARCH_ARTICLE_BY_EDITOR)) {
             statement.setString(1, editore);
-            ResultSet resultSet = statement.executeQuery();
-            while (resultSet.next()) {
-                String doi_A = resultSet.getString("Doi_A");
-                String title = resultSet.getString("Title");
-                String accessMode = resultSet.getString("AccessMode");
-                editore = resultSet.getString("Editor");
-                String topic = resultSet.getString("Topic");
-                Timestamp releaseDate = resultSet.getTimestamp("ReleaseDate");
-                String releaseLocation = resultSet.getString("ReleaseLocation");
-                String conferenceName = resultSet.getString("ConferenceName");
-                String FK_author = resultSet.getString("FK_Author");
-                String FK_Magazine = resultSet.getString("FK_Magazine");
+            ResultSet rs = statement.executeQuery();
+            while (rs.next()) {
+                String doi_A = rs.getString("Doi_A");
+                String title = rs.getString("Title");
+                String accessMode = rs.getString("AccessMode");
+                editore = rs.getString("Editor");
+                String topic = rs.getString("Topic");
+                Timestamp releaseDate = rs.getTimestamp("ReleaseDate");
+                String releaseLocation = rs.getString("ReleaseLocation");
+                String conferenceName = rs.getString("ConferenceName");
+                String FK_author = rs.getString("FK_Author");
+                String FK_Magazine = rs.getString("FK_Magazine");
                 articles.add(new Article(doi_A, title, accessMode, editore, topic, releaseDate, releaseLocation, conferenceName, FK_author, FK_Magazine));
             }
         } catch (SQLException e) {
@@ -181,18 +182,18 @@ public class ImplementazioneArticle implements ArticleDAO {
         ArrayList<Article> articles = new ArrayList<>();
         try (PreparedStatement statement = connection.prepareStatement(SEARCH_ARTICLE_BY_TOPIC)) {
             statement.setString(1, topic);
-            ResultSet resultSet = statement.executeQuery();
-            while (resultSet.next()) {
-                String doi_A = resultSet.getString("Doi_A");
-                String title = resultSet.getString("Title");
-                String accessMode = resultSet.getString("AccessMode");
-                String editor = resultSet.getString("Editor");
-                topic = resultSet.getString("Topic");
-                Timestamp releaseDate = resultSet.getTimestamp("ReleaseDate");
-                String releaseLocation = resultSet.getString("ReleaseLocation");
-                String conferenceName = resultSet.getString("ConferenceName");
-                String FK_author = resultSet.getString("FK_Author");
-                String FK_Magazine = resultSet.getString("FK_Magazine");
+            ResultSet rs = statement.executeQuery();
+            while (rs.next()) {
+                String doi_A = rs.getString("Doi_A");
+                String title = rs.getString("Title");
+                String accessMode = rs.getString("AccessMode");
+                String editor = rs.getString("Editor");
+                topic = rs.getString("Topic");
+                Timestamp releaseDate = rs.getTimestamp("ReleaseDate");
+                String releaseLocation = rs.getString("ReleaseLocation");
+                String conferenceName = rs.getString("ConferenceName");
+                String FK_author = rs.getString("FK_Author");
+                String FK_Magazine = rs.getString("FK_Magazine");
                 articles.add(new Article(doi_A, title, accessMode, editor, topic, releaseDate, releaseLocation, conferenceName, FK_author, FK_Magazine));
             }
         } catch (SQLException e) {
@@ -205,18 +206,18 @@ public class ImplementazioneArticle implements ArticleDAO {
         ArrayList<Article> articles = new ArrayList<>();
         try (PreparedStatement statement = connection.prepareStatement(SEARCH_ARTICLE_BY_MAGAZINE_NAME)) {
             statement.setString(1, magazine);
-            ResultSet resultSet = statement.executeQuery();
-            while (resultSet.next()) {
-                String doi_A = resultSet.getString("Doi_A");
-                String title = resultSet.getString("Title");
-                String accessMode = resultSet.getString("AccessMode");
-                String editor = resultSet.getString("Editor");
-                String topic = resultSet.getString("Topic");
-                Timestamp releaseDate = resultSet.getTimestamp("ReleaseDate");
-                String releaseLocation = resultSet.getString("ReleaseLocation");
-                String conferenceName = resultSet.getString("ConferenceName");
-                String FK_author = resultSet.getString("FK_Author");
-                String FK_Magazine = resultSet.getString("FK_Magazine");
+            ResultSet rs = statement.executeQuery();
+            while (rs.next()) {
+                String doi_A = rs.getString("Doi_A");
+                String title = rs.getString("Title");
+                String accessMode = rs.getString("AccessMode");
+                String editor = rs.getString("Editor");
+                String topic = rs.getString("Topic");
+                Timestamp releaseDate = rs.getTimestamp("ReleaseDate");
+                String releaseLocation = rs.getString("ReleaseLocation");
+                String conferenceName = rs.getString("ConferenceName");
+                String FK_author = rs.getString("FK_Author");
+                String FK_Magazine = rs.getString("FK_Magazine");
                 articles.add(new Article(doi_A, title, accessMode, editor, topic, releaseDate, releaseLocation, conferenceName, FK_author, FK_Magazine));
             }
         } catch (SQLException e) {
@@ -232,9 +233,9 @@ public class ImplementazioneArticle implements ArticleDAO {
     public ArrayList<String> getAllTopics() {
         ArrayList<String> topics = new ArrayList<>();
         try (PreparedStatement statement = connection.prepareStatement(GET_ALL_TOPICS)) {
-            ResultSet resultSet = statement.executeQuery();
-            while (resultSet.next()) {
-                String topic = resultSet.getString("Topic");
+            ResultSet rs = statement.executeQuery();
+            while (rs.next()) {
+                String topic = rs.getString("Topic");
                 topics.add(topic);
             }
         } catch (SQLException e) {

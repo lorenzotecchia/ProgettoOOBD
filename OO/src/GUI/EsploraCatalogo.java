@@ -1,8 +1,13 @@
 package GUI;
 
 import javax.swing.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.sql.SQLException;
+
+import Controller.Controller;
 
 /**
  * The type Esplora catalogo.
@@ -14,81 +19,98 @@ public class EsploraCatalogo {
     private JButton articleButton;
     private JButton backButton;
     private JPanel panel1;
+    JFrame frame;
 
     /**
      * Instantiates a new Esplora catalogo.
      */
-    public EsploraCatalogo() {
-        JFrame frame = new JFrame("EsploraCatalogo");
+    public EsploraCatalogo(Controller controller, JFrame frameChiamante ) {
+        frame = new JFrame("EsploraCatalogo");
         frame.setContentPane(panel1);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setLocationRelativeTo(frame.getParent());
+        frame.setLocationRelativeTo(null);
         frame.pack();
         frame.setVisible(true);
 
-        backButton.addMouseListener(new MouseAdapter() {
+backButton.addActionListener(new ActionListener() {
             /**
              * @param e the event to be processed
              */
             @Override
-            public void mouseClicked(MouseEvent e) {
-                super.mouseClicked(e);
-                frame.dispose();
-                new StartPage();
+            public void actionPerformed(ActionEvent e) {
+                frame.setVisible(false);
+                frameChiamante.setVisible(true);
             }
         });
 
-        bookButton.addMouseListener(new MouseAdapter() {
+
+
+        bookButton.addActionListener(new ActionListener() {
             /**
              * @param e the event to be processed
              */
             @Override
-            public void mouseClicked(MouseEvent e) {
-                super.mouseClicked(e);
-                new CatalogoLibri();
+            public void actionPerformed(ActionEvent e) {
+                frame.setVisible(false);
+                CatalogoLibri libri = null;
+                try {
+                    libri = new CatalogoLibri(controller, frame);
+                } catch (SQLException ex) {
+                    throw new RuntimeException(ex);
+                }
+                libri.frame.setVisible(true);
             }
         });
-
-        seriesButton.addMouseListener(new MouseAdapter() {
+        seriesButton.addActionListener(new ActionListener() {
             /**
              * @param e the event to be processed
              */
             @Override
-            public void mouseClicked(MouseEvent e) {
-                super.mouseClicked(e);
-                new CatalogoCollane();
+            public void actionPerformed(ActionEvent e) {
+                frame.setVisible(false);
+                CatalogoCollane serie = null;
+                try {
+                    serie = new CatalogoCollane(controller, frame);
+                } catch (SQLException ex) {
+                    throw new RuntimeException(ex);
+                }
+                serie.frame.setVisible(true);
+
             }
         });
 
-        magazineButton.addMouseListener(new MouseAdapter() {
+magazineButton.addActionListener(new ActionListener() {
             /**
              * @param e the event to be processed
              */
             @Override
-            public void mouseClicked(MouseEvent e) {
-                super.mouseClicked(e);
-                new CatalogoRiviste();
+            public void actionPerformed(ActionEvent e) {
+                frame.setVisible(false);
+                CatalogoRiviste riviste = null;
+                try {
+                    riviste = new CatalogoRiviste(controller, frame);
+                } catch (SQLException ex) {
+                        throw new RuntimeException(ex);
+                }
+                riviste.frame.setVisible(true);
             }
         });
 
-        articleButton.addMouseListener(new MouseAdapter() {
+        articleButton.addActionListener(new ActionListener() {
             /**
              * @param e the event to be processed
              */
             @Override
-            public void mouseClicked(MouseEvent e) {
-                super.mouseClicked(e);
-                new CatalogoArticoli();
+            public void actionPerformed(ActionEvent e) {
+                frame.setVisible(false);
+                CatalogoArticoli articoli = null;
+                try {
+                    articoli = new CatalogoArticoli(controller, frame);
+                } catch (SQLException ex) {
+                    throw new RuntimeException(ex);
+                }
+                articoli.frame.setVisible(true);
             }
         });
-    }
-
-    /**
-     * The entry point of application.
-     *
-     * @param args the input arguments
-     */
-    public static void main(String[] args) {
-
     }
 }

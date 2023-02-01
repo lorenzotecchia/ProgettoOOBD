@@ -7,15 +7,17 @@ import Model.Magazine;
 import java.sql.*;
 import java.util.ArrayList;
 
+
 public class ImplementazioneMagazine implements MagazineDAO {
 
     private Connection connection;
+    private static String GET_ALL_ARGUMENTS = "SELECT DISTINCT Argument FROM mtl.Magazine";
     public static String INSERT_MAGAZINE = "INSERT INTO mtl.Magazine (ISSN_M, Name_M, Argument, Manager, " +
             "YearRelease, PublicationPeriod, PublishingHouse, AccessMode, FK_author) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
     public static String READ_ALL_MAGAZINE = "SELECT * FROM mtl.Magazine";
     public static String DELETE_MAGAZINE = "DELETE FROM mtl.Magazine WHERE ISSN_M = ?";
     public static String UPDATE_MAGAZINE = "UPDATE mtl.Magazine SET Name_M = ?, Argument = ?, Manager = ?, " +
-            "YearRelease = ?, PublicationPeriod = ?, PublishingHouse = ?, AccessMode = ?, FK_author = ? WHERE ISSN_M = ?";
+            "YearRelease = ?, PublicationPeriod = ?, PublishingHouse = ?, AccessMode = ? WHERE ISSN_M = ?";
     public static String SEARCH_MAGAZINE_BY_NAME = "SELECT * FROM mtl.Magazine WHERE Name_M = '%'||?||'%'";
 
     public static String SEARCH_MAGAZINE_BY_PUBLICATIONPERIOD = "SELECT * FROM mtl.Magazine WHERE PublicationPeriod = '%'||?||'%'";
@@ -38,10 +40,9 @@ public class ImplementazioneMagazine implements MagazineDAO {
      * @param publicationPeriod
      * @param publishingHouse
      * @param accessMode
-     * @param FK_author
      */
     @Override
-    public void create(String ISSN_M, String name_M, String argument, String manager, Timestamp yearRelease, String publicationPeriod, String publishingHouse, String accessMode, String FK_author) {
+    public void create(String ISSN_M, String name_M, String argument, String manager, Timestamp yearRelease, String publicationPeriod, String publishingHouse, String accessMode) {
         try (PreparedStatement statement = connection.prepareStatement(INSERT_MAGAZINE)) {
             statement.setString(1, ISSN_M);
             statement.setString(2, name_M);
@@ -51,7 +52,6 @@ public class ImplementazioneMagazine implements MagazineDAO {
             statement.setString(6, publicationPeriod);
             statement.setString(7, publishingHouse);
             statement.setString(8, accessMode);
-            statement.setString(9, FK_author);
             statement.executeUpdate();
         } catch (SQLException e) {
             throw new RuntimeException(e);
@@ -63,16 +63,16 @@ public class ImplementazioneMagazine implements MagazineDAO {
     public ArrayList<Magazine> readAll() {
         ArrayList<Magazine> magazines = new ArrayList<>();
         try (PreparedStatement statement = connection.prepareStatement(READ_ALL_MAGAZINE)) {
-            ResultSet resultSet = statement.executeQuery();
-            while (resultSet.next()) {
-                String ISSN_M = resultSet.getString("ISSN_M");
-                String name_M = resultSet.getString("Name_M");
-                String argument = resultSet.getString("Argument");
-                String manager = resultSet.getString("Manager");
-                Timestamp yearRelease = Timestamp.valueOf(resultSet.getString("YearRelease"));
-                String publicationPeriod = resultSet.getString("PublicationPeriod");
-                String publishingHouse = resultSet.getString("PublishingHouse");
-                String accessMode = resultSet.getString("AccessMode");
+            ResultSet rs = statement.executeQuery();
+            while (rs.next()) {
+                String ISSN_M = rs.getString("ISSN_M");
+                String name_M = rs.getString("Name_M");
+                String argument = rs.getString("Argument");
+                String manager = rs.getString("Manager");
+                Timestamp yearRelease = Timestamp.valueOf(rs.getString("YearRelease"));
+                String publicationPeriod = rs.getString("PublicationPeriod");
+                String publishingHouse = rs.getString("PublishingHouse");
+                String accessMode = rs.getString("AccessMode");
                 magazines.add(new Magazine(ISSN_M, name_M, argument, manager, yearRelease, publicationPeriod, publishingHouse, accessMode));
             }
         } catch (SQLException e) {
@@ -82,7 +82,7 @@ public class ImplementazioneMagazine implements MagazineDAO {
     }
 
     @Override
-    public void update(String ISSN_M, String name_M, String argument, String manager, Timestamp yearRelease, String publicationPeriod, String publishingHouse, String accessMode, String FK_author) {
+    public void update(String ISSN_M, String name_M, String argument, String manager, Timestamp yearRelease, String publicationPeriod, String publishingHouse, String accessMode) {
         try (PreparedStatement statement = connection.prepareStatement(UPDATE_MAGAZINE)) {
             statement.setString(1, ISSN_M);
             statement.setString(2, name_M);
@@ -92,7 +92,6 @@ public class ImplementazioneMagazine implements MagazineDAO {
             statement.setString(6, publicationPeriod);
             statement.setString(7, publishingHouse);
             statement.setString(8, accessMode);
-            statement.setString(9, FK_author);
             statement.executeUpdate();
         } catch (SQLException e) {
             throw new RuntimeException(e);
@@ -118,17 +117,16 @@ public class ImplementazioneMagazine implements MagazineDAO {
         ArrayList<Magazine> magazines = new ArrayList<>();
         try (PreparedStatement statement = connection.prepareStatement(SEARCH_MAGAZINE_BY_NAME)) {
             statement.setString(1, name_M);
-            ResultSet resultSet = statement.executeQuery();
-            while (resultSet.next()) {
-                String ISSN_M = resultSet.getString("ISSN_M");
-                name_M = resultSet.getString("Name_M");
-                String argument = resultSet.getString("Argument");
-                String manager = resultSet.getString("Manager");
-                Timestamp yearRelease = Timestamp.valueOf(resultSet.getString("YearRelease"));
-                String publicationPeriod = resultSet.getString("PublicationPeriod");
-                String publishingHouse = resultSet.getString("PublishingHouse");
-                String accessMode = resultSet.getString("AccessMode");
-                String FK_author = resultSet.getString("FK_author");
+            ResultSet rs = statement.executeQuery();
+            while (rs.next()) {
+                String ISSN_M = rs.getString("ISSN_M");
+                name_M = rs.getString("Name_M");
+                String argument = rs.getString("Argument");
+                String manager = rs.getString("Manager");
+                Timestamp yearRelease = Timestamp.valueOf(rs.getString("YearRelease"));
+                String publicationPeriod = rs.getString("PublicationPeriod");
+                String publishingHouse = rs.getString("PublishingHouse");
+                String accessMode = rs.getString("AccessMode");
                 magazines.add(new Magazine(ISSN_M, name_M, argument, manager, yearRelease, publicationPeriod, publishingHouse, accessMode));
             }
         } catch (SQLException e) {
@@ -137,29 +135,28 @@ public class ImplementazioneMagazine implements MagazineDAO {
         return magazines;
     }
 
-    @Override
-    public ArrayList<Magazine> searchByMagazinePublicationPeriod(String publicationPeriod) {
-        ArrayList<Magazine> magazines = new ArrayList<>();
-        try (PreparedStatement statement = connection.prepareStatement(SEARCH_MAGAZINE_BY_PUBLICATIONPERIOD)) {
-            statement.setString(1, publicationPeriod);
-            ResultSet resultSet = statement.executeQuery();
-            while (resultSet.next()) {
-                String ISSN_M = resultSet.getString("ISSN_M");
-                String name_M = resultSet.getString("Name_M");
-                String argument = resultSet.getString("Argument");
-                String manager = resultSet.getString("Manager");
-                Timestamp yearRelease = Timestamp.valueOf(resultSet.getString("YearRelease"));
-                publicationPeriod = resultSet.getString("PublicationPeriod");
-                String publishingHouse = resultSet.getString("PublishingHouse");
-                String accessMode = resultSet.getString("AccessMode");
-                String FK_author = resultSet.getString("FK_author");
-                magazines.add(new Magazine(ISSN_M, name_M, argument, manager, yearRelease, publicationPeriod, publishingHouse, accessMode));
-            }
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
-        return magazines;
-    }
+//    @Override
+//    public ArrayList<Magazine> searchByMagazinePublicationPeriod(String publicationPeriod) {
+//        ArrayList<Magazine> magazines = new ArrayList<>();
+//        try (PreparedStatement statement = connection.prepareStatement(SEARCH_MAGAZINE_BY_PUBLICATIONPERIOD)) {
+//            statement.setString(1, publicationPeriod);
+//            ResultSet rs = statement.executeQuery();
+//            while (rs.next()) {
+//                String ISSN_M = rs.getString("ISSN_M");
+//                String name_M = rs.getString("Name_M");
+//                String argument = rs.getString("Argument");
+//                String manager = rs.getString("Manager");
+//                Timestamp yearRelease = Timestamp.valueOf(rs.getString("YearRelease"));
+//                publicationPeriod = rs.getString("PublicationPeriod");
+//                String publishingHouse = rs.getString("PublishingHouse");
+//                String accessMode = rs.getString("AccessMode");
+//                magazines.add(new Magazine(ISSN_M, name_M, argument, manager, yearRelease, publicationPeriod, publishingHouse, accessMode));
+//            }
+//        } catch (SQLException e) {
+//            throw new RuntimeException(e);
+//        }
+//        return magazines;
+//    }
 
     /**
      * @return
@@ -168,15 +165,33 @@ public class ImplementazioneMagazine implements MagazineDAO {
     public ArrayList<String> getAllPeriodicities() {
         ArrayList<String> perioditcita = new ArrayList<>();
         try (PreparedStatement statement = connection.prepareStatement(GET_ALL_PERIODICITIES)) {
-            ResultSet resultSet = statement.executeQuery();
-            while (resultSet.next()) {
-                String publicationPeriod = resultSet.getString("PublicationPeriod");
+            ResultSet rs = statement.executeQuery();
+            while (rs.next()) {
+                String publicationPeriod = rs.getString("PublicationPeriod");
                 perioditcita.add(publicationPeriod);
             }
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
         return perioditcita;
+    }
+
+    /**
+     * @return
+     */
+    @Override
+    public ArrayList<String> getAllArguments() {
+        ArrayList<String> arguments = new ArrayList<>();
+        try (PreparedStatement statement = connection.prepareStatement(GET_ALL_ARGUMENTS)) {
+            ResultSet rs = statement.executeQuery();
+            while (rs.next()) {
+                String argument = rs.getString("Argument");
+                arguments.add(argument);
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return arguments;
     }
 }
 

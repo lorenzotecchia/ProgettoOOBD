@@ -1,5 +1,6 @@
 package GUI;
 
+import Controller.Controller;
 import ImplementazioneDAO.ImplementazioneBook;
 import Model.Book;
 
@@ -8,6 +9,7 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumnModel;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 
@@ -21,24 +23,25 @@ public class CatalogoLibri {
     private JComboBox reprintBox;
     private JComboBox languageBox;
     private JComboBox accessBox;
+    JFrame frame;
 
     private String titolo;
 
-    public CatalogoLibri() {
-        JFrame frame = new JFrame("CatalogoLibri");
+    public CatalogoLibri(Controller controller, JFrame frameChiamante) throws SQLException {
+        frame = new JFrame("CatalogoLibri");
         frame.setContentPane(panel1);
-        frame.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.pack();
         frame.setVisible(true);
         frame.setLocationRelativeTo(null);
 
 
         createReprintBox();
-        createArgsBox();
-        createLanguageBox();
-        createAccessBox();
+        createArgsBox(controller);
+        createLanguageBox(controller);
+        createAccessBox(controller);
         createTable();
-        showTable();
+        showTable(controller);
 
         cercaButton.addActionListener(new ActionListener() {
             /**
@@ -75,41 +78,31 @@ public class CatalogoLibri {
             @Override
             public void actionPerformed(ActionEvent e) {
                 frame.setVisible(false);
-                new StartPage();
+                frameChiamante.setVisible(true);
             }
         });
     }
 
-    private void createAccessBox() {
-        String[] access;
-        ImplementazioneBook implementazioneBook = new ImplementazioneBook();
-        access = implementazioneBook.getAllAccess().toArray(new String[0]);
+    private void createAccessBox(Controller controller) throws SQLException {
+        ArrayList<String> access= controller.getAllAccessBook();
         for (String acc : access) {
             accessBox.addItem(acc);
         }
     }
 
-    private void createLanguageBox() {
-        String[] langs;
-        ImplementazioneBook implementazioneBook = new ImplementazioneBook();
-        langs = implementazioneBook.getAllLanguages().toArray(new String[0]);
+    private void createLanguageBox(Controller controller) throws SQLException {
+        ArrayList<String> langs = controller.getAllLanguagesBook();
         for (String lang : langs) {
             languageBox.addItem(lang);
         }
 
     }
 
-    public static void main(String[] args) {
-        new CatalogoLibri();
-
-    }
-
-    private void showTable() {
+    private void showTable(Controller controller) throws SQLException {
 
         DefaultTableModel model = (DefaultTableModel) table1.getModel();
         model.setRowCount(0);
-        ImplementazioneBook implementazioneBook = new ImplementazioneBook();
-        ArrayList<Book> books = implementazioneBook.readAll();
+        ArrayList<Book> books = controller.readAllBooks();
         for (Book book : books) {
             model.addRow(new Object[]{book.getDoi_B(), book.getISBN_B(), book.getPublishingHouse(), book.getLanguage(),
                     book.getAccessMode(), book.getTitle(), book.getArgument(), book.getReprint(), book.getReleaseDate(),
@@ -158,10 +151,8 @@ public class CatalogoLibri {
         reprintBox.addItem("No");
     }
 
-    private void createArgsBox() {
-        String[] args;
-        ImplementazioneBook implementazioneBook = new ImplementazioneBook();
-        args = implementazioneBook.getAllArguments().toArray(new String[0]);
+    private void createArgsBox(Controller controller) throws SQLException {
+        ArrayList<String> args = controller.getAllArgumentsBook();
         for (String arg : args) {
             argumentBox.addItem(arg);
         }

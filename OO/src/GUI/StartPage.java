@@ -1,5 +1,7 @@
 package GUI;
 
+import Controller.Controller;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -22,7 +24,7 @@ public class StartPage {
      * Instantiates a new Start page.
      */
     public StartPage() {
-
+        Controller controller = new Controller();
         JFrame frame = new JFrame("StartPage");
         frame.setContentPane(panel1);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -39,7 +41,8 @@ public class StartPage {
             public void mouseClicked(MouseEvent e) {
                 super.mouseClicked(e);
                 frame.setVisible(false);
-                new EsploraCatalogo();
+                EsploraCatalogo catalogo = new EsploraCatalogo(controller, frame);
+                catalogo.frame.setVisible(true);
 
             }
         });
@@ -64,7 +67,7 @@ public class StartPage {
              */
             @Override
             public void actionPerformed(ActionEvent e) {
-                //open the github profile
+                //open the GitHub profile
                 try {
                     Desktop.getDesktop().browse(new URI("https://github.com/lorenzotecchia"));
                 } catch (Exception ex) {
@@ -79,7 +82,7 @@ public class StartPage {
              */
             @Override
             public void actionPerformed(ActionEvent e) {
-                //open the Github profile
+                //open the GitHub profile
                 try {
                     Desktop.getDesktop().browse(new URI("https://github.com/Lgegmb"));
                 } catch (Exception ex) {
