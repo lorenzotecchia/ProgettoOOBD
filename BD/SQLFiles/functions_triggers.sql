@@ -1,7 +1,7 @@
 create or replace function mtl.function_1() returns trigger as
 $$
 declare
-    stringa_in   varchar(13) = new.isbn_b;
+    stringa_in   varchar(19) = new.isbn_b;
     sum          integer     := 0;
     var_appoggio integer;
     resto        integer;

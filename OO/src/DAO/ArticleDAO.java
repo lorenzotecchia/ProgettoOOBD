@@ -15,7 +15,7 @@ public interface ArticleDAO {
 
     void update(String doi_A, String title, String accessMode, String editor, String topic, Timestamp releaseDate, String releaseLocation, String conferenceName, String FK_author, String FK_Magazine);
 
-    ArrayList<Article> readAll() throws SQLException;
+    ArrayList<Article> readAll(String topic, String title) throws SQLException;
 
     ArrayList<Article> CercaPerAutore(String nome_generico);
 

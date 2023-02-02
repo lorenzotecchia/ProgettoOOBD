@@ -1,4 +1,4 @@
-drop schema mtl cascade;
+drop schema if exists mtl  cascade;
 create schema mtl;
 
 create table mtl.author
@@ -11,44 +11,44 @@ create table mtl.author
 
 create table mtl.series
 (
-    ISSN_S  issn primary key,
-    Curator names,
+    ISSN_S  mtl.issn primary key,
+    Curator mtl.names,
     Edition int,
     Code_S  varchar(10) unique,
-    Name_S  names
+    Name_S  mtl.names
 );
 
 create table mtl.magazine
 (
-    ISSN_M            issn primary key,
-    Name_M            names,
-    Argument          names,
-    Manager           names,
+    ISSN_M            mtl.issn primary key,
+    Name_M            mtl.names,
+    Argument          mtl.names,
+    Manager           mtl.names,
     YearRelease       timestamp,
-    PublicationPeriod names,
-    AccessMode        access,
-    PublishingHouse   names
+    PublicationPeriod mtl.names,
+    AccessMode        mtl.access,
+    PublishingHouse   mtl.names
 );
 
 
 create table mtl.book
 (
-    Doi_B            doi
+    Doi_B            mtl.doi
         primary key,
-    ISBN_B           isbn
+    ISBN_B           mtl.isbn
         unique,
-    PublishingHouse  names,
-    Language         names,
-    AccessMode       access,
+    PublishingHouse  mtl.names,
+    Language         mtl.names,
+    AccessMode       mtl.access,
     Title            varchar(30),
-    Argument         names,
+    Argument         mtl.names,
     Reprint          boolean,
     Edition          int,
     ReleaseDate      timestamp,
-    ReleaseLocation  location,
-    PresentationName names,
+    ReleaseLocation  mtl.location,
+    PresentationName mtl.names,
     FK_Author        serial,
-    FK_Series        issn,
+    FK_Series        mtl.issn,
 
     constraint BookFK_2 foreign key (Fk_Author) references mtl.Author (CodAuthor) on delete cascade,
     constraint BookFK_3 foreign key (FK_Series) references mtl.Series (ISSN_S) on delete set null
@@ -56,17 +56,17 @@ create table mtl.book
 
 create table mtl.article
 (
-    Doi_A           doi
+    Doi_A           mtl.doi
         primary key,
     Title           varchar(40),
-    AccessMode      access,
-    Editor          names,
-    Topic           names,
+    AccessMode      mtl.access,
+    Editor          mtl.names,
+    Topic           mtl.names,
     ReleaseDate     timestamp,
-    ReleaseLocation location,
+    ReleaseLocation mtl.location,
     ConferenceName  varchar(50),
     FK_Author       serial,
-    FK_Magazine     issn,
+    FK_Magazine     mtl.issn,
 
     constraint ArticleFK_1 foreign key (FK_Author) references mtl.Author (CodAuthor) on delete cascade,
     constraint ArticleFK_2 foreign key (FK_Magazine) references mtl.Magazine (ISSN_M) on delete set null

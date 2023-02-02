@@ -14,7 +14,7 @@ public class ImplementazioneMagazine implements MagazineDAO {
     private static String GET_ALL_ARGUMENTS = "SELECT DISTINCT Argument FROM mtl.Magazine";
     public static String INSERT_MAGAZINE = "INSERT INTO mtl.Magazine (ISSN_M, Name_M, Argument, Manager, " +
             "YearRelease, PublicationPeriod, PublishingHouse, AccessMode, FK_author) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
-    public static String READ_ALL_MAGAZINE = "SELECT * FROM mtl.Magazine WHERE PublicationPeriod = ? AND Argument = ? AND name_m LIKE '%'||?||'%'";
+    public static String READ_ALL_MAGAZINE = "SELECT * FROM mtl.Magazine WHERE PublicationPeriod = ? AND Argument = ? AND name_m LIKE '%'|| ? ||'%'";
     public static String DELETE_MAGAZINE = "DELETE FROM mtl.Magazine WHERE ISSN_M = ?";
     public static String UPDATE_MAGAZINE = "UPDATE mtl.Magazine SET Name_M = ?, Argument = ?, Manager = ?, " +
             "YearRelease = ?, PublicationPeriod = ?, PublishingHouse = ?, AccessMode = ? WHERE ISSN_M = ?";

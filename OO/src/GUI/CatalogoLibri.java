@@ -1,31 +1,32 @@
 package GUI;
 
 import Controller.Controller;
-import ImplementazioneDAO.ImplementazioneBook;
 import Model.Book;
 
 import javax.swing.*;
+import javax.swing.event.DocumentEvent;
+import javax.swing.event.DocumentListener;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumnModel;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
 
 public class CatalogoLibri {
+    JFrame frame;
     private JPanel panel1;
     private JTextField textField1;
-    private JButton cercaButton;
     private JTable table1;
     private JButton backButton;
     private JComboBox argumentBox;
     private JComboBox reprintBox;
     private JComboBox languageBox;
     private JComboBox accessBox;
-    JFrame frame;
-
-    private String titolo;
+    private JTextField textField2;
 
     public CatalogoLibri(Controller controller, JFrame frameChiamante) throws SQLException {
         frame = new JFrame("CatalogoLibri");
@@ -35,7 +36,7 @@ public class CatalogoLibri {
         frame.setVisible(true);
         frame.setLocationRelativeTo(null);
 
-
+        createTextfield(controller);
         createReprintBox();
         createArgsBox(controller);
         createLanguageBox(controller);
@@ -43,34 +44,7 @@ public class CatalogoLibri {
         createTable();
         showTable(controller);
 
-        cercaButton.addActionListener(new ActionListener() {
-            /**
-             * @param e the event to be processed
-             */
-            @Override
-            public void actionPerformed(ActionEvent e) {
 
-            }
-        });
-        backButton.addActionListener(new ActionListener() {
-            /**
-             * @param e the event to be processed
-             */
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                frame.setVisible(false);
-
-            }
-        });
-        textField1.addActionListener(new ActionListener() {
-            /**
-             * @param e the event to be processed
-             */
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                titolo = textField1.getText();
-            }
-        });
         backButton.addActionListener(new ActionListener() {
             /**
              * @param e the event to be processed
@@ -81,10 +55,85 @@ public class CatalogoLibri {
                 frameChiamante.setVisible(true);
             }
         });
+        accessBox.addItemListener(new ItemListener() {
+            /**
+             * @param e the event to be processed
+             */
+            @Override
+            public void itemStateChanged(ItemEvent e) {
+                try {
+                    showTable(controller);
+                } catch (SQLException throwables) {
+                    throwables.printStackTrace();
+                }
+
+            }
+        });
+        languageBox.addItemListener(new ItemListener() {
+            /**
+             * @param e the event to be processed
+             */
+            @Override
+            public void itemStateChanged(ItemEvent e) {
+                try {
+                    showTable(controller);
+                } catch (SQLException throwables) {
+                    throwables.printStackTrace();
+                }
+
+            }
+        });
+        argumentBox.addItemListener(new ItemListener() {
+            /**
+             * @param e the event to be processed
+             */
+            @Override
+            public void itemStateChanged(ItemEvent e) {
+                try {
+                    showTable(controller);
+                } catch (SQLException throwables) {
+                    throwables.printStackTrace();
+                }
+            }
+        });
+
+    }
+
+    private void createTextfield(Controller controller) {
+        textField1.getDocument().addDocumentListener(new DocumentListener() {
+                                                         @Override
+                                                         public void insertUpdate(DocumentEvent e) {
+                                                             try {
+                                                                 showTable(controller);
+                                                             } catch (SQLException ex) {
+                                                                 throw new RuntimeException(ex);
+                                                             }
+                                                         }
+
+                                                         @Override
+                                                         public void removeUpdate(DocumentEvent e) {
+                                                             try {
+                                                                 showTable(controller);
+                                                             } catch (SQLException ex) {
+                                                                 throw new RuntimeException(ex);
+                                                             }
+                                                         }
+
+                                                         @Override
+                                                         public void changedUpdate(DocumentEvent e) {
+                                                             try {
+                                                                 showTable(controller);
+                                                             } catch (SQLException ex) {
+                                                                 throw new RuntimeException(ex);
+                                                             }
+                                                         }
+                                                     }
+        );
+
     }
 
     private void createAccessBox(Controller controller) throws SQLException {
-        ArrayList<String> access= controller.getAllAccessBook();
+        ArrayList<String> access = controller.getAllAccessBook();
         for (String acc : access) {
             accessBox.addItem(acc);
         }
@@ -95,14 +144,25 @@ public class CatalogoLibri {
         for (String lang : langs) {
             languageBox.addItem(lang);
         }
+    }
 
+    private void createArgsBox(Controller controller) throws SQLException {
+        ArrayList<String> args = controller.getAllArgumentsBook();
+        for (String arg : args) {
+            argumentBox.addItem(arg);
+        }
     }
 
     private void showTable(Controller controller) throws SQLException {
-
+        String access = String.valueOf(accessBox.getSelectedItem());
+        String lang = String.valueOf(languageBox.getSelectedItem());
+        String arg = String.valueOf(argumentBox.getSelectedItem());
+        Boolean reprint = Boolean.valueOf(String.valueOf(reprintBox.getSelectedItem()));
+        String title = String.valueOf(textField1.getText());
+        String author = String.valueOf(textField2.getText());
         DefaultTableModel model = (DefaultTableModel) table1.getModel();
         model.setRowCount(0);
-        ArrayList<Book> books = controller.readAllBooks();
+        ArrayList<Book> books = controller.readAllBooks(arg, lang, access, reprint, title, author);
         for (Book book : books) {
             model.addRow(new Object[]{book.getDoi_B(), book.getISBN_B(), book.getPublishingHouse(), book.getLanguage(),
                     book.getAccessMode(), book.getTitle(), book.getArgument(), book.getReprint(), book.getReleaseDate(),
@@ -146,17 +206,7 @@ public class CatalogoLibri {
     }
 
     private void createReprintBox() {
-        reprintBox.addItem("All Prints");
-        reprintBox.addItem("Si");
-        reprintBox.addItem("No");
+        reprintBox.addItem("true");
+        reprintBox.addItem("false");
     }
-
-    private void createArgsBox(Controller controller) throws SQLException {
-        ArrayList<String> args = controller.getAllArgumentsBook();
-        for (String arg : args) {
-            argumentBox.addItem(arg);
-        }
-    }
-
-
 }

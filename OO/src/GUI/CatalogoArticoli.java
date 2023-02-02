@@ -1,14 +1,17 @@
 package GUI;
 
 import Controller.Controller;
-import ImplementazioneDAO.ImplementazioneArticle;
 import Model.Article;
 
 import javax.swing.*;
+import javax.swing.event.DocumentEvent;
+import javax.swing.event.DocumentListener;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumnModel;
-import java.awt.event.*;
-import java.awt.image.renderable.ContextualRenderedImageFactory;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
@@ -16,13 +19,12 @@ import java.util.ArrayList;
  * The type Catalogo riviste.
  */
 public class CatalogoArticoli {
+    JFrame frame;
     private JPanel panel1;
     private JTable table1;
     private JComboBox topicsBox;
     private JTextField textField1;
-    private JButton cercaButton;
     private JButton backButton;
-    JFrame frame;
 
     /**
      * Instantiates a new Catalogo articoli.
@@ -35,29 +37,12 @@ public class CatalogoArticoli {
         frame.setVisible(true);
         frame.setLocationRelativeTo(null);
 
+        createTextField(controller);
         createTopicsBOx(controller);
         createTable();
         ShowTable(controller);
 
 
-        cercaButton.addMouseListener(new MouseAdapter() {
-            /**
-             * @param e the event to be processed
-             */
-            @Override
-            public void mouseClicked(MouseEvent e) {
-                super.mouseClicked(e);
-                String title = textField1.getText();
-                ImplementazioneArticle implementazioneArticle = new ImplementazioneArticle();
-                ArrayList<Article> articles = implementazioneArticle.CercaPerTitolo(title);
-                DefaultTableModel model = (DefaultTableModel) table1.getModel();
-                model.setRowCount(0);
-                for (Article article : articles) {
-                    model.addRow(new Object[]{article.getDoi_A(), article.getTitle(), article.getAccessMode(), article.getEditor(),
-                            article.getTopic(), article.getReleaseDate(), article.getReleaseLocation(), article.getConferenceName(),article.getAuthor(),article.getFK_Magazine()});
-                }
-            }
-        });
         backButton.addActionListener(new ActionListener() {
             /**
              * @param e the event to be processed
@@ -95,7 +80,7 @@ public class CatalogoArticoli {
         model.addColumn("ConferenceName");
         model.addColumn("Autore");
         model.addColumn("Rivista");
-        
+
         table1.setModel(model);
 
         TableColumnModel cols = table1.getColumnModel();
@@ -115,22 +100,23 @@ public class CatalogoArticoli {
      * Show table.
      */
     void ShowTable(Controller controller) throws SQLException {
+        String topic = String.valueOf(topicsBox.getSelectedItem());
+        String title = textField1.getText();
         DefaultTableModel model = (DefaultTableModel) table1.getModel();
         model.setRowCount(0);
-        ArrayList<Article> articles = controller.readAllArticles();
+        ArrayList<Article> articles = controller.readAllArticles(topic, title);
         for (Article article : articles) {
-            model.addRow(new Object[]{article.getDoi_A(), article.getAccessMode(), article.getAccessMode(), article.getEditor()
-                    , article.getTopic(), article.getReleaseDate(), article.getReleaseLocation(), article.getConferenceName(),article.getAuthor(),article.getFK_Magazine()});
+            model.addRow(new Object[]{article.getDoi_A(), article.getTitle(), article.getAccessMode(), article.getEditor()
+                    , article.getTopic(), article.getReleaseDate(), article.getReleaseLocation(), article.getConferenceName(), article.getAuthor(), article.getFK_Magazine()});
         }
     }
-
 
     /**
      * Create combo box.
      */
     private void createTopicsBOx(Controller controller) throws SQLException {
         ArrayList<String> topics = controller.getAllTopicsArticle();
-        for (String i  : topics) {
+        for (String i : topics) {
             topicsBox.addItem(i);
         }
         topicsBox.addItemListener(new ItemListener() {
@@ -146,4 +132,38 @@ public class CatalogoArticoli {
             }
         });
     }
+
+    private void createTextField(Controller controller) {
+        textField1.getDocument().addDocumentListener(new DocumentListener() {
+                                                         @Override
+                                                         public void insertUpdate(DocumentEvent e) {
+                                                             try {
+                                                                 ShowTable(controller);
+                                                             } catch (SQLException ex) {
+                                                                 throw new RuntimeException(ex);
+                                                             }
+                                                         }
+
+                                                         @Override
+                                                         public void removeUpdate(DocumentEvent e) {
+                                                             try {
+                                                                 ShowTable(controller);
+                                                             } catch (SQLException ex) {
+                                                                 throw new RuntimeException(ex);
+                                                             }
+                                                         }
+
+                                                         @Override
+                                                         public void changedUpdate(DocumentEvent e) {
+                                                             try {
+                                                                 ShowTable(controller);
+                                                             } catch (SQLException ex) {
+                                                                 throw new RuntimeException(ex);
+                                                             }
+                                                         }
+                                                     }
+        );
+    }
+
+
 }

@@ -9,20 +9,18 @@ import java.util.ArrayList;
 
 public class ImplementazioneArticle implements ArticleDAO {
 
-    private final Connection connection;
-
     public static String CREATE_ARTICLE = "INSERT INTO mtl.Series (ISSN_S, Curator, Edition, NameS, Code) VALUES (?, ?, ?, ?, ?)";
     public static String DELETE_ARTICLE = "DELETE FROM mtl.article WHERE ISSN_S = ?";
     public static String UPDATE_ARTICLE = "UPDATE mtl.article SET title = ?, accessmdode = ?, editor = ?, topic = ?, " +
             "releasedate=?, releaselocation=?,conferencename=?,fk_author=?,fk_magazine=? WHERE doi_a= ?;";
-    public static String GET_ALL_ARTICLE = "SELECT * FROM mtl.article";
+    public static String GET_ALL_ARTICLE = "SELECT * FROM mtl.article a WHERE a.topic = ? AND a.title LIKE '%'|| ? ||'%'; ";
     public static String SEARCH_ARTICLE_BY_AUTHOR_NAME = "SELECT * FROM mtl.article a JOIN mtl.author au ON a.fk_author = au.codauthor WHERE au.Lname = ? OR au.Fname = ?  ";
     public static String SEARCH_ARTICLE_BY_TITLE = "SELECT * FROM mtl.Article WHERE title= '%'||?||'%'";
     public static String SEARCH_ARTICLE_BY_TOPIC = "SELECT * FROM mtl.article WHERE topic = '%'||?||'%'";
-
     public static String SEARCH_ARTICLE_BY_EDITOR = "SELECT * FROM mtl.article WHERE editor = '%'||?||'%'";
     public static String SEARCH_ARTICLE_BY_MAGAZINE_NAME = "SELECT * FROM mtl.article a JOIN mtl.magazine m ON a.fk_magazine = m.issn_m WHERE m.name ='%'||?||'%'";
     public static String GET_ALL_TOPICS = "SELECT DISTINCT topic FROM mtl.article";
+    private final Connection connection;
 
     public ImplementazioneArticle() {
         try {
@@ -53,16 +51,18 @@ public class ImplementazioneArticle implements ArticleDAO {
     }
 
     @Override
-    public ArrayList<Article> readAll() {
+    public ArrayList<Article> readAll(String topic, String title) throws SQLException {
         ArrayList<Article> articles = new ArrayList<>();
         try (PreparedStatement statement = connection.prepareStatement(GET_ALL_ARTICLE)) {
+            statement.setString(1, topic);
+            statement.setString(2, title);
             ResultSet rs = statement.executeQuery();
             while (rs.next()) {
                 String doi_A = rs.getString("Doi_A");
-                String title = rs.getString("Title");
+                title = rs.getString("Title");
                 String accessMode = rs.getString("AccessMode");
                 String editor = rs.getString("Editor");
-                String topic = rs.getString("Topic");
+                topic = rs.getString("Topic");
                 Timestamp releaseDate = rs.getTimestamp("ReleaseDate");
                 String releaseLocation = rs.getString("ReleaseLocation");
                 String conferenceName = rs.getString("ConferenceName");

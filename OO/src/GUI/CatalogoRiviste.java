@@ -23,7 +23,6 @@ public class CatalogoRiviste {
     private JPanel panel1;
     private JTable table1;
     private JTextField textField1;
-    private JButton cercaButton;
     private JComboBox periodicitBox;
     private JButton backButton;
     private JComboBox argumentBox;
@@ -72,6 +71,18 @@ public class CatalogoRiviste {
 
             }
         });
+        periodicitBox.addItemListener(new ItemListener() {
+            @Override
+            public void itemStateChanged(ItemEvent e) {
+                if (e.getStateChange() == ItemEvent.SELECTED) {
+                    try {
+                        ShowTable(controller);
+                    } catch (SQLException ex) {
+                        throw new RuntimeException(ex);
+                    }
+                }
+            }
+        });
     }
 
     /**
@@ -113,7 +124,6 @@ public class CatalogoRiviste {
      * Show table.
      */
     void ShowTable(Controller controller) throws SQLException {
-        System.out.println("line");
         String arg = String.valueOf(argumentBox.getSelectedItem());
         String period = String.valueOf(periodicitBox.getSelectedItem());
         String name = String.valueOf(textField1.getText());
@@ -136,18 +146,6 @@ public class CatalogoRiviste {
         for (String i : periodicities) {
             periodicitBox.addItem(i);
         }
-        periodicitBox.addItemListener(new ItemListener() {
-            @Override
-            public void itemStateChanged(ItemEvent e) {
-                if (e.getStateChange() == ItemEvent.SELECTED) {
-                    try {
-                        ShowTable(controller);
-                    } catch (SQLException ex) {
-                        throw new RuntimeException(ex);
-                    }
-                }
-            }
-        });
     }
 
     void createArgumentBox(Controller controller) throws SQLException {
@@ -162,8 +160,6 @@ public class CatalogoRiviste {
                                                          @Override
                                                          public void insertUpdate(DocumentEvent e) {
                                                              try {
-                                                                 String name = textField1.getText();
-                                                                 System.out.println(name);
                                                                  ShowTable(controller);
                                                              } catch (SQLException ex) {
                                                                  throw new RuntimeException(ex);
@@ -173,8 +169,6 @@ public class CatalogoRiviste {
                                                          @Override
                                                          public void removeUpdate(DocumentEvent e) {
                                                              try {
-                                                                 String name = textField1.getText();
-                                                                 System.out.println(name);
                                                                  ShowTable(controller);
                                                              } catch (SQLException ex) {
                                                                  throw new RuntimeException(ex);
@@ -184,8 +178,6 @@ public class CatalogoRiviste {
                                                          @Override
                                                          public void changedUpdate(DocumentEvent e) {
                                                              try {
-                                                                 String name = textField1.getText();
-                                                                 System.out.println(name);
                                                                  ShowTable(controller);
                                                              } catch (SQLException ex) {
                                                                  throw new RuntimeException(ex);

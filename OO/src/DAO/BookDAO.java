@@ -24,7 +24,7 @@ public interface BookDAO {
                        boolean reprint, Timestamp releaseDate, String releaseLocation, String PresentationName,
                        String FK_author, String FK_Series);
 
-    ArrayList<Book> readAll();
+    ArrayList<Book> readAll(String arg, String lang, String accessMode, boolean reprint, String title,String author);
 
     ArrayList<Book> SearchByTitle(String title);
 

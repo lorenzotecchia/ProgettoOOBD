@@ -1,14 +1,17 @@
 package GUI;
 
 import Controller.Controller;
-import ImplementazioneDAO.ImplementazioneSeries;
 import Model.Series;
 
 import javax.swing.*;
+import javax.swing.event.DocumentEvent;
+import javax.swing.event.DocumentListener;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumnModel;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
@@ -17,10 +20,8 @@ public class CatalogoCollane {
     private JPanel panel1;
     private JTable table1;
     private JTextField textField1;
-    private JButton cercaButton;
     private JComboBox editionBox;
     private JButton backButton;
-    private String titolo;
 
     public CatalogoCollane(Controller controller, JFrame frameChiamante) throws SQLException {
         frame = new JFrame("CatalogoCollane");
@@ -30,32 +31,12 @@ public class CatalogoCollane {
         frame.setVisible(true);
         frame.setLocationRelativeTo(null);
 
+        createTextfield(controller);
         createEditionBox(controller);
         createTable();
         showTable(controller);
 
-        cercaButton.addActionListener(new ActionListener() {
-            /**
-             * @param e the event to be processed
-             */
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                titolo = textField1.getText();
-                JFrame frameCollana = new JFrame("CatalogoCollane");
-                frameCollana.setContentPane(panel1);
-                frameCollana.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
-                frameCollana.pack();
-                frameCollana.setVisible(true);
-                frame.setVisible(false);
-                frameCollana.setLocationRelativeTo(null);
-                controller.SearchSeriesByName(titolo);
-                try {
-                    showTable(controller);
-                } catch (SQLException ex) {
-                    throw new RuntimeException(ex);
-                }
-            }
-        });
+
         backButton.addActionListener(new ActionListener() {
             /**
              * @param e the event to be processed
@@ -66,13 +47,30 @@ public class CatalogoCollane {
                 frameChiamante.setVisible(true);
             }
         });
+        editionBox.addItemListener(new ItemListener() {
+            /**
+             * @param e the event to be processed
+             */
+            @Override
+            public void itemStateChanged(ItemEvent e) {
+                try {
+                    showTable(controller);
+                } catch (SQLException ex) {
+                    throw new RuntimeException(ex);
+                }
+
+            }
+        });
     }
 
     private void showTable(Controller controller) throws SQLException {
 
         DefaultTableModel model = (DefaultTableModel) table1.getModel();
         model.setRowCount(0);
-        ArrayList<Series> series = controller.readAllSeries();
+        Integer edition = Integer.parseInt(editionBox.getSelectedItem().toString());
+        String nameS = String.valueOf(textField1.getText());
+
+        ArrayList<Series> series = controller.readAllSeries(edition,nameS);
         for (Series s : series) {
             model.addRow(new Object[]{s.getISSN_S(), s.getCurator(),
                     s.getEdition(), s.getNameS(), s.getCode()});
@@ -103,6 +101,39 @@ public class CatalogoCollane {
             editionBox.addItem(s);
         }
 
+    }
+
+
+    private void createTextfield(Controller controller) {
+        textField1.getDocument().addDocumentListener(new DocumentListener() {
+                                                         @Override
+                                                         public void insertUpdate(DocumentEvent e) {
+                                                             try {
+                                                                 showTable(controller);
+                                                             } catch (SQLException ex) {
+                                                                 throw new RuntimeException(ex);
+                                                             }
+                                                         }
+
+                                                         @Override
+                                                         public void removeUpdate(DocumentEvent e) {
+                                                             try {
+                                                                 showTable(controller);
+                                                             } catch (SQLException ex) {
+                                                                 throw new RuntimeException(ex);
+                                                             }
+                                                         }
+
+                                                         @Override
+                                                         public void changedUpdate(DocumentEvent e) {
+                                                             try {
+                                                                 showTable(controller);
+                                                             } catch (SQLException ex) {
+                                                                 throw new RuntimeException(ex);
+                                                             }
+                                                         }
+                                                     }
+        );
     }
 
 }

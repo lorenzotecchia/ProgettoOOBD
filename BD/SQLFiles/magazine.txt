@@ -41,8 +41,16 @@
 "Angewandte Chemie" - chimica applicata
 "Chemical Science" - chimica
 "Inorganic Chemistry" - chimica inorganica
-
-
+"Journal of the American Chemical Society" - chimica
+"Journal of the American Society for Mass Spectrometry" - spettrometria di massa
+"Journal of the American Society for Information Science and Technology" - scienza dell'informazione
+"Journal of the American Society for Mass Spectrometry" - spettrometria di massa
+"Journal of the American Society of Nephrology" - nefrologia
+"Journal of the American Statistical Association" - statistica
+"Journal of the American Water Resources Association" - risorse idriche
+"Journal of the Association for Information Science and Technology" - scienza dell'informazione
+"Journal of the Association for Research in Otolaryngology" - otorinolaringoiatria
+"Journal of the Association for Research in Otolaryngology" - otorinolaringoiatria
 "Nature" - 2020: Un articolo sulla scoperta di un nuovo materiale superconduttore scritto da Maria Rossi e Giovanni Bianchi
 "Science" - 2019: Un articolo sull'impatto dei cambiamenti climatici sugli oceani scritto da Sara Verdi e Marco Neri
 "Cell" - 2018: Un articolo sull'identificazione di un nuovo meccanismo di regolazione della crescita cellulare scritto da Laura Ferrari e Federico Marino
@@ -60,6 +68,19 @@
 "Astronomy & Astrophysics" - 2006: Un articolo sull'esplorazione dei pianeti extrasolari scritto da Federico Rossi e Antonio Marino
 "IEEE Transactions on Electrical and Computer Engineering" - 2005: Un articolo sullo sviluppo di nuove tecnologie per l'energia rinnovabile scritto da Laura Bianchi e Davide Giordano
 "IEEE Transactions on Automatic
+
+Control" - 2004: Un articolo sullo sviluppo di nuove tecnologie per l'energia rinnovabile scritto da Marco Bianchi e Antonio Marino
+"IEEE Transactions on Computer-Aided Design of Integrated Circuits and Systems" - 2003: Un articolo sullo sviluppo di nuove tecnologie per l'energia rinnovabile scritto da Anna Bianchi e Federico Marino
+"ACM Transactions on Computer Science" - 2002: Un articolo sullo sviluppo di nuove tecnologie per l'energia rinnovabile scritto da Federica Bianchi e Giovanni Marino
+"ACM Transactions on Graphics" - 2001: Un articolo sullo sviluppo di nuove tecnologie per l'energia rinnovabile scritto da Davide Bianchi e Marco Marino
+"ACM Transactions on Information Systems" - 2000: Un articolo sullo sviluppo di nuove tecnologie per l'energia rinnovabile scritto da Roberto Bianchi e Anna Marino
+"ACM Transactions on Mathematical Software" - 1999: Un articolo sullo sviluppo di nuove tecnologie per l'energia rinnovabile scritto da Antonio Bianchi e Federica Marino
+"ACM Transactions on Modeling and Computer Simulation" - 1998: Un articolo sullo sviluppo di nuove tecnologie per l'energia rinnovabile scritto da Carlo Bianchi e Federico Marino
+"ACM Transactions on Programming Languages and Systems" - 1997: Un articolo sullo sviluppo di nuove tecnologie per l'energia rinnovabile scritto da Sara Bianchi e Giovanni Marino
+"ACM Transactions on Software Engineering and Methodology" - 1996: Un articolo sullo sviluppo di nuove tecnologie per l'energia rinnovabile scritto da Federico Bianchi e Marco Marino
+"ACM Transactions on Speech and Language Processing" - 1995: Un articolo sullo sviluppo di nuove tecnologie per l'energia rinnovabile scritto da Anna Bianchi e Davide Marino
+"ACM Transactions on the Web" - 1994: Un articolo sullo sviluppo di nuove tecnologie per l'energia rinnovabile scritto da Federica Bianchi e Antonio Marino
+"ACM Transactions on Database Systems" - 1993: Un articolo sullo sviluppo di nuove tecnologie per l'energia rinnovabile scritto da Davide Bianchi e Carlo Marino
 
 
 issn validi :

@@ -14,7 +14,7 @@ VALUES ('10.5915/96618', 'The structure of written graphene-based ', 'Paper', 'F
         '0000-0078'),
        ('10.1668/223239', 'Data analysis of a survey on lifestyles ', 'Digital', 'Team Guard SRL', 'science',
         '2014-05-15 20:49:52.000000', 'Danone, 9642, Fair Drive ,  2115 , Cincinnati', 'Mental health and lifestyle',
-        16, '0000-0337'),
+        14, '0000-0337'),
        ('10.1546/561529', 'The conservation of biodiversity', 'Paper', 'AECOM', 'science', '2011-06-12 16:02:39.000000',
         'DynCorp, 1717, King Edward  Lane ,  4585 ,Bakersfi', 'Biodiversity', 11, '0000-0329'),
        ('10.2384/23093', 'The discovery of a new distant galaxy', 'Digital', 'UPC', 'astrophysics',

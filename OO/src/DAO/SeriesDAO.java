@@ -13,7 +13,7 @@ import java.util.List;
 public interface SeriesDAO {
     void create(String ISSN_S, String Curator, int Edition, String NameS, Serial Code);
 
-    ArrayList<Series> readAll();
+    ArrayList<Series> readAll(Integer edition, String name_s);
 
     ArrayList<Series> CercaPerNome(String name_s);
 

@@ -17,9 +17,9 @@ public class Controller {
     }
 
     ///////////////////////////ARTICLE/////////////////////////////////////
-    public ArrayList<Article> readAllArticles() throws SQLException {
+    public ArrayList<Article> readAllArticles(String topic, String title) throws SQLException {
         ArticleDAO articleDAO = new ImplementazioneArticle();
-        return articleDAO.readAll();
+        return articleDAO.readAll(topic, title);
     }
 
     public ArrayList<Article> CercaPerTitoloArticle(String titolo) throws SQLException {
@@ -114,9 +114,9 @@ public class Controller {
         return bookDAO.SearchByTitle(Title);
     }
 
-    public ArrayList<Book> readAllBooks() throws SQLException {
+    public ArrayList<Book> readAllBooks(String arg, String lang, String accessMode, boolean reprint, String title,String author) throws SQLException {
         BookDAO bookDAO = new ImplementazioneBook();
-        return bookDAO.readAll();
+        return bookDAO.readAll(arg, lang, accessMode, reprint, title, author);
     }
 
     public ArrayList<String> getAllArgumentsBook() throws SQLException {
@@ -163,12 +163,13 @@ public class Controller {
         MagazineDAO magazineDAO = new ImplementazioneMagazine();
         return magazineDAO.readAll(publicationPeriod, argument, name_m);
     }
+
     public ArrayList<String> getAllPerioditicitaMagazine() throws SQLException {
         MagazineDAO magazineDAO = new ImplementazioneMagazine();
         return magazineDAO.getAllPeriodicities();
     }
 
-    public ArrayList<String> getAllArgumentsMagazine() throws SQLException{
+    public ArrayList<String> getAllArgumentsMagazine() throws SQLException {
         MagazineDAO magazineDAO = new ImplementazioneMagazine();
         return magazineDAO.getAllArguments();
     }
@@ -190,9 +191,9 @@ public class Controller {
         seriesDAO.update(ISSN_S, Curator, Edition, NameS, Code);
     }
 
-    public ArrayList<Series> readAllSeries() throws SQLException {
+    public ArrayList<Series> readAllSeries(Integer edition, String name) throws SQLException {
         SeriesDAO seriesDAO = new ImplementazioneSeries();
-        return seriesDAO.readAll();
+        return seriesDAO.readAll(edition, name);
     }
 
     public ArrayList<Series> SearchSeriesByName(String NameS) {

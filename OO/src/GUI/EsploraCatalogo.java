@@ -52,7 +52,7 @@ backButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 frame.setVisible(false);
-                CatalogoLibri libri = null;
+                CatalogoLibri libri;
                 try {
                     libri = new CatalogoLibri(controller, frame);
                 } catch (SQLException ex) {
@@ -103,7 +103,7 @@ magazineButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 frame.setVisible(false);
-                CatalogoArticoli articoli = null;
+                CatalogoArticoli articoli;
                 try {
                     articoli = new CatalogoArticoli(controller, frame);
                 } catch (SQLException ex) {
