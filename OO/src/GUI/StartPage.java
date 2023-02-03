@@ -6,8 +6,6 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
 import java.net.URI;
 
 /**
@@ -33,17 +31,16 @@ public class StartPage {
         frame.setLocationRelativeTo(null);
         frame.setResizable(false);
 
-        catalogoButton.addMouseListener(new MouseAdapter() {
+        catalogoButton.addActionListener(new ActionListener() {
             /**
              * @param e the event to be processed
              */
             @Override
-            public void mouseClicked(MouseEvent e) {
-                super.mouseClicked(e);
+            public void actionPerformed(ActionEvent e) {
+                //open the catalog
                 frame.setVisible(false);
                 EsploraCatalogo catalogo = new EsploraCatalogo(controller, frame);
                 catalogo.frame.setVisible(true);
-
             }
         });
 
@@ -88,17 +85,7 @@ public class StartPage {
                 } catch (Exception ex) {
                     ex.printStackTrace();
                 }
-
             }
         });
-    }
-
-    /**
-     * The entry point of application.
-     *
-     * @param args the input arguments
-     */
-    public static void main(String[] args) {
-        new StartPage();
     }
 }

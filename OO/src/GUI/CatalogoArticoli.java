@@ -13,6 +13,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 import java.sql.SQLException;
+import java.sql.Timestamp;
 import java.util.ArrayList;
 
 /**
@@ -39,7 +40,7 @@ public class CatalogoArticoli {
 
         createTextField(controller);
         createTopicsBOx(controller);
-        createTable();
+        createTable(controller);
         ShowTable(controller);
 
 
@@ -68,7 +69,7 @@ public class CatalogoArticoli {
     /**
      * Create table.
      */
-    void createTable() {
+    void createTable(Controller controller) {
         DefaultTableModel model = new DefaultTableModel();
         model.addColumn("Doi Article");
         model.addColumn("Title");
@@ -82,18 +83,18 @@ public class CatalogoArticoli {
         model.addColumn("Rivista");
 
         table1.setModel(model);
+        TableColumnModel columnModel = table1.getColumnModel();
+        columnModel.getColumn(0).setPreferredWidth(100);
+        columnModel.getColumn(1).setPreferredWidth(100);
+        columnModel.getColumn(2).setPreferredWidth(100);
+        columnModel.getColumn(3).setPreferredWidth(100);
+        columnModel.getColumn(4).setPreferredWidth(100);
+        columnModel.getColumn(5).setPreferredWidth(100);
+        columnModel.getColumn(6).setPreferredWidth(100);
+        columnModel.getColumn(7).setPreferredWidth(100);
+        columnModel.getColumn(8).setPreferredWidth(100);
+        columnModel.getColumn(9).setPreferredWidth(100);
 
-        TableColumnModel cols = table1.getColumnModel();
-        cols.getColumn(0);
-        cols.getColumn(1);
-        cols.getColumn(2);
-        cols.getColumn(3);
-        cols.getColumn(4);
-        cols.getColumn(5);
-        cols.getColumn(6);
-        cols.getColumn(7);
-        cols.getColumn(8);
-        cols.getColumn(9);
     }
 
     /**
@@ -164,6 +165,4 @@ public class CatalogoArticoli {
                                                      }
         );
     }
-
-
 }

@@ -13,8 +13,8 @@ public class Author {
      * Instantiates a new Author.
      *
      * @param codauthor the author id
-     * @param fName    the f name
-     * @param lName    the l name
+     * @param fName     the f name
+     * @param lName     the l name
      */
     public Author(String codauthor, String fName, String lName) {
         this.codauthor = codauthor;
@@ -41,30 +41,12 @@ public class Author {
     }
 
     /**
-     * Sets f name.
-     *
-     * @param fName the f name
-     */
-    public void setFName(String fName) {
-        this.fName = fName;
-    }
-
-    /**
      * Gets name.
      *
      * @return the name
      */
     public String getLName() {
         return lName;
-    }
-
-    /**
-     * Sets name.
-     *
-     * @param lName the l name
-     */
-    public void setLName(String lName) {
-        this.lName = lName;
     }
 
     @Override

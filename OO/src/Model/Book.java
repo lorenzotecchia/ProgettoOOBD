@@ -41,78 +41,70 @@ public class Book {
     }
 
 
-
     public String getDoi_B() {
         return doi_B;
     }
 
-    public void setDoi_B(String doi_B) {
-        this.doi_B = doi_B;
-    }
 
     public String getTitle() {
         return title;
     }
 
-    public void setTitle(String title) {
-        this.title = title;
-    }
 
     public String getAccessMode() {
         return accessMode;
     }
 
-    public void setAccessMode(String accessMode) {
-        this.accessMode = accessMode;
-    }
 
     public Timestamp getReleaseDate() {
         return releaseDate;
     }
 
-    public void setReleaseDate(Timestamp releaseDate) { this.releaseDate = releaseDate; }
 
     public int getEdition() {
         return edition;
     }
 
-    public void setEdition(int edition) {
-        this.edition = edition;
+
+    public String getAuthor() {
+        return FK_author;
     }
 
-    public String getAuthor() { return FK_author; }
-
-    public void setAuthor(String author) {
-        this.FK_author = author;
-    }
 
     public String getFK_Series() {
         return FK_Series;
     }
 
-    public void setFK_Series(String FK_Series) {
-        this.FK_Series = FK_Series;
+    public Boolean getReprint() {
+        return reprint;
     }
-    public Boolean getReprint() {return reprint; }
 
-    public void setReprint(Boolean reprint) { this.reprint = reprint; }
 
-    public String getArgument() { return argument; }
+    public String getArgument() {
+        return argument;
+    }
 
-    public void setArgument(String argument) { this.argument = argument; }
 
-    public String getLanguage() { return language; }
+    public String getLanguage() {
+        return language;
+    }
 
-    public void setLanguage(String language) { this.language = language; }
 
-    public String getISBN_B() { return ISBN_b; }
-    public void setISBN_B(String ISBN_b) { this.ISBN_b = ISBN_b; }
-    public String getPublishingHouse() { return publishingHouse; }
-    public void setPublishingHouse(String publishingHouse) { this.publishingHouse = publishingHouse; }
-    public String getReleaseLocation() { return releaseLocation; }
-    public void setReleaseLocation(String releaseLocation) { this.releaseLocation = releaseLocation; }
-    public String getPresentationName() { return presentationName; }
-    public void setPresentationName(String presentationName) { this.presentationName = presentationName; }
+    public String getISBN_B() {
+        return ISBN_b;
+    }
+
+    public String getPublishingHouse() {
+        return publishingHouse;
+    }
+
+    public String getReleaseLocation() {
+        return releaseLocation;
+    }
+
+    public String getPresentationName() {
+        return presentationName;
+    }
 
     @Override
     public String toString() {
@@ -132,10 +124,6 @@ public class Book {
                 ", FK_Series='" + FK_Series + '\'' +
                 ", FK_author='" + FK_author + '\'' +
                 '}';
-    }
-
-    public void setFK_author(String fkAuthor) {
-
     }
 
 }

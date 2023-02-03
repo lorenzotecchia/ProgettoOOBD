@@ -20,41 +20,26 @@ public class Series {
         return ISSN_S;
     }
 
-    public void setISSN_S(String ISSN_S) {
-        this.ISSN_S = ISSN_S;
-    }
 
     public String getCurator() {
         return Curator;
     }
 
-    public void setCurator(String Curator) {
-        this.Curator = Curator;
-    }
 
     public int getEdition() {
         return Edition;
     }
 
-    public void setAccessMode(int Edition) {
-        this.Edition = Edition;
-    }
 
     public String getNameS() {
         return NameS;
     }
 
-    public void setNameS(String NameS) {
-        this.NameS = NameS;
-    }
 
     public String getCode() {
         return Code;
     }
 
-    public void setCode(String Code) {
-        this.Code = Code;
-    }
 
     @Override
     public String toString() {

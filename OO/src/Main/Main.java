@@ -1,10 +1,13 @@
 package Main;
 
+import GUI.StartPage;
+import com.formdev.flatlaf.FlatDarkLaf;
 import javax.swing.*;
 
 public class Main {
 
     public static void main(String[] args) {
+        FlatDarkLaf.setup();
         SwingUtilities.invokeLater(new Runnable() {
             @Override
             public void run() {
@@ -15,10 +18,7 @@ public class Main {
     }
 
     private static void createAndShowGUI() {
-        JFrame frame = new JFrame();
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.pack();
-        frame.setLocationRelativeTo(null);
-        frame.setVisible(true);
+
+        new StartPage();
     }
 }
