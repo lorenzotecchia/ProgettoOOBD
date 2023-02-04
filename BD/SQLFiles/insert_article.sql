@@ -23,4 +23,5 @@ VALUES ('10.5915/96618', 'The structure of written graphene-based ', 'Paper', 'F
         '2007-08-31 18:37:00.000000', 'Vodafone, 3228,Cingworth  Drive , 5753 ,Nashville', 'Stars and galxies', 3,
         '0000-0205'),
        ('10.1442/420908', 'New technologies for renewable energy', 'Audio', 'DynCorp', 'physics',
-        '2005-06-06 19:28:36.000000', 'Danone, 6842, Heritage Route ,7288, Hayward', 'Renewable energy', 4, '0000-2372')
+        '2005-06-06 19:28:36.000000', null , null, 4, '0000-1236')
+--

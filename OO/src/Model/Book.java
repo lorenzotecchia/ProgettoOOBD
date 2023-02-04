@@ -16,13 +16,13 @@ public class Book {
     private Timestamp releaseDate;
     private String releaseLocation;
     private String presentationName;
-    private String FK_author;
     private String FK_Series;
+    private String author;
 
 
     public Book(String doi_B, String ISBN_b, int edition, String publishingHouse, String language,
                 String title, String accessMode, String argument, Boolean reprint, Timestamp releaseDate,
-                String releaseLocation, String presentationName, String FK_author, String FK_Series) {
+                String releaseLocation, String presentationName, String FK_Series, String author) {
 
         this.ISBN_b = ISBN_b;
         this.doi_B = doi_B;
@@ -36,8 +36,8 @@ public class Book {
         this.releaseDate = releaseDate;
         this.releaseLocation = releaseLocation;
         this.presentationName = presentationName;
-        this.FK_author = FK_author;
         this.FK_Series = FK_Series;
+        this.author = author;
     }
 
 
@@ -45,6 +45,9 @@ public class Book {
         return doi_B;
     }
 
+    public String getAuthor() {
+        return author;
+    }
 
     public String getTitle() {
         return title;
@@ -65,10 +68,6 @@ public class Book {
         return edition;
     }
 
-
-    public String getAuthor() {
-        return FK_author;
-    }
 
 
     public String getFK_Series() {
@@ -122,7 +121,6 @@ public class Book {
                 ", releaseLocation='" + releaseLocation + '\'' +
                 ", presentationName='" + presentationName + '\'' +
                 ", FK_Series='" + FK_Series + '\'' +
-                ", FK_author='" + FK_author + '\'' +
                 '}';
     }
 

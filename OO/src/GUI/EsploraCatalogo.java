@@ -3,8 +3,7 @@ package GUI;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
+import java.awt.event.ComponentAdapter;
 import java.sql.SQLException;
 
 import Controller.Controller;
@@ -19,6 +18,8 @@ public class EsploraCatalogo {
     private JButton articleButton;
     private JButton backButton;
     private JPanel panel1;
+    private JButton presentationsButton;
+    private JButton conferncesButton;
     JFrame frame;
 
     /**
@@ -110,6 +111,39 @@ magazineButton.addActionListener(new ActionListener() {
                     throw new RuntimeException(ex);
                 }
                 articoli.frame.setVisible(true);
+            }
+        });
+        presentationsButton.addActionListener(new ActionListener() {
+            /**
+             * @param e the event to be processed
+             */
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                frame.setVisible(false);
+                Presentazioni presentazioni;
+                try {
+                    presentazioni = new Presentazioni(controller, frame);
+                } catch (SQLException ex) {
+                    throw new RuntimeException(ex);
+                }
+                presentazioni.frame.setVisible(true);
+
+            }
+        });
+        conferncesButton.addActionListener(new ActionListener() {
+            /**
+             * @param e the event to be processed
+             */
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                frame.setVisible(false);
+                Conferenze conferenze;
+                try {
+                    conferenze = new Conferenze(controller, frame);
+                } catch (SQLException ex) {
+                    throw new RuntimeException(ex);
+                }
+                conferenze.frame.setVisible(true);
             }
         });
     }

@@ -40,7 +40,7 @@ public class CatalogoArticoli {
 
         createTextField(controller);
         createTopicsBOx(controller);
-        createTable(controller);
+        createTable();
         ShowTable(controller);
 
 
@@ -69,7 +69,7 @@ public class CatalogoArticoli {
     /**
      * Create table.
      */
-    void createTable(Controller controller) {
+    void createTable() {
         DefaultTableModel model = new DefaultTableModel();
         model.addColumn("Doi Article");
         model.addColumn("Title");

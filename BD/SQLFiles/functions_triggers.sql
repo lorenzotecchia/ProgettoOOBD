@@ -44,7 +44,7 @@ begin
     raise notice 'stringa in: %', stringa_in;
     for i in 1..8
         loop
-        raise notice 'i: %', i;
+            raise notice 'i: %', i;
             if substr(stringa_in, 8, 1) = 'X' then
                 sum = sum + 10;
                 raise notice 'sum: %', sum;
@@ -88,7 +88,7 @@ begin
     stringa_in := replace(stringa_in, '-', '');
     for i in 1..8
         loop
-        raise notice 'i: %', i;
+            raise notice 'i: %', i;
             if substr(stringa_in, 8, 1) = 'X' then
                 sum = sum + 10;
                 raise notice 'sum: %', sum;
@@ -119,3 +119,24 @@ create trigger validity_issn_m
     on mtl.magazine
     for each row
 execute procedure mtl.function_3();
+
+create or replace function mtl.function_4() returns trigger as
+
+$$
+declare
+    doi_app mtl.book.doi_b%type;
+begin
+
+
+end;
+$$;
+
+create trigger insert_autori_libri
+    after insert
+    on mtl.book
+    for each row
+execute procedure mtl.function_4();
+
+
+
+insert into mtl.autori_libri (fk_libri)values ('10.1830/879149');

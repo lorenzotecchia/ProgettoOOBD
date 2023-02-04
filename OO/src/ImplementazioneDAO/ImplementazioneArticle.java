@@ -10,6 +10,7 @@ import java.util.ArrayList;
 public class ImplementazioneArticle implements ArticleDAO {
     public static String GET_ALL_ARTICLE = "SELECT * FROM mtl.article a WHERE a.topic = ? AND a.title LIKE '%'|| ? ||'%'; ";
     public static String GET_ALL_TOPICS = "SELECT DISTINCT topic FROM mtl.article";
+    public static String GET_ALL_CONFERENCE = "SELECT * FROM mtl.conference WHERE title LIKE '%'|| ? ||'%'; ";
     private final Connection connection;
 
     public ImplementazioneArticle() {
@@ -60,6 +61,37 @@ public class ImplementazioneArticle implements ArticleDAO {
             throw new RuntimeException(e);
         }
         return topics;
+    }
+
+    /**
+     * @param title 
+     * @return
+     */
+    @Override
+    public ArrayList<String> conference(String title) {
+        ArrayList<String> conference = new ArrayList<>();
+        try(PreparedStatement statement = connection.prepareStatement(GET_ALL_CONFERENCE)){
+            statement.setString(1,title);
+            ResultSet rs = statement.executeQuery();
+            while (rs.next()){
+                title = rs.getString("Title");
+                String fname = rs.getString("fname");
+                String lname = rs.getString("lname");
+                String presentationname = rs.getString("presentationName");
+                String releaselocarion = rs.getString("releaselocation");
+                Timestamp releasedate = rs.getTimestamp("releasedate");
+                conference.add(title);
+                conference.add(fname);
+                conference.add(lname);
+                conference.add(presentationname);
+                conference.add(releaselocarion);
+                conference.add(releasedate.toString());
+
+            };
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return conference;
     }
 
 

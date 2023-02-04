@@ -11,8 +11,11 @@ public class ImplementazioneBook implements BookDAO {
     private static final String GET_ALL_ACCESS = "SELECT DISTINCT accessmode FROM mtl.book;";
     private static final String GET_ALL_ARGUMENTS = "SELECT  DISTINCT argument FROM mtl.book;";
     private static final String GET_ALL_LANGUAGES = "SELECT DISTINCT language FROM mtl.book;";
-    public static String READ_ALL_BOOK = "SELECT * FROM mtl.Book b JOIN mtl.author a on b.fk_author=a.codauthor " +
-            "WHERE b.argument=? AND b.language=? AND b.accessmode=? AND b.reprint =? AND b.title LIKE '%'|| ? ||'%' AND a.fname like '%'|| ? ||'%';";
+    public static String READ_ALL_BOOK = "SELECT *" +
+            " FROM (mtl.Book b JOIN mtl.autori_libri au on b.doi_b = au.fk_libri) JOIN mtl.author a" +
+            " ON a.codauthor= au.fk_autori" +
+            " WHERE b.argument = ? AND b.language = ? AND b.accessmode = ? AND b.reprint = ? AND b.title LIKE '%'|| ? ||'%' AND a.lname like '%'|| ? ||'%';";
+
     private Connection connection;
 
     public ImplementazioneBook() {
@@ -47,10 +50,10 @@ public class ImplementazioneBook implements BookDAO {
                 Timestamp releaseDate = rs.getTimestamp("ReleaseDate");
                 String releaseLocation = rs.getString("ReleaseLocation");
                 String PresentationName = rs.getString("PresentationName");
-                String FK_author = rs.getString("FK_author");
                 String FK_Series = rs.getString("FK_Series");
+                author = rs.getString("Lname");
                 books.add(new Book(doi_B, ISBN_B, edition, publishingHouse, lang, title, arg,
-                        accessMode, reprint, releaseDate, releaseLocation, PresentationName, FK_author, FK_Series));
+                        accessMode, reprint, releaseDate, releaseLocation, PresentationName, FK_Series, author));
             }
         } catch (SQLException e) {
             throw new RuntimeException(e);

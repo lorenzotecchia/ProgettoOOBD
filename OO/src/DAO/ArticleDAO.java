@@ -11,4 +11,6 @@ public interface ArticleDAO {
 
     ArrayList<String> getAllTopics();
 
+    ArrayList<String> conference(String title);
+
 }

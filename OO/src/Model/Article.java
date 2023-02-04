@@ -76,7 +76,6 @@ public class Article {
         return FK_Magazine;
     }
 
-
     @Override
     public String toString() {
         return "Article{" +
