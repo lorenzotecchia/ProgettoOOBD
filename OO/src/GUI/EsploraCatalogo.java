@@ -19,7 +19,7 @@ public class EsploraCatalogo {
     private JButton backButton;
     private JPanel panel1;
     private JButton presentationsButton;
-    private JButton conferncesButton;
+    private JButton conferencesButton;
     JFrame frame;
 
     /**
@@ -130,7 +130,7 @@ magazineButton.addActionListener(new ActionListener() {
 
             }
         });
-        conferncesButton.addActionListener(new ActionListener() {
+        conferencesButton.addActionListener(new ActionListener() {
             /**
              * @param e the event to be processed
              */

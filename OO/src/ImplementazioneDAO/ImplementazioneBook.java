@@ -12,9 +12,14 @@ public class ImplementazioneBook implements BookDAO {
     private static final String GET_ALL_ARGUMENTS = "SELECT  DISTINCT argument FROM mtl.book;";
     private static final String GET_ALL_LANGUAGES = "SELECT DISTINCT language FROM mtl.book;";
     public static String READ_ALL_BOOK = "SELECT *" +
-            " FROM (mtl.Book b JOIN mtl.autori_libri au on b.doi_b = au.fk_libri) JOIN mtl.author a" +
-            " ON a.codauthor= au.fk_autori" +
-            " WHERE b.argument = ? AND b.language = ? AND b.accessmode = ? AND b.reprint = ? AND b.title LIKE '%'|| ? ||'%' AND a.lname like '%'|| ? ||'%';";
+                                        " FROM (mtl.Book b JOIN mtl.author_books au on b.isbn_b = au.booksfk) JOIN mtl.author a" +
+                                        " ON a.codauthor= au.authorsfk" +
+                                        " WHERE b.argument = rtrim(?) " +
+                                            "AND b.language = rtrim(?) " +
+                                            "AND b.accessmode = rtrim(?) " +
+                                            "AND b.reprint = ? " +
+                                            "AND b.title LIKE '%'|| ? ||'%' " +
+                                            "AND a.lname LIKE '%'|| ? ||'%';";
 
     private Connection connection;
 
@@ -27,7 +32,7 @@ public class ImplementazioneBook implements BookDAO {
     }
 
     @Override
-    public ArrayList<Book> readAll(String arg, String lang, String accessMode, boolean reprint, String title, String author) {
+    public ArrayList<Book> readAll(String arg, String lang, String accessMode, boolean reprint, String title, String lname) {
         ArrayList<Book> books = new ArrayList<>();
         try (PreparedStatement statement = connection.prepareStatement(READ_ALL_BOOK)) {
             statement.setString(1, arg);
@@ -35,11 +40,10 @@ public class ImplementazioneBook implements BookDAO {
             statement.setString(3, accessMode);
             statement.setBoolean(4, reprint);
             statement.setString(5, title);
-            statement.setString(6, author);
+            statement.setString(6, lname);
             ResultSet rs = statement.executeQuery();
             while (rs.next()) {
-                String doi_B = rs.getString("Doi_B");
-                String ISBN_B = rs.getString("ISBN_B");
+                String ISBN_B = rs.getString("isbn_b");
                 int edition = rs.getInt("Edition");
                 String publishingHouse = rs.getString("PublishingHouse");
                 lang = rs.getString("Language");
@@ -51,9 +55,8 @@ public class ImplementazioneBook implements BookDAO {
                 String releaseLocation = rs.getString("ReleaseLocation");
                 String PresentationName = rs.getString("PresentationName");
                 String FK_Series = rs.getString("FK_Series");
-                author = rs.getString("Lname");
-                books.add(new Book(doi_B, ISBN_B, edition, publishingHouse, lang, title, arg,
-                        accessMode, reprint, releaseDate, releaseLocation, PresentationName, FK_Series, author));
+                lname = rs.getString("Lname");
+                books.add(new Book(ISBN_B, edition, publishingHouse, lang, title, arg, accessMode, reprint, releaseDate, releaseLocation, PresentationName, FK_Series, lname));
             }
         } catch (SQLException e) {
             throw new RuntimeException(e);

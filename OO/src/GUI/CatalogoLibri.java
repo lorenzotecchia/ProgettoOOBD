@@ -97,6 +97,20 @@ public class CatalogoLibri {
             }
         });
 
+        reprintBox.addItemListener(new ItemListener() {
+            /**
+             * @param e the event to be processed
+             */
+            @Override
+            public void itemStateChanged(ItemEvent e) {
+                try {
+                    showTable(controller);
+                } catch (SQLException throwables) {
+                    throwables.printStackTrace();
+                }
+
+            }
+        });
     }
 
     private void createTextfield(Controller controller) {
@@ -154,9 +168,9 @@ public class CatalogoLibri {
     }
 
     private void showTable(Controller controller) throws SQLException {
-        String access = String.valueOf(accessBox.getSelectedItem());
-        String lang = String.valueOf(languageBox.getSelectedItem());
         String arg = String.valueOf(argumentBox.getSelectedItem());
+        String lang = String.valueOf(languageBox.getSelectedItem());
+        String access = String.valueOf(accessBox.getSelectedItem());
         Boolean reprint = Boolean.valueOf(String.valueOf(reprintBox.getSelectedItem()));
         String title = String.valueOf(textField1.getText());
         String author = String.valueOf(textField2.getText());
@@ -164,16 +178,15 @@ public class CatalogoLibri {
         model.setRowCount(0);
         ArrayList<Book> books = controller.readAllBooks(arg, lang, access, reprint, title, author);
         for (Book book : books) {
-            model.addRow(new Object[]{book.getDoi_B(), book.getISBN_B(), book.getPublishingHouse(), book.getLanguage(),
+            model.addRow(new Object[]{book.getISBN_B(), book.getPublishingHouse(), book.getLanguage(),
                     book.getAccessMode(), book.getTitle(), book.getArgument(), book.getReprint(), book.getReleaseDate(),
-                    book.getReleaseLocation(), book.getPresentationName(), book.getAuthor(), book.getFK_Series()});
+                    book.getReleaseLocation(), book.getPresentationName(), book.getFK_Series(), book.getAuthor()});
         }
 
     }
 
     private void createTable() {
         DefaultTableModel model = new DefaultTableModel();
-        model.addColumn("Doi Book");
         model.addColumn("ISBN Book");
         model.addColumn("PublishingHouse");
         model.addColumn("Language");
@@ -184,8 +197,8 @@ public class CatalogoLibri {
         model.addColumn("ReleaseDate");
         model.addColumn("Release Location");
         model.addColumn("Presentation Name");
-        model.addColumn("Author");
         model.addColumn("Series");
+        model.addColumn("Author");
         table1.setModel(model);
 
         TableColumnModel cols = table1.getColumnModel();
@@ -201,8 +214,6 @@ public class CatalogoLibri {
         cols.getColumn(9).setPreferredWidth(100);
         cols.getColumn(10).setPreferredWidth(450);
         cols.getColumn(11).setPreferredWidth(100);
-        cols.getColumn(12).setPreferredWidth(100);
-
     }
 
     private void createReprintBox() {

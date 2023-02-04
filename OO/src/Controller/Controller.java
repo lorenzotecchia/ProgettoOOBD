@@ -26,11 +26,6 @@ public class Controller {
         return articleDAO.getAllTopics();
     }
 
-    public ArrayList<String> readAllConference(String title){
-        ArticleDAO articleDAO = new ImplementazioneArticle();
-        return articleDAO.conference(title);
-    }
-
 
     ///////////////////////////AUTHOR/////////////////////////////////////
 
@@ -41,9 +36,9 @@ public class Controller {
 
 
     ///////////////////////////BOOK/////////////////////////////////////
-    public ArrayList<Book> readAllBooks(String arg, String lang, String accessMode, boolean reprint, String title, String author) throws SQLException {
+    public ArrayList<Book> readAllBooks(String arg, String lang, String accessMode, boolean reprint, String title, String lname) throws SQLException {
         BookDAO bookDAO = new ImplementazioneBook();
-        return bookDAO.readAll(arg, lang, accessMode, reprint, title, author);
+        return bookDAO.readAll(arg, lang, accessMode, reprint, title, lname);
     }
 
     public ArrayList<String> getAllArgumentsBook() throws SQLException {

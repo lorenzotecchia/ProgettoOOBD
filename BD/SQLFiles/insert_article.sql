@@ -24,4 +24,3 @@ VALUES ('10.5915/96618', 'The structure of written graphene-based ', 'Paper', 'F
         '0000-0205'),
        ('10.1442/420908', 'New technologies for renewable energy', 'Audio', 'DynCorp', 'physics',
         '2005-06-06 19:28:36.000000', null , null, 4, '0000-1236')
---

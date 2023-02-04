@@ -125,9 +125,17 @@ create or replace function mtl.function_4() returns trigger as
 $$
 declare
     doi_app mtl.book.doi_b%type;
+    autori_record record;
+    cod_author_app mtl.author.codauthor%TYPE;
+    cod_author cursor for (select * from mtl.author);
 begin
-
-
+    doi_app = new.doi_b;
+    loop
+        fetch cod_author into autori_record;
+        exit when not FOUND;
+        cod_author_app = autori_record.codauthor;
+        insert into mtl.autori_libri(fk_autori, fk_libri) VALUES (cod_author_app, doi_app);
+    end loop;
 end;
 $$;
 
@@ -138,5 +146,29 @@ create trigger insert_autori_libri
 execute procedure mtl.function_4();
 
 
+create or replace function mtl.function_5() returns trigger as
 
-insert into mtl.autori_libri (fk_libri)values ('10.1830/879149');
+$$
+declare
+    doi_app mtl.article.doi_a%type;
+    autori_record record;
+    cod_author_app mtl.author.codauthor%TYPE;
+    cod_author cursor for (select * from mtl.author);
+begin
+    doi_app = new.doi_a;
+    loop
+        fetch cod_author into autori_record;
+        exit when not FOUND;
+        cod_author_app = autori_record.codauthor;
+        insert into mtl.autori_articoli(fk_autori, fk_articoli) VALUES (cod_author_app, doi_app);
+    end loop;
+end;
+$$;
+
+create trigger insert_autori_articoli
+    after insert
+    on mtl.article
+    for each row
+execute procedure mtl.function_5();
+
+

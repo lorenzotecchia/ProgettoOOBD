@@ -12,7 +12,7 @@ import java.util.ArrayList;
 
 public class ImplementazioneConference implements ConferenceDAO {
 
-    private static final String GET_ALL_CONERENCE = "SELECT * FROM mtl.conference WHERE title like '%'|| ? ||'?';";
+    private static final String GET_ALL_CONERENCE = "SELECT * FROM mtl.conference WHERE title like '%'|| ? ||'%';";
     private Connection connection;
     public ImplementazioneConference() {
         try {

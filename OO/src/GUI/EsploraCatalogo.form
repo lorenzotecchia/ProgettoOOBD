@@ -58,12 +58,12 @@
                   <text value=""/>
                 </properties>
               </component>
-              <component id="2f44b" class="javax.swing.JButton" binding="conferncesButton" default-binding="true">
+              <component id="2f44b" class="javax.swing.JButton" binding="conferencesButton">
                 <constraints>
                   <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
                 </constraints>
                 <properties>
-                  <text value="Confernces"/>
+                  <text value="Conferences"/>
                 </properties>
               </component>
             </children>

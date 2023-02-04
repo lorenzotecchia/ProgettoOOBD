@@ -5,7 +5,6 @@ import java.sql.Timestamp;
 public class Book {
 
     private String ISBN_b;
-    private String doi_B;
     private int edition;
     private String publishingHouse;
     private String language;
@@ -20,12 +19,11 @@ public class Book {
     private String author;
 
 
-    public Book(String doi_B, String ISBN_b, int edition, String publishingHouse, String language,
+    public Book(String ISBN_b, int edition, String publishingHouse, String language,
                 String title, String accessMode, String argument, Boolean reprint, Timestamp releaseDate,
                 String releaseLocation, String presentationName, String FK_Series, String author) {
 
         this.ISBN_b = ISBN_b;
-        this.doi_B = doi_B;
         this.edition = edition;
         this.publishingHouse = publishingHouse;
         this.language = language;
@@ -38,11 +36,6 @@ public class Book {
         this.presentationName = presentationName;
         this.FK_Series = FK_Series;
         this.author = author;
-    }
-
-
-    public String getDoi_B() {
-        return doi_B;
     }
 
     public String getAuthor() {
@@ -108,7 +101,6 @@ public class Book {
     @Override
     public String toString() {
         return "Book{" +
-                "doi_B='" + doi_B + '\'' +
                 ", ISBN_b='" + ISBN_b + '\'' +
                 ", edition='" + edition + '\'' +
                 ", publishingHouse='" + publishingHouse + '\'' +
