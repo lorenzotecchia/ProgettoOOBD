@@ -6,6 +6,9 @@ import java.sql.SQLException;
 
 import static java.lang.System.exit;
 
+/**
+ * The type Connessione database.
+ */
 public class ConnessioneDatabase {
 
     // ATTRIBUTI
@@ -14,6 +17,9 @@ public class ConnessioneDatabase {
     private final String password = "0000";
     private final String url = "jdbc:postgresql://localhost:5432/postgres";
     private final String driver = "org.postgresql.Driver";
+    /**
+     * The Connection.
+     */
     public Connection connection;
 
     // COSTRUTTORE
@@ -29,11 +35,22 @@ public class ConnessioneDatabase {
         }
     }
 
+    /**
+     * Gets connection.
+     *
+     * @return the connection
+     */
     public Connection getConnection() {
         return connection;
     }
 
 
+    /**
+     * Gets instance.
+     *
+     * @return the instance
+     * @throws SQLException the sql exception
+     */
     public static ConnessioneDatabase getInstance() throws SQLException {
         if (instance == null) {
             instance = new ConnessioneDatabase();

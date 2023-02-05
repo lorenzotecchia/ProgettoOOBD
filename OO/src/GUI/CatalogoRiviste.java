@@ -8,6 +8,7 @@ import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumnModel;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
@@ -19,6 +20,9 @@ import java.util.ArrayList;
  * The type Catalogo riviste.
  */
 public class CatalogoRiviste {
+    /**
+     * The Frame.
+     */
     JFrame frame;
     private JPanel panel1;
     private JTable table1;
@@ -30,10 +34,15 @@ public class CatalogoRiviste {
 
     /**
      * Instantiates a new Catalogo riviste.
+     *
+     * @param controller     the controller
+     * @param frameChiamante the frame chiamante
+     * @throws SQLException the sql exception
      */
     public CatalogoRiviste(Controller controller, JFrame frameChiamante) throws SQLException {
         frame = new JFrame("CatalogoRiviste");
         frame.setContentPane(panel1);
+        frame.getContentPane().setPreferredSize(new Dimension(1200, 600));
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.pack();
         frame.setVisible(true);
@@ -122,6 +131,9 @@ public class CatalogoRiviste {
 
     /**
      * Show table.
+     *
+     * @param controller the controller
+     * @throws SQLException the sql exception
      */
     void ShowTable(Controller controller) throws SQLException {
         String arg = String.valueOf(argumentBox.getSelectedItem());
@@ -148,6 +160,12 @@ public class CatalogoRiviste {
         }
     }
 
+    /**
+     * Create argument box.
+     *
+     * @param controller the controller
+     * @throws SQLException the sql exception
+     */
     void createArgumentBox(Controller controller) throws SQLException {
         ArrayList<String> array = controller.getAllArgumentsMagazine();
         for (String i : array) {

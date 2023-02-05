@@ -8,13 +8,25 @@ import java.sql.*;
 import java.util.ArrayList;
 
 
+/**
+ * The type Implementazione magazine.
+ */
 public class ImplementazioneMagazine implements MagazineDAO {
 
+    /**
+     * The constant READ_ALL_MAGAZINE.
+     */
     public static String READ_ALL_MAGAZINE = "SELECT * FROM mtl.Magazine WHERE PublicationPeriod = ? AND Argument = ? AND name_m LIKE '%'|| ? ||'%'";
+    /**
+     * The constant GET_ALL_PERIODICITIES.
+     */
     public static String GET_ALL_PERIODICITIES = "SELECT DISTINCT PublicationPeriod FROM mtl.Magazine";
     private static String GET_ALL_ARGUMENTS = "SELECT DISTINCT Argument FROM mtl.Magazine";
     private Connection connection;
 
+    /**
+     * Instantiates a new Implementazione magazine.
+     */
     public ImplementazioneMagazine() {
         try {
             connection = ConnessioneDatabase.getInstance().connection;

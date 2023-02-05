@@ -7,15 +7,27 @@ import Model.Article;
 import java.sql.*;
 import java.util.ArrayList;
 
+/**
+ * The type Implementazione article.
+ */
 public class ImplementazioneArticle implements ArticleDAO {
+    /**
+     * The constant GET_ALL_ARTICLE.
+     */
     public static String GET_ALL_ARTICLE = "SELECT *" +
             " FROM (mtl.article ar JOIN mtl.author_article au on ar.doi_a = au.articlesfk) JOIN mtl.author a" +
             " ON a.codauthor= au.authorsfk" +
             " WHERE ar.topic = ?  AND ar.title LIKE '%'|| ? ||'%'";
 
+    /**
+     * The constant GET_ALL_TOPICS.
+     */
     public static String GET_ALL_TOPICS = "SELECT DISTINCT topic FROM mtl.article";
     private final Connection connection;
 
+    /**
+     * Instantiates a new Implementazione article.
+     */
     public ImplementazioneArticle() {
         try {
             connection = ConnessioneDatabase.getInstance().connection;

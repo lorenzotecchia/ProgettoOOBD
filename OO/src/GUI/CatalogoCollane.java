@@ -15,7 +15,13 @@ import java.awt.event.ItemListener;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+/**
+ * The type Catalogo collane.
+ */
 public class CatalogoCollane {
+    /**
+     * The Frame.
+     */
     JFrame frame;
     private JPanel panel1;
     private JTable table1;
@@ -23,6 +29,13 @@ public class CatalogoCollane {
     private JComboBox editionBox;
     private JButton backButton;
 
+    /**
+     * Instantiates a new Catalogo collane.
+     *
+     * @param controller     the controller
+     * @param frameChiamante the frame chiamante
+     * @throws SQLException the sql exception
+     */
     public CatalogoCollane(Controller controller, JFrame frameChiamante) throws SQLException {
         frame = new JFrame("CatalogoCollane");
         frame.setContentPane(panel1);

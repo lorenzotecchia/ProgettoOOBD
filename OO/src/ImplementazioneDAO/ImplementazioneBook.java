@@ -7,10 +7,16 @@ import Model.Book;
 import java.sql.*;
 import java.util.ArrayList;
 
+/**
+ * The type Implementazione book.
+ */
 public class ImplementazioneBook implements BookDAO {
     private static final String GET_ALL_ACCESS = "SELECT DISTINCT accessmode FROM mtl.book;";
     private static final String GET_ALL_ARGUMENTS = "SELECT  DISTINCT argument FROM mtl.book;";
     private static final String GET_ALL_LANGUAGES = "SELECT DISTINCT language FROM mtl.book;";
+    /**
+     * The constant READ_ALL_BOOK.
+     */
     public static String READ_ALL_BOOK = "SELECT *" +
                                         " FROM (mtl.Book b JOIN mtl.author_books au on b.isbn_b = au.booksfk) JOIN mtl.author a" +
                                         " ON a.codauthor= au.authorsfk" +
@@ -23,6 +29,9 @@ public class ImplementazioneBook implements BookDAO {
 
     private Connection connection;
 
+    /**
+     * Instantiates a new Implementazione book.
+     */
     public ImplementazioneBook() {
         try {
             connection = ConnessioneDatabase.getInstance().connection;

@@ -8,6 +8,7 @@ import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumnModel;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
@@ -16,7 +17,13 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 
+/**
+ * The type Catalogo libri.
+ */
 public class CatalogoLibri {
+    /**
+     * The Frame.
+     */
     JFrame frame;
     private JPanel panel1;
     private JTextField textField1;
@@ -28,9 +35,17 @@ public class CatalogoLibri {
     private JComboBox accessBox;
     private JTextField textField2;
 
+    /**
+     * Instantiates a new Catalogo libri.
+     *
+     * @param controller     the controller
+     * @param frameChiamante the frame chiamante
+     * @throws SQLException the sql exception
+     */
     public CatalogoLibri(Controller controller, JFrame frameChiamante) throws SQLException {
         frame = new JFrame("CatalogoLibri");
         frame.setContentPane(panel1);
+        frame.getContentPane().setPreferredSize(new Dimension(1400, 600));
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.pack();
         frame.setVisible(true);
@@ -202,22 +217,26 @@ public class CatalogoLibri {
         table1.setModel(model);
 
         TableColumnModel cols = table1.getColumnModel();
-        cols.getColumn(0).setPreferredWidth(300);
-        cols.getColumn(1).setPreferredWidth(300);
-        cols.getColumn(2).setPreferredWidth(100);
-        cols.getColumn(3).setPreferredWidth(100);
-        cols.getColumn(4).setPreferredWidth(100);
+        cols.getColumn(0).setPreferredWidth(250);
+        cols.getColumn(1).setPreferredWidth(250);
+        cols.getColumn(2).setPreferredWidth(200);
+        cols.getColumn(3).setPreferredWidth(200);
+        cols.getColumn(4).setPreferredWidth(150);
         cols.getColumn(5).setPreferredWidth(450);
-        cols.getColumn(6).setPreferredWidth(100);
-        cols.getColumn(7).setPreferredWidth(100);
-        cols.getColumn(8).setPreferredWidth(100);
-        cols.getColumn(9).setPreferredWidth(100);
-        cols.getColumn(10).setPreferredWidth(450);
-        cols.getColumn(11).setPreferredWidth(100);
+        cols.getColumn(6).setPreferredWidth(150);
+        cols.getColumn(7).setPreferredWidth(250);
+        cols.getColumn(8).setPreferredWidth(450);
+        cols.getColumn(9).setPreferredWidth(450);
+        cols.getColumn(10).setPreferredWidth(200);
+        cols.getColumn(11).setPreferredWidth(200);
     }
 
     private void createReprintBox() {
         reprintBox.addItem("true");
         reprintBox.addItem("false");
+    }
+
+    private void createUIComponents() {
+        // TODO: place custom component creation code here
     }
 }

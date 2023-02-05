@@ -8,6 +8,7 @@ import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumnModel;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
@@ -20,6 +21,9 @@ import java.util.ArrayList;
  * The type Catalogo riviste.
  */
 public class CatalogoArticoli {
+    /**
+     * The Frame.
+     */
     JFrame frame;
     private JPanel panel1;
     private JTable table1;
@@ -29,10 +33,15 @@ public class CatalogoArticoli {
 
     /**
      * Instantiates a new Catalogo articoli.
+     *
+     * @param controller     the controller
+     * @param frameChiamante the frame chiamante
+     * @throws SQLException the sql exception
      */
     public CatalogoArticoli(Controller controller, JFrame frameChiamante) throws SQLException {
         frame = new JFrame("CatalogoArticoli");
         frame.setContentPane(panel1);
+        frame.getContentPane().setPreferredSize(new Dimension(1000, 600));
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.pack();
         frame.setVisible(true);
@@ -79,8 +88,8 @@ public class CatalogoArticoli {
         model.addColumn("ReleaseDate");
         model.addColumn("ReleaseLocation");
         model.addColumn("ConferenceName");
-        model.addColumn("Autore");
-        model.addColumn("Rivista");
+        model.addColumn("Author");
+        model.addColumn("Magazine Name");
 
         table1.setModel(model);
         TableColumnModel columnModel = table1.getColumnModel();
@@ -99,6 +108,9 @@ public class CatalogoArticoli {
 
     /**
      * Show table.
+     *
+     * @param controller the controller
+     * @throws SQLException the sql exception
      */
     void ShowTable(Controller controller) throws SQLException {
         String topic = String.valueOf(topicsBox.getSelectedItem());

@@ -31,6 +31,7 @@ public class StartPage {
         frame.setLocationRelativeTo(null);
         frame.setResizable(false);
 
+
         catalogoButton.addActionListener(new ActionListener() {
             /**
              * @param e the event to be processed

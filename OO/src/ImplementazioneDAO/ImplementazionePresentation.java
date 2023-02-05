@@ -11,10 +11,17 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+/**
+ * The type Implementazione presentation.
+ */
 public class ImplementazionePresentation implements PresentationDAO {
 
     private static final String GET_ALL_PRESENTATION = "SELECT * FROM mtl.presentation where title like '%'|| ? ||'%';";
     private Connection connection;
+
+    /**
+     * Instantiates a new Implementazione presentation.
+     */
     public ImplementazionePresentation() {
         try {
             connection = ConnessioneDatabase.getInstance().connection;

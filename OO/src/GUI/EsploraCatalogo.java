@@ -1,17 +1,20 @@
 package GUI;
 
+import Controller.Controller;
+
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.ComponentAdapter;
 import java.sql.SQLException;
-
-import Controller.Controller;
 
 /**
  * The type Esplora catalogo.
  */
 public class EsploraCatalogo {
+    /**
+     * The Frame.
+     */
+    JFrame frame;
     private JButton bookButton;
     private JButton seriesButton;
     private JButton magazineButton;
@@ -20,20 +23,22 @@ public class EsploraCatalogo {
     private JPanel panel1;
     private JButton presentationsButton;
     private JButton conferencesButton;
-    JFrame frame;
 
     /**
      * Instantiates a new Esplora catalogo.
+     *
+     * @param controller     the controller
+     * @param frameChiamante the frame chiamante
      */
-    public EsploraCatalogo(Controller controller, JFrame frameChiamante ) {
+    public EsploraCatalogo(Controller controller, JFrame frameChiamante) {
         frame = new JFrame("EsploraCatalogo");
         frame.setContentPane(panel1);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setLocationRelativeTo(null);
         frame.pack();
+        frame.setLocationRelativeTo(null);
         frame.setVisible(true);
 
-backButton.addActionListener(new ActionListener() {
+        backButton.addActionListener(new ActionListener() {
             /**
              * @param e the event to be processed
              */
@@ -43,7 +48,6 @@ backButton.addActionListener(new ActionListener() {
                 frameChiamante.setVisible(true);
             }
         });
-
 
 
         bookButton.addActionListener(new ActionListener() {
@@ -80,7 +84,7 @@ backButton.addActionListener(new ActionListener() {
             }
         });
 
-magazineButton.addActionListener(new ActionListener() {
+        magazineButton.addActionListener(new ActionListener() {
             /**
              * @param e the event to be processed
              */
@@ -91,7 +95,7 @@ magazineButton.addActionListener(new ActionListener() {
                 try {
                     riviste = new CatalogoRiviste(controller, frame);
                 } catch (SQLException ex) {
-                        throw new RuntimeException(ex);
+                    throw new RuntimeException(ex);
                 }
                 riviste.frame.setVisible(true);
             }

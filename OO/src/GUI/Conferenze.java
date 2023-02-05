@@ -8,21 +8,36 @@ import javax.swing.table.TableColumnModel;
 import Controller.*;
 import Model.Conference;
 
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+/**
+ * The type Conferenze.
+ */
 public class Conferenze {
+    /**
+     * The Frame.
+     */
     JFrame frame;
     private JPanel panel1;
     private JTable table1;
     private JTextField textField1;
     private JButton backButton;
 
+    /**
+     * Instantiates a new Conferenze.
+     *
+     * @param controller     the controller
+     * @param frameChiamante the frame chiamante
+     * @throws SQLException the sql exception
+     */
     public Conferenze(Controller controller, JFrame frameChiamante) throws SQLException {
         frame = new JFrame("Conferenze");
         frame.setContentPane(panel1);
+        frame.getContentPane().setPreferredSize(new Dimension(900, 600));
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.pack();
         frame.setVisible(true);
@@ -65,11 +80,22 @@ public class Conferenze {
         columnModel.getColumn(5).setPreferredWidth(100);
     }
 
+    /**
+     * Get panel j panel.
+     *
+     * @return the j panel
+     */
     public JPanel getPanel(){
             return panel1;
         }
 
-        public void ShowTable(Controller controller) throws SQLException{
+    /**
+     * Show table.
+     *
+     * @param controller the controller
+     * @throws SQLException the sql exception
+     */
+    public void ShowTable(Controller controller) throws SQLException{
         String title = textField1.getText();
             DefaultTableModel model = (DefaultTableModel) table1.getModel();
             model.setRowCount(0);
@@ -79,6 +105,12 @@ public class Conferenze {
             }
 
         }
+
+    /**
+     * Create text field.
+     *
+     * @param controller the controller
+     */
     public void createTextField(Controller controller){
             textField1.getDocument().addDocumentListener(new DocumentListener() {
                 /**

@@ -11,12 +11,18 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 
+/**
+ * The type Implementazione series.
+ */
 public class ImplementazioneSeries implements SeriesDAO {
     private static String GET_ALL_EDITIONS = "SELECT DISTINCT EDITION FROM MTL.SERIES";
     private static String GET_ALL_SERIES = "SELECT * FROM mtl.series WHERE edition = ? AND name_s LIKE '%'|| ? ||'%';";
     private Connection connection;
 
 
+    /**
+     * Instantiates a new Implementazione series.
+     */
     public ImplementazioneSeries() {
         try {
             connection = ConnessioneDatabase.getInstance().connection;

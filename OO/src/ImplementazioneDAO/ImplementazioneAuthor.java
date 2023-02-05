@@ -10,11 +10,20 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+/**
+ * The type Implementazione author.
+ */
 public class ImplementazioneAuthor implements AuthorDAO {
+    /**
+     * The constant GET_ALL_AUTHROS.
+     */
     public static String GET_ALL_AUTHROS = "SELECT * FROM mtl.Author";
 
     private Connection connection;
 
+    /**
+     * Instantiates a new Implementazione author.
+     */
     public ImplementazioneAuthor() {
         try {
             connection = ConnessioneDatabase.getInstance().getConnection();
