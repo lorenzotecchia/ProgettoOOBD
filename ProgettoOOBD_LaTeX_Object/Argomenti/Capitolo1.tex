@@ -1,11 +1,13 @@
 \chapter{Descrizione e Analisi del Progetto}
 \section{Obiettivo}
 
-L'obiettivo del seguente progetto è la implementazione di un'interfaccia grafica per la gestione di una biblioteca digitale. 
+L'obiettivo del seguente progetto è l'implementazione di un'interfaccia grafica per la gestione di una biblioteca digitale. 
 \section{Analisi del problema}
 Il progetto implementerà una serie di classi rappresentati gli attori principali di una base dati comprendenti una biblioteca digitale, quali Libri, Autori, Collane, Magazine, Articoli Scientifici. Si è scelto inoltre di creare due classi associative tra Autori-Libri e tra Autori-Articoli per evidenziare Presentazioni e Conferenze rispettivamente. Quest ultime sono state implementate in SQL come due viste. \\
-Verra inserita una pagina di partenza in cui si potrà accedere al catalogo principale. In cui si avrà l'opzione di accedere ad ognuna delle classi con rispettivi attributi. Si avrà la possibilità di filtrare tra le istanze delle classi  all'interno di una Jtable, tramite delle JComboBox nella quali verranno inseriti gli attributi salienti di ogni classe per i quali avverrà appunto il filtraggio.\\
+Verrà inserita una pagina di partenza in cui si potrà accedere al catalogo principale in cui si avrà l'opzione di accedere ad ognuna delle classi con rispettivi attributi. 
+Si avrà la possibilità di filtrare tra le istanze delle classi  all'interno di una Jtable, tramite delle JComboBox nella quali verranno inseriti gli attributi salienti di ogni classe per i quali avverrà appunto il filtraggio.\\
 Inoltre per ogni classe all'interno della GUI si potrà andare a fare un'ulteriore ricerca per Titolo o Nome dell'oggetto che si visualizza. Per oggetti con più caratteristiche come i Libri, verrà implementata una ricerca per autore, in particolare per cognome dell'autore.
+Viene implementato il modello Boundary-Controller-Entity.
 
 \section{Individuazione delle Responsabilità}
 Le responsabilità individuate sono per le classi Article e Book, le quali avranno la responsabilità di comporre Magazine e Series rispettivamente.
