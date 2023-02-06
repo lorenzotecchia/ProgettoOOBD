@@ -1,7 +1,7 @@
 \chapter{Progettazione concettuale}
     \section{Class Diagram del dominio del problema}
     	\begin{figure}[hbt]
-  			\includegraphics[width=1\textwidth]{/Users/lorenzotecchia/Documents/ESAMI/ProgettoOOBD/ProgettoOOBD_LaTeX_Object/Immagini/ClassDiagramDP.png}
+  			\includegraphics[width=1\textwidth]{/Users/lorenzotecchia/Documents/ESAMI/ProgettoOOBD/ProgettoOOBD_LaTeX_Object/Immagini/CD_DP.png}
   			\caption{Class Diagram del dominio del problema}
 	\end{figure}
     \newpage
@@ -14,25 +14,33 @@
 \resizebox{\textwidth}{!}{%
 \begin{tabular}{|l|l|l|}
 \hline
-\rowcolor[HTML]{7137B0} 
+\rowcolor[HTML]{E5150C} 
 Classe &
   Spiegazione &
   Attributi \\ \hline
 \textbf{Author} &
   Autore di libri o articoli &
-  \begin{tabular}[c]{@{}l@{}}ID\_Author (Serial): Author's identification code. \\ FName (String): Author's first  name. \\ LName (String): Author's last name.\end{tabular} \\ \hline
+  \begin{tabular}[c]{@{}l@{}}ID\_Author (Serial): Identificazione dell'autore. \\ FirstName (String): Nome dell'autore. \\ LastName (String): Cognome dell'autore.\end{tabular} \\ \hline
 \textbf{Books} &
   \begin{tabular}[c]{@{}l@{}}Oggetti leggibili, romanzi o \\ d'educazione\end{tabular} &
-  \begin{tabular}[c]{@{}l@{}}DOI(String): Digital object Identifier of the book. \\ ISBN (Integer): Numerical classification sequence of the book. \\ Edition (Integer): Edition number. \\ AccessMode (AccessMode): Fruition method. \\ ReleaseDate (Date): Publication date. \\ PublishingHouse (String): Publishing house that printed the book. \\ ReleaseLocation (String): Place of  publication of the book. \\ Language (String): Language in which the book is written. Title (String): Book title. \\ Argument (String): Book topic. \\ Reprint (Boolean): Parameter that identifies if the book is a reprint or not. \\ PresentationName (String): Name of  presentation in which books are presented.\end{tabular} \\ \hline
+  \begin{tabular}[c]{@{}l@{}}
+ 	ISBN (Integer): Classificazione numerica di un libto. \\ Edition (Integer): Numero d'edizione. \\ AccessMode (AccessMode): Modo di fruizione. \\ ReleaseDate (Date): Data di pubblicazione. \\ PublishingHouse (String): Casa editrice che ha stampato il libo. \\ ReleaseLocation (String): Luogo di pubblicazione. \\ Language (String): Lingua in cui è scritto il libro.\\ Title (String): Titolo del libor. \\ Argument (String): Argomento del libro. \\ Reprint (Boolean): Parametro che identifica se il libro è una ristampa. \\ PresentationName (String): Nome della presentazione alla quale il libro è presentato.\end{tabular} \\ \hline
 \textbf{Series} &
   Insieme di libri &
-  \begin{tabular}[c]{@{}l@{}}ISSN (String):International number that identifies serial publications.\\ Edition (Integer):Edition number. \\ Curator (String):Curator of the series. \\ Code (Serial):Code assigned to the series. \\ Name (String): Series' name.\end{tabular} \\ \hline
+  \begin{tabular}[c]{@{}l@{}}ISSN (String):Numero internazionale che identifica le collane.\\ Edition (Integer):Numero dell'edizione. \\ Curator (String):Curatore della collana. \\ Code (Serial):Codice affidato alla collana. \\ Name (String): Nome della collana.\end{tabular} \\ \hline
 \textbf{Magazine} &
   Insieme di Articoli &
-  \begin{tabular}[c]{@{}l@{}}(Integer): International number that identifies serial publications. \\ Name (String): Magazine's name. \\ Argument (String): Magazine topic. \\ Manager (String): Event organizer. \\ YearRelease (Date): Publication year. \\ PublicationPeriod (String): Periodicity of publication. \\ AccessMode (AccessMode): Fruition method.\end{tabular} \\ \hline
+  \begin{tabular}[c]{@{}l@{}}ISSN(Integer):umero internazionale che identifica le riviste. \\ Name (String): Nome della rivista. \\ Argument (String): Argomento della rivista. \\ Manager (String): Manager della rivista. \\ YearRelease (Timestamp): Anno di pubblicazione. \\ PublicationPeriod (String): Periodicità della rivista. \\ AccessMode (AccessMode): Modo di fruizione.\end{tabular} \\ \hline
 \textbf{Article} &
   Articoli di ricerca Scientifica &
-  \begin{tabular}[c]{@{}l@{}}DOI (String): Digital object Identifier of the book.\\ Title (String): Book title.\\ AccessMode (AccessMode): Fruition method. \\ YearRelease (Date):Publication year. \\ Editor (String):Article editor. \\ ReleaseDate (Date):Publication date.\\ ReleaseLocation (String):Place of publication of the book.\\ ConferenceName (String): Name of presentation in which books are presented.\end{tabular} \\ \hline
+  \begin{tabular}[c]{@{}l@{}}DOI (String): Digital object Identifier dell'articolo.\\ Title (String): Titolo dell'articolo.\\ AccessMode (AccessMode): Metodo di fruizione.  \\ Editor (String):Editore dell'articolo. \\ ReleaseDate (Timestamp):Data di pubblicazione.\\ ReleaseLocation (String):Luogo di pubblicazione.\\ ConferenceName (String): Nome di conferenza in cui è presentato/discusso l'articolo.\end{tabular} \\ \hline
+ \textbf{Conference} & Conferenze in cui vengono discussi gli articoli &
+  \begin{tabular}[c]{@{}l@{}} Title(String): Titolo dell'articolo \\ LastName(String): Cognome dell'autore \\ FirstName(String): Nome dell'autore \\ ConferenceName(String): Nome della conferenza \\ReleaseLocation(String): Luogo di rilascio \\ ReleaseDate(Timestamp): Data di rilascio
+  \end{tabular} \\ \hline
+  
+  \textbf{Presentation} & Presentazione in cui vengono presentati i libri &
+  \begin{tabular}[c]{@{}l@{}} Title(String): Titolo del libro \\ LastName(String): Cognome dell'autore \\ FirstName(String): Nome dell'autore \\ PresentationName(String): Nome della presentazione \\ReleaseLocation(String): Luogo di rilascio \\ ReleaseDate(Timestamp): Data di rilascio
+  \end{tabular} \\ \hline
 \end{tabular}%
 }
 \end{table}
@@ -45,7 +53,7 @@ Classe &
 \resizebox{\linewidth}{!}{%
 \begin{tabular}{|l|l|l|}    
 \hline
-\rowcolor[HTML]{7137B0} \multicolumn{1}{|r|}{Nome} & Descrizione                                                                                                                            & Classi Coinvolte  \\
+\rowcolor[HTML]{E5150C} \multicolumn{1}{|r|}{Nome} & Descrizione                                                                                                                            & Classi Coinvolte  \\
 composes/is\_composed                                        & \begin{tabular}[c]{@{}l@{}}Una collana è composta da uno o più libri/\\ Un libro può comporre oppure no una collana\end{tabular}       & Series/Book       \\ 
 \hline
 writes/is\_written                                           & \begin{tabular}[c]{@{}l@{}}Un libro è scritto da uno o più autori/\\ Un autore scrive molti oppure nessun libro\end{tabular}           & Book/Author       \\ 

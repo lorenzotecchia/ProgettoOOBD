@@ -1,5 +1,4 @@
-INSERT INTO mtl.article (doi_a, title, accessmode, editor, topic, releasedate, releaselocation, conferencename,
-                         fk_author, fk_magazine)
+INSERT INTO mtl.article (doi_a, title, accessmode, editor, topic, releasedate, releaselocation, conferencename,, fk_magazine)
 VALUES ('10.5915/96618', 'The structure of written graphene-based ', 'Paper', 'Facebook', 'physics',
         '2012-12-07 13:32:33.000000', 'Global Print, 5700,  Wager   Hill ,  5775, Cincinn', 'Graphene-based materials',
         12, '0000-3247'),
@@ -23,4 +22,13 @@ VALUES ('10.5915/96618', 'The structure of written graphene-based ', 'Paper', 'F
         '2007-08-31 18:37:00.000000', 'Vodafone, 3228,Cingworth  Drive , 5753 ,Nashville', 'Stars and galxies', 3,
         '0000-0205'),
        ('10.1442/420908', 'New technologies for renewable energy', 'Audio', 'DynCorp', 'physics',
-        '2005-06-06 19:28:36.000000', null , null, 4, '0000-1236')
+        '2005-06-06 19:28:36.000000', null , null, 4, '0000-1236');
+
+INSERT INTO mtl.article (doi_a, title, accessmode, editor, topic, releasedate, releaselocation, conferencename, fk_magazine) VALUES ('10.1668/223239', 'Data analysis of a survey on lifestyles ', 'Digital', 'Team Guard SRL', 'science', '2014-05-15 20:49:52.000000', null, null, '0000-0337');
+INSERT INTO mtl.article (doi_a, title, accessmode, editor, topic, releasedate, releaselocation, conferencename, fk_magazine) VALUES ('10.1668/223240', 'Investigating the impact of social media on mental health', 'Digital', 'Team Guard SRL', 'health', '2014-05-15 20:49:52.000000', null, null, '0000-0337');
+INSERT INTO mtl.article (doi_a, title, accessmode, editor, topic, releasedate, releaselocation, conferencename, fk_magazine) VALUES ('10.1668/223241', 'Understanding the influence of urbanization on air pollution', 'Digital', 'Team Guard SRL', 'environment', '2014-05-15 20:49:52.000000', null, null, '0000-0337');
+INSERT INTO mtl.article (doi_a, title, accessmode, editor, topic, releasedate, releaselocation, conferencename, fk_magazine) VALUES ('10.1668/223242', 'Exploring the relationship between diet and heart disease', 'Digital', 'Team Guard SRL', 'health', '2014-05-15 20:49:52.000000', null, null, '0000-0337');
+INSERT INTO mtl.article (doi_a, title, accessmode, editor, topic, releasedate, releaselocation, conferencename, fk_magazine) VALUES ('10.1668/223243', 'Analysis of renewable energy sources', 'Digital', 'Team Guard SRL', 'environment', '2014-05-15 20:49:52.000000', null, null, '0000-0337');
+INSERT INTO mtl.article (doi_a, title, accessmode, editor, topic, releasedate, releaselocation, conferencename, fk_magazine) VALUES ('10.1668/223244', 'Examining the effects of technology on education', 'Digital', 'Team Guard SRL', 'education', '2014-05-15 20:49:52.000000', null, null, '0000-0337');
+INSERT INTO mtl.article (doi_a, title, accessmode, editor, topic, releasedate, releaselocation, conferencename, fk_magazine) VALUES ('10.1668/223245', 'Investigating the impact of climate change on agriculture', 'Digital', 'Team Guard SRL', 'environment', '2014-05-15 20:49:52.000000', null, null, '0000-0337');
+

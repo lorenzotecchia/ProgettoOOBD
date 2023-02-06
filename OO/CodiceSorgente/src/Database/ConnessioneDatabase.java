@@ -16,7 +16,7 @@ public class ConnessioneDatabase {
     private final String nome = "postgres";
     private final String password = "0000";
     private final String url = "jdbc:postgresql://localhost:5432/postgres";
-    private final String driver = "org.postgresql.Driver";
+    private static String driver =  "org.postgresql.Driver";
     /**
      * The Connection.
      */

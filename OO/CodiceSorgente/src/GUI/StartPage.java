@@ -21,6 +21,8 @@ public class StartPage {
     /**
      * Instantiates a new Start page.
      */
+
+
     public StartPage() {
         Controller controller = new Controller();
         JFrame frame = new JFrame("StartPage");

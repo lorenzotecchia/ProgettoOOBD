@@ -37,7 +37,7 @@ public class Conference {
      *
      * @return the title
      */
-    public String getTitle() {
+    public String   getTitle() {
         return title;
     }
 

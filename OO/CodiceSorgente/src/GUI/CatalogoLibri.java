@@ -26,14 +26,14 @@ public class CatalogoLibri {
      */
     JFrame frame;
     private JPanel panel1;
-    private JTextField textField1;
+    private JTextField titleTextField;
     private JTable table1;
     private JButton backButton;
     private JComboBox argumentBox;
     private JComboBox reprintBox;
     private JComboBox languageBox;
     private JComboBox accessBox;
-    private JTextField textField2;
+    private JTextField lnameTextField;
 
     /**
      * Instantiates a new Catalogo libri.
@@ -129,7 +129,37 @@ public class CatalogoLibri {
     }
 
     private void createTextfield(Controller controller) {
-        textField1.getDocument().addDocumentListener(new DocumentListener() {
+        titleTextField.getDocument().addDocumentListener(new DocumentListener() {
+                                                         @Override
+                                                         public void insertUpdate(DocumentEvent e) {
+                                                             try {
+                                                                 showTable(controller);
+                                                             } catch (SQLException ex) {
+                                                                 throw new RuntimeException(ex);
+                                                             }
+                                                         }
+
+                                                         @Override
+                                                         public void removeUpdate(DocumentEvent e) {
+                                                             try {
+                                                                 showTable(controller);
+                                                             } catch (SQLException ex) {
+                                                                 throw new RuntimeException(ex);
+                                                             }
+                                                         }
+
+                                                         @Override
+                                                         public void changedUpdate(DocumentEvent e) {
+                                                             try {
+                                                                 showTable(controller);
+                                                             } catch (SQLException ex) {
+                                                                 throw new RuntimeException(ex);
+                                                             }
+                                                         }
+                                                     }
+        );
+
+        lnameTextField.getDocument().addDocumentListener(new DocumentListener() {
                                                          @Override
                                                          public void insertUpdate(DocumentEvent e) {
                                                              try {
@@ -187,8 +217,8 @@ public class CatalogoLibri {
         String lang = String.valueOf(languageBox.getSelectedItem());
         String access = String.valueOf(accessBox.getSelectedItem());
         Boolean reprint = Boolean.valueOf(String.valueOf(reprintBox.getSelectedItem()));
-        String title = String.valueOf(textField1.getText());
-        String author = String.valueOf(textField2.getText());
+        String title = String.valueOf(titleTextField.getText());
+        String author = String.valueOf(lnameTextField.getText());
         DefaultTableModel model = (DefaultTableModel) table1.getModel();
         model.setRowCount(0);
         ArrayList<Book> books = controller.readAllBooks(arg, lang, access, reprint, title, author);

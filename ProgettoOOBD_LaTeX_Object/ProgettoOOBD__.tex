@@ -1,8 +1,9 @@
 \documentclass[table]{report}
 \usepackage[xcdraw,table]{xcolor}
 \usepackage{tikz}
-\usepackage[left=1.5cm,top=1.5cm,bottom=1.5cm,right=1.5cm
+\usepackage[left=2.5cm,top=1.5cm,bottom=1.5cm,right=2.5cm
 ]{geometry}
+\usepackage{longtable}
 \usepackage{sidecap, caption}
 \usepackage[utf8]{inputenc}
 \usepackage{booktabs}
@@ -39,7 +40,6 @@
 \begin{document}
 
 \begin{center}
-\tikz[remember picture,overlay] \node[opacity=0.3,inner sep=0pt] at (current page.center){\includegraphics[width=\paperwidth,height=\paperheight]{/Users/lorenzotecchia/Documents/ESAMI/ProgettoOOBD/ProgettoOOBD_LaTeX_Object/Immagini/7137b0.png}};
 
 \end{center}
     \begin{figure}[htbp!]
@@ -50,12 +50,20 @@
     
     {\scshape\Large\bfseries \center{Progetto Object Orientation e Basi di Dati}
     \begin{center}
-        Lorenzo Tecchia N86004446 \\ Mirko Marciano N86004019 \\ 10/12/2022 \\
+        Lorenzo Tecchia N86004446 \\ Mirko Marciano N86004019 \\ 06/02/2023 \\
         
         
         
         
         \scshape\Large\bfseries Progettazione e sviluppo di un applicativo per la gestione di una Biblioteca Digitale
+        
+        \begin{figure}[hbt]
+        \centering
+  \includegraphics[width=0.5\textwidth]{Immagini/startpage.png}
+  \caption{Logo della Libreria
+  }
+\end{figure}
+
         
     \end{center}}
 
@@ -70,6 +78,6 @@
     \include{Argomenti/Capitolo2}
     \include{Argomenti/Capitolo3}
     \include{Argomenti/Capitolo4}
-    \include{Argomenti/Capitolo5}
+
     
 \end{document}
