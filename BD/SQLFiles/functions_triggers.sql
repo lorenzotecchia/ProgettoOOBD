@@ -124,10 +124,11 @@ create or replace function mtl.function_4() returns trigger as
 
 $$
 declare
-    isbn_app mtl.book.isbn_b%type;
-    autori_record record;
+    isbn_app       mtl.book.isbn_b%type;
+    autori_record  record;
     cod_author_app mtl.author.codauthor%TYPE;
-    cod_author cursor for (select * from mtl.author);
+    cod_author cursor for (select *
+                           from mtl.author);
 begin
     isbn_app = new.isbn_b;
     loop
@@ -136,6 +137,7 @@ begin
         cod_author_app = autori_record.codauthor;
         insert into mtl.author_books(AuthorsFK, BooksFK) VALUES (cod_author_app, isbn_app);
     end loop;
+    return new;
 end
 $$
     language plpgsql;
@@ -151,10 +153,11 @@ create or replace function mtl.function_5() returns trigger as
 
 $$
 declare
-    doi_app mtl.article.doi_a%type;
-    autori_record record;
+    doi_app        mtl.article.doi_a%type;
+    autori_record  record;
     cod_author_app mtl.author.codauthor%TYPE;
-    cod_author cursor for (select * from mtl.author);
+    cod_author cursor for (select *
+                           from mtl.author);
 begin
     doi_app = new.doi_a;
     loop
@@ -163,6 +166,7 @@ begin
         cod_author_app = autori_record.codauthor;
         insert into mtl.author_article(AuthorsFK, ArticlesFK) VALUES (cod_author_app, doi_app);
     end loop;
+    return new;
 end
 $$
     language plpgsql;
@@ -175,26 +179,28 @@ execute procedure mtl.function_5();
 
 
 create or replace function mtl.function_6() returns trigger as
-    $$
-    declare
-        aritcoli_record record;
-        articoli_cursore cursor for (select * 
-                                     from mtl.article a
-                                    where a.fk_magazine = NEW.issn_m);
-    begin
-        loop
-            fetch articoli_cursore into aritcoli_record;
-            exit when not FOUND;
-            delete from mtl.article 
-                where new.yearrelease <> aritcoli_record.releasedate;
+$$
+declare
+    aritcoli_record record;
+    articoli_cursore cursor for (select *
+                                 from mtl.article a
+                                 where a.fk_magazine = NEW.issn_m);
+begin
+    loop
+        fetch articoli_cursore into aritcoli_record;
+        exit when not FOUND;
+        delete
+        from mtl.article
+        where new.yearrelease <> aritcoli_record.releasedate;
     end loop;
-    end
-    $$
-        language plpgsql;
+    return new;
+end
+$$
+    language plpgsql;
 
 
 create trigger date_coerenti
-    after insert 
+    after insert
     on mtl.magazine
     for each row
 execute procedure mtl.function_6();

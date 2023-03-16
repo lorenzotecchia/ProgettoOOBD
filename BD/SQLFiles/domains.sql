@@ -4,7 +4,7 @@ create domain mtl.issn as varchar(9)
         and value not similar to '%[A-Z]+%'
         and value not similar to '%[@!#$ˆ∗%&]+%');
 
-create domain mtl.isbn as varchar(17)
+create domain mtl.isbn as varchar(30)
     check ( value like '%-_-%-%-_');
 
 create domain mtl.doi as varchar(30)
