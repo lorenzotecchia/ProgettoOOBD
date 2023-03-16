@@ -16,9 +16,9 @@
 \item Book
 
 
-(\textbf{DOI\_B}, ISBN, PublishingHouse, Language, AccessMode, Title, Argument, Reprint, Edition, ReleaseDate, ReleaseLocation, PresentationName, \underline{FK\_Author}, \underline{FK\_Series})\\
+(\textbf{DOI\_B}, ISBN\_B, PublishingHouse, Language, AccessMode, Title, Argument, Reprint, Edition, ReleaseDate, ReleaseLocation, PresentationName, \underline{FK\_Author}, \underline{FK\_Series})\\
 
-	$FK\_Author \rightarrow Author(IDAuthor)\\
+	$FK\_Author \rightarrow Author(ID\_Author)\\
 	 FK\_Series \rightarrow Series(ISSN\_S)$
 
 
@@ -26,7 +26,7 @@
 
 (\textbf{DOI\_A} , Title, AccessMode, YearRelease, Editor, Topic, ReleaseDate, ReleaseLocatione, ConferenceName , \underline{FK\_Author}, \underline{FK\_Magazine})\\
 
-$FK\_Author \rightarrow Author(IDAuthor) \\
+$FK\_Author \rightarrow Author(ID\_Author) \\
 	 FK\_Magazine \rightarrow Series(ISSN\_M)$
 
 \item Series
@@ -40,8 +40,21 @@ $FK\_Author \rightarrow Author(IDAuthor) \\
 
 
 (\textbf{ISSN\_M}, Name , Argument, Manager, YearRelease, PublicationPeriod, AccessMode,
-PublishingHouse)
+PublishingHouse)\\
 
+\item Author\_Books
 
+(\underline{AuthorsFK}, \underline{BooksFK})\\
+
+$AuthorsFK \rightarrow Author(CodAuthor)\\
+ BooksFK \rightarrow Book(ISBN\_B)$\\
+ 
+ \item Author\_Article
+
+(\underline{AuthorsFK}, \underline{ArticlesFK})\\
+
+$AuthorsFK \rightarrow Author(CodAuthor)\\
+ArticlesFK \rightarrow Article(DOI\_A)
+$
 
 \end{itemize}

@@ -1,13 +1,11 @@
 create view mtl.presentation as
 select b.title, a.fname, a.lname, b.presentationname, b.releaselocation, b.releasedate
-from mtl.book b
-         join mtl.author a on a.codauthor = b.fk_author
+from (mtl.book b join mtl.author_books au on au.BooksFK = b.ISBN_B) join mtl.author a on a.codauthor=au.AuthorsFK
 where presentationname is not null and releaselocation is not null
 order by lname;
 
 create view mtl.conference as
-select ar.title, a.fname, a.lname, ar.conferencename, ar.releaselocation, ar.releasedate
-from mtl.article ar
-         join mtl.author a on a.codauthor = ar.fk_author
-where conferencename is not null and releaselocation is not null
-order by a.lname;
+select a.title, ar.fname, ar.lname, a.conferencename, a.releaselocation, a.releasedate
+from (mtl.article a join mtl.author_article au on  au.ArticlesFK = a.doi_a) join mtl.author ar on au.AuthorsFK = ar.codauthor
+where a.conferencename is not null and releaselocation is not null
+order by lname;

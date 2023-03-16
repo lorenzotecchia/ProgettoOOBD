@@ -129,6 +129,7 @@ public class CatalogoLibri {
     }
 
     private void createTextfield(Controller controller) {
+<<<<<<< Updated upstream:OO/CodiceSorgente/src/GUI/CatalogoLibri.java
         titleTextField.getDocument().addDocumentListener(new DocumentListener() {
                                                          @Override
                                                          public void insertUpdate(DocumentEvent e) {
@@ -160,6 +161,10 @@ public class CatalogoLibri {
         );
 
         lnameTextField.getDocument().addDocumentListener(new DocumentListener() {
+=======
+
+        textField1.getDocument().addDocumentListener(new DocumentListener() {
+>>>>>>> Stashed changes:OO/src/GUI/CatalogoLibri.java
                                                          @Override
                                                          public void insertUpdate(DocumentEvent e) {
                                                              try {
@@ -188,7 +193,35 @@ public class CatalogoLibri {
                                                          }
                                                      }
         );
+        textField2.getDocument().addDocumentListener(new DocumentListener() {
+                                                         @Override
+                                                         public void insertUpdate(DocumentEvent e) {
+                                                             try {
+                                                                 showTable(controller);
+                                                             } catch (SQLException ex) {
+                                                                 throw new RuntimeException(ex);
+                                                             }
+                                                         }
 
+                                                         @Override
+                                                         public void removeUpdate(DocumentEvent e) {
+                                                             try {
+                                                                 showTable(controller);
+                                                             } catch (SQLException ex) {
+                                                                 throw new RuntimeException(ex);
+                                                             }
+                                                         }
+
+                                                         @Override
+                                                         public void changedUpdate(DocumentEvent e) {
+                                                             try {
+                                                                 showTable(controller);
+                                                             } catch (SQLException ex) {
+                                                                 throw new RuntimeException(ex);
+                                                             }
+                                                         }
+                                                     }
+        );
     }
 
     private void createAccessBox(Controller controller) throws SQLException {

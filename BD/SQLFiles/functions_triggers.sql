@@ -136,8 +136,9 @@ begin
         cod_author_app = autori_record.codauthor;
         insert into mtl.autori_libri(fk_autori, fk_libri) VALUES (cod_author_app, doi_app);
     end loop;
-end;
-$$;
+end
+$$
+    language plpgsql;
 
 create trigger insert_autori_libri
     after insert
@@ -162,8 +163,9 @@ begin
         cod_author_app = autori_record.codauthor;
         insert into mtl.autori_articoli(fk_autori, fk_articoli) VALUES (cod_author_app, doi_app);
     end loop;
-end;
-$$;
+end
+$$
+    language plpgsql;
 
 create trigger insert_autori_articoli
     after insert
@@ -171,4 +173,29 @@ create trigger insert_autori_articoli
     for each row
 execute procedure mtl.function_5();
 
+
+create or replace function mtl.function_6() returns trigger as
+    $$
+    declare
+        aritcoli_record record;
+        articoli_cursore cursor for (select * 
+                                     from mtl.article a
+                                    where a.fk_magazine = NEW.issn_m);
+    begin
+        loop
+            fetch articoli_cursore into aritcoli_record;
+            exit when not FOUND;
+            delete from mtl.article 
+                where new.yearrelease <> aritcoli_record.releasedate;
+
+    end
+    $$
+        language plpgsql;
+
+
+create trigger date_coerenti
+    after insert 
+    on mtl.magazine
+    for each row
+execute procedure mt.function_6();
 

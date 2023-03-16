@@ -2654,7 +2654,11 @@
 									"left": 568,
 									"top": 40,
 									"width": 217.02880859375,
+<<<<<<< Updated upstream
 									"height": 281,
+=======
+									"height": 163,
+>>>>>>> Stashed changes
 									"showProperty": false,
 									"nameCompartment": {
 										"$ref": "AAAAAAGF7lB7fdPBmFE="
@@ -2850,6 +2854,7 @@
 													"model": {
 														"$ref": "AAAAAAGF7nKwc7YJbCs="
 													},
+													"visible": false,
 													"font": "Arial;13;0",
 													"left": 813,
 													"top": 562,
@@ -2869,7 +2874,11 @@
 													},
 													"font": "Arial;13;0",
 													"left": 813,
+<<<<<<< Updated upstream
 													"top": 577,
+=======
+													"top": 562,
+>>>>>>> Stashed changes
 													"width": 236.640625,
 													"height": 13,
 													"text": "+Topic: String",
@@ -2886,7 +2895,11 @@
 													},
 													"font": "Arial;13;0",
 													"left": 813,
+<<<<<<< Updated upstream
 													"top": 592,
+=======
+													"top": 577,
+>>>>>>> Stashed changes
 													"width": 236.640625,
 													"height": 13,
 													"text": "+ReleaseDate: Date",
@@ -2903,7 +2916,11 @@
 													},
 													"font": "Arial;13;0",
 													"left": 813,
+<<<<<<< Updated upstream
 													"top": 607,
+=======
+													"top": 592,
+>>>>>>> Stashed changes
 													"width": 236.640625,
 													"height": 13,
 													"text": "+ReleaseLocation: String",
@@ -2920,7 +2937,11 @@
 													},
 													"font": "Arial;13;0",
 													"left": 813,
+<<<<<<< Updated upstream
 													"top": 622,
+=======
+													"top": 607,
+>>>>>>> Stashed changes
 													"width": 236.640625,
 													"height": 13,
 													"text": "+ConferenceName: String",
@@ -2931,7 +2952,7 @@
 											"left": 808,
 											"top": 497,
 											"width": 246.640625,
-											"height": 143
+											"height": 128
 										},
 										{
 											"_type": "UMLOperationCompartmentView",
@@ -3278,7 +3299,11 @@
 													},
 													"font": "Arial;13;0",
 													"left": 813,
+<<<<<<< Updated upstream
 													"top": 647,
+=======
+													"top": 632,
+>>>>>>> Stashed changes
 													"width": 236.640625,
 													"height": 13,
 													"text": "«Responsabilità»+Comporre una rivista()",
@@ -3287,7 +3312,11 @@
 											],
 											"font": "Arial;13;0",
 											"left": 808,
+<<<<<<< Updated upstream
 											"top": 640,
+=======
+											"top": 625,
+>>>>>>> Stashed changes
 											"width": 246.640625,
 											"height": 25
 										},
@@ -6655,7 +6684,7 @@
 											"visible": false,
 											"font": "Arial;13;0",
 											"left": 945,
-											"top": 298,
+											"top": 130,
 											"height": 13,
 											"alpha": 1.5707963267948966,
 											"distance": 15,
@@ -6676,7 +6705,7 @@
 											"visible": null,
 											"font": "Arial;13;0",
 											"left": 945,
-											"top": 313,
+											"top": 145,
 											"height": 13,
 											"alpha": 1.5707963267948966,
 											"distance": 30,
@@ -6697,7 +6726,7 @@
 											"visible": false,
 											"font": "Arial;13;0",
 											"left": 946,
-											"top": 268,
+											"top": 100,
 											"height": 13,
 											"alpha": -1.5707963267948966,
 											"distance": 15,
@@ -6782,7 +6811,11 @@
 											},
 											"font": "Arial;13;0",
 											"left": 791,
+<<<<<<< Updated upstream
 											"top": 303,
+=======
+											"top": 135,
+>>>>>>> Stashed changes
 											"width": 66.8408203125,
 											"height": 13,
 											"alpha": -0.4834468986764793,
@@ -6804,7 +6837,11 @@
 											"visible": false,
 											"font": "Arial;13;0",
 											"left": 812,
+<<<<<<< Updated upstream
 											"top": 311,
+=======
+											"top": 143,
+>>>>>>> Stashed changes
 											"height": 13,
 											"alpha": -0.7853981633974483,
 											"distance": 40,
@@ -6823,7 +6860,11 @@
 											},
 											"font": "Arial;13;0",
 											"left": 794,
+<<<<<<< Updated upstream
 											"top": 270,
+=======
+											"top": 102,
+>>>>>>> Stashed changes
 											"width": 21.68359375,
 											"height": 13,
 											"alpha": 0.5763749921202622,
@@ -6872,7 +6913,11 @@
 										"$ref": "AAAAAAGF7lCH2tPvtJI="
 									},
 									"lineStyle": 2,
+<<<<<<< Updated upstream
 									"points": "946:472;946:289;784:289",
+=======
+									"points": "946:472;946:121;784:121",
+>>>>>>> Stashed changes
 									"showVisibility": true,
 									"showProperty": false,
 									"nameLabel": {
@@ -8737,13 +8782,30 @@
 													"height": 13,
 													"text": "+setConferenceName(value: String)",
 													"horizontalAlignment": 0
+												},
+												{
+													"_type": "UMLOperationView",
+													"_id": "AAAAAAGGJm3iRJl5Y3Y=",
+													"_parent": {
+														"$ref": "AAAAAAGF7oKNX7IhJZw="
+													},
+													"model": {
+														"$ref": "AAAAAAGGIwxCXq3C5A8="
+													},
+													"font": "Arial;13;0",
+													"left": 1473,
+													"top": 1070,
+													"width": 236.640625,
+													"height": 13,
+													"text": "«Responsabilità»+Comporre una rivista()",
+													"horizontalAlignment": 0
 												}
 											],
 											"font": "Arial;13;0",
 											"left": 1468,
 											"top": 795,
 											"width": 246.640625,
-											"height": 278
+											"height": 293
 										},
 										{
 											"_type": "UMLReceptionCompartmentView",
@@ -13363,7 +13425,11 @@
 							"left": 568,
 							"top": 146,
 							"width": 217.02880859375,
+<<<<<<< Updated upstream
 							"height": 281,
+=======
+							"height": 255,
+>>>>>>> Stashed changes
 							"showProperty": false,
 							"nameCompartment": {
 								"$ref": "AAAAAAGF7m7hnZTmkPc="
@@ -13559,6 +13625,7 @@
 											"model": {
 												"$ref": "AAAAAAGF7nKwc7YJbCs="
 											},
+											"visible": false,
 											"font": "Arial;13;0",
 											"left": 669,
 											"top": 650,
@@ -13578,7 +13645,11 @@
 											},
 											"font": "Arial;13;0",
 											"left": 669,
+<<<<<<< Updated upstream
 											"top": 665,
+=======
+											"top": 650,
+>>>>>>> Stashed changes
 											"width": 236.640625,
 											"height": 13,
 											"text": "+Topic: String",
@@ -13595,7 +13666,11 @@
 											},
 											"font": "Arial;13;0",
 											"left": 669,
+<<<<<<< Updated upstream
 											"top": 680,
+=======
+											"top": 665,
+>>>>>>> Stashed changes
 											"width": 236.640625,
 											"height": 13,
 											"text": "+ReleaseDate: Date",
@@ -13612,7 +13687,11 @@
 											},
 											"font": "Arial;13;0",
 											"left": 669,
+<<<<<<< Updated upstream
 											"top": 695,
+=======
+											"top": 680,
+>>>>>>> Stashed changes
 											"width": 236.640625,
 											"height": 13,
 											"text": "+ReleaseLocation: String",
@@ -13629,7 +13708,11 @@
 											},
 											"font": "Arial;13;0",
 											"left": 669,
+<<<<<<< Updated upstream
 											"top": 710,
+=======
+											"top": 695,
+>>>>>>> Stashed changes
 											"width": 236.640625,
 											"height": 13,
 											"text": "+ConferenceName: String",
@@ -13640,7 +13723,7 @@
 									"left": 664,
 									"top": 585,
 									"width": 246.640625,
-									"height": 143
+									"height": 128
 								},
 								{
 									"_type": "UMLOperationCompartmentView",
@@ -13663,7 +13746,11 @@
 											},
 											"font": "Arial;13;0",
 											"left": 669,
+<<<<<<< Updated upstream
 											"top": 733,
+=======
+											"top": 718,
+>>>>>>> Stashed changes
 											"width": 236.640625,
 											"height": 13,
 											"text": "+getEditor(): String",
@@ -13698,7 +13785,11 @@
 											},
 											"font": "Arial;13;0",
 											"left": 669,
+<<<<<<< Updated upstream
 											"top": 748,
+=======
+											"top": 733,
+>>>>>>> Stashed changes
 											"width": 236.640625,
 											"height": 13,
 											"text": "+getDOI(): String",
@@ -13733,7 +13824,11 @@
 											},
 											"font": "Arial;13;0",
 											"left": 669,
+<<<<<<< Updated upstream
 											"top": 763,
+=======
+											"top": 748,
+>>>>>>> Stashed changes
 											"width": 236.640625,
 											"height": 13,
 											"text": "+getTitle(): String",
@@ -13768,7 +13863,11 @@
 											},
 											"font": "Arial;13;0",
 											"left": 669,
+<<<<<<< Updated upstream
 											"top": 778,
+=======
+											"top": 763,
+>>>>>>> Stashed changes
 											"width": 236.640625,
 											"height": 13,
 											"text": "+getAccessMode(): String",
@@ -13801,9 +13900,14 @@
 											"model": {
 												"$ref": "AAAAAAGF7nR3u83TJN4="
 											},
+											"visible": false,
 											"font": "Arial;13;0",
 											"left": 669,
+<<<<<<< Updated upstream
 											"top": 793,
+=======
+											"top": 778,
+>>>>>>> Stashed changes
 											"width": 236.640625,
 											"height": 13,
 											"text": "+getYearRelease(): Date",
@@ -13838,7 +13942,11 @@
 											},
 											"font": "Arial;13;0",
 											"left": 669,
+<<<<<<< Updated upstream
 											"top": 808,
+=======
+											"top": 778,
+>>>>>>> Stashed changes
 											"width": 236.640625,
 											"height": 13,
 											"text": "+getTopic(): String",
@@ -13873,7 +13981,11 @@
 											},
 											"font": "Arial;13;0",
 											"left": 669,
+<<<<<<< Updated upstream
 											"top": 823,
+=======
+											"top": 793,
+>>>>>>> Stashed changes
 											"width": 236.640625,
 											"height": 13,
 											"text": "+getReleaseDate(): Date",
@@ -13908,7 +14020,11 @@
 											},
 											"font": "Arial;13;0",
 											"left": 669,
+<<<<<<< Updated upstream
 											"top": 838,
+=======
+											"top": 808,
+>>>>>>> Stashed changes
 											"width": 236.640625,
 											"height": 13,
 											"text": "+getReleaseLocation(): String",
@@ -13943,7 +14059,11 @@
 											},
 											"font": "Arial;13;0",
 											"left": 669,
+<<<<<<< Updated upstream
 											"top": 853,
+=======
+											"top": 823,
+>>>>>>> Stashed changes
 											"width": 236.640625,
 											"height": 13,
 											"text": "+getConferenceName(): String",
@@ -13966,13 +14086,37 @@
 											"height": 13,
 											"text": "+setConferenceName(value: String)",
 											"horizontalAlignment": 0
+										},
+										{
+											"_type": "UMLOperationView",
+											"_id": "AAAAAAGGJm3hfJhukdA=",
+											"_parent": {
+												"$ref": "AAAAAAGF7m7hnZT/XTg="
+											},
+											"model": {
+												"$ref": "AAAAAAGGIwxCXq3C5A8="
+											},
+											"visible": false,
+											"font": "Arial;13;0",
+											"left": 669,
+											"top": 838,
+											"width": 236.640625,
+											"height": 13,
+											"text": "«Responsabilità»+Comporre una rivista()",
+											"horizontalAlignment": 0
 										}
 									],
 									"font": "Arial;13;0",
 									"left": 664,
+<<<<<<< Updated upstream
 									"top": 728,
 									"width": 246.640625,
 									"height": 143
+=======
+									"top": 713,
+									"width": 246.640625,
+									"height": 128
+>>>>>>> Stashed changes
 								},
 								{
 									"_type": "UMLReceptionCompartmentView",
@@ -14012,7 +14156,11 @@
 							"left": 664,
 							"top": 560,
 							"width": 246.640625,
+<<<<<<< Updated upstream
 							"height": 311,
+=======
+							"height": 281,
+>>>>>>> Stashed changes
 							"showProperty": false,
 							"nameCompartment": {
 								"$ref": "AAAAAAGF7m7hnZT4qds="
