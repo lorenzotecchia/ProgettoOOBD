@@ -18,7 +18,7 @@ begin
         end loop;
     resto = sum % 10;
     if (resto != 0) then
-        delete from mtl.book where doi_b = new.doi_b;
+        delete from mtl.book where isbn_b = new.isbn_b;
     end if;
     return new;
 end
@@ -124,17 +124,17 @@ create or replace function mtl.function_4() returns trigger as
 
 $$
 declare
-    doi_app mtl.book.doi_b%type;
+    isbn_app mtl.book.isbn_b%type;
     autori_record record;
     cod_author_app mtl.author.codauthor%TYPE;
     cod_author cursor for (select * from mtl.author);
 begin
-    doi_app = new.doi_b;
+    isbn_app = new.isbn_b;
     loop
         fetch cod_author into autori_record;
         exit when not FOUND;
         cod_author_app = autori_record.codauthor;
-        insert into mtl.autori_libri(fk_autori, fk_libri) VALUES (cod_author_app, doi_app);
+        insert into mtl.author_books(AuthorsFK, BooksFK) VALUES (cod_author_app, isbn_app);
     end loop;
 end
 $$
@@ -161,7 +161,7 @@ begin
         fetch cod_author into autori_record;
         exit when not FOUND;
         cod_author_app = autori_record.codauthor;
-        insert into mtl.autori_articoli(fk_autori, fk_articoli) VALUES (cod_author_app, doi_app);
+        insert into mtl.author_article(AuthorsFK, ArticlesFK) VALUES (cod_author_app, doi_app);
     end loop;
 end
 $$
@@ -187,7 +187,7 @@ create or replace function mtl.function_6() returns trigger as
             exit when not FOUND;
             delete from mtl.article 
                 where new.yearrelease <> aritcoli_record.releasedate;
-
+    end loop;
     end
     $$
         language plpgsql;
@@ -197,5 +197,4 @@ create trigger date_coerenti
     after insert 
     on mtl.magazine
     for each row
-execute procedure mt.function_6();
-
+execute procedure mtl.function_6();
