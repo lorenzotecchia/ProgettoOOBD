@@ -131,20 +131,20 @@ create table mtl.author_article
     constraint autori_libriFK_2 foreign key (ArticlesFK) references mtl.article (Doi_A) on delete cascade
 );
 
-create view mtl.presentation as
+create or replace view mtl.presentation as
 select b.title, a.fname, a.lname, b.presentationname, b.releaselocation, b.releasedate
 from (mtl.book b join mtl.author_books au on au.BooksFK = b.ISBN_B)
          join mtl.author a on a.codauthor = au.AuthorsFK
-where presentationname is not null
-  and releaselocation is not null
+where b.presentationname is not null
+  and b.releaselocation is not null
 order by lname;
 
-create view mtl.conference as
+create or replace view mtl.conference as
 select a.title, ar.fname, ar.lname, a.conferencename, a.releaselocation, a.releasedate
 from (mtl.article a join mtl.author_article au on au.ArticlesFK = a.doi_a)
          join mtl.author ar on au.AuthorsFK = ar.codauthor
 where a.conferencename is not null
-  and releaselocation is not null
+  and a.releaselocation is not null
 order by lname;
 
 
@@ -259,8 +259,7 @@ create trigger validity_issn_m
     for each row
 execute procedure mtl.function_3();
 
-CREATE OR REPLACE FUNCTION mtl.function_4()
-    returnS TRIGGER AS
+CREATE OR REPLACE FUNCTION mtl.function_4() returns TRIGGER AS
 $$
 declare
     isbn_app       mtl.book.isbn_b%TYPE;
@@ -270,7 +269,7 @@ declare
                           FROM mtl.author;
 begin
     isbn_app := new.isbn_b;
-    FOR autori_record IN cod_author
+    for autori_record IN cod_author
         loop
             cod_author_app := autori_record.codauthor;
             INSERT INTO mtl.author_books(AuthorsFK, BooksFK) VALUES (cod_author_app, isbn_app);
@@ -288,7 +287,7 @@ create trigger insert_autori_libri
 execute procedure mtl.function_4();
 
 
-CREATE OR REPLACE FUNCTION mtl.function_5() returnS TRIGGER AS
+CREATE OR REPLACE FUNCTION mtl.function_5() returns TRIGGER AS
 $$
 declare
     doi_app        mtl.article.doi_a%TYPE;
@@ -301,7 +300,8 @@ begin
     for autori_record in cod_author
         loop
             cod_author_app := autori_record.codauthor;
-            insert into mtl.author_article (AuthorsFK, ArticlesFK) values (cod_author_app, doi_app);
+            raise notice 'cod_author_app: %', cod_author_app;
+            insert into mtl.author_article(AuthorsFK, ArticlesFK) values (cod_author_app, doi_app);
         end loop;
     return NULL;
 end;
@@ -472,7 +472,8 @@ VALUES ('10.1830/978-1-3267-0869-6', '978-1-3267-0869-6', 'Hoepli', 'German', 'P
         'Electronic world', '1233-3980');
 INSERT INTO mtl.book (doi_b, isbn_b, publishinghouse, language, accessmode, title, argument, reprint, edition,
                       releasedate, releaselocation, presentationname, fk_series)
-VALUES ('10.1631/317-8-028670-00-4', '317-8-028670-00-4', 'Hoepli', 'French', 'Digital', 'Power electronics', 'applied electronic',
+VALUES ('10.1631/317-8-028670-00-4', '317-8-028670-00-4', 'Hoepli', 'French', 'Digital', 'Power electronics',
+        'applied electronic',
         false, 2, '2016-03-15 08:12:19.000000', 'Vodafone, Wakley   Drive, 1288, Denver, 2336', 'Electronic world',
         '1233-3980');
 INSERT INTO mtl.book (doi_b, isbn_b, publishinghouse, language, accessmode, title, argument, reprint, edition,

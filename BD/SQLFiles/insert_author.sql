@@ -28,4 +28,3 @@ INSERT INTO mtl.author (fname, lname)
 VALUES ('Andrea', 'Lacaita');
 INSERT INTO mtl.author (fname, lname)
 VALUES ('National', 'Geographic');
-

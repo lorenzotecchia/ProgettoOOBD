@@ -39,22 +39,16 @@ declare
     var_appoggio integer;
     resto        integer;
 begin
-    raise notice 'stringa in: %', stringa_in;
     stringa_in := replace(stringa_in, '-', '');
-    raise notice 'stringa in: %', stringa_in;
     for i in 1..8
         loop
-            raise notice 'i: %', i;
             if substr(stringa_in, 8, 1) = 'X' then
                 sum = sum + 10;
-                raise notice 'sum: %', sum;
                 var_appoggio = cast(substring(stringa_in from i for 1) as int);
                 if (i = 8) then
                     sum = sum + 0;
-                    raise notice 'sum: %', sum;
                 else
                     sum := sum + var_appoggio * (9 - i);
-                    raise notice 'sum: %', sum;
                 end if;
             else
                 var_appoggio = cast(substring(stringa_in from i for 1) as int);
@@ -62,7 +56,6 @@ begin
             end if;
         end loop;
     resto = sum % 11;
-    raise notice 'resto: %', resto;
     if (resto != 0) then
         delete from mtl.series where issn_s = new.issn_s;
     end if;
@@ -88,17 +81,13 @@ begin
     stringa_in := replace(stringa_in, '-', '');
     for i in 1..8
         loop
-            raise notice 'i: %', i;
             if substr(stringa_in, 8, 1) = 'X' then
                 sum = sum + 10;
-                raise notice 'sum: %', sum;
                 var_appoggio = cast(substring(stringa_in from i for 1) as int);
                 if (i = 8) then
                     sum = sum + 0;
-                    raise notice 'sum: %', sum;
                 else
                     sum := sum + var_appoggio * (9 - i);
-                    raise notice 'sum: %', sum;
                 end if;
             else
                 var_appoggio = cast(substring(stringa_in from i for 1) as int);
@@ -120,27 +109,27 @@ create trigger validity_issn_m
     for each row
 execute procedure mtl.function_3();
 
-create or replace function mtl.function_4() returns trigger as
-
+CREATE OR REPLACE FUNCTION mtl.function_4()
+    returnS TRIGGER AS
 $$
 declare
-    isbn_app       mtl.book.isbn_b%type;
-    autori_record  record;
+    isbn_app       mtl.book.isbn_b%TYPE;
+    autori_record  mtl.author%ROWTYPE;
     cod_author_app mtl.author.codauthor%TYPE;
-    cod_author cursor for (select *
-                           from mtl.author);
+    cod_author CURSOR FOR SELECT codauthor
+                          FROM mtl.author;
 begin
-    isbn_app = new.isbn_b;
-    loop
-        fetch cod_author into autori_record;
-        exit when not FOUND;
-        cod_author_app = autori_record.codauthor;
-        insert into mtl.author_books(AuthorsFK, BooksFK) VALUES (cod_author_app, isbn_app);
-    end loop;
-    return new;
-end
+    isbn_app := new.isbn_b;
+    FOR autori_record IN cod_author
+        loop
+            cod_author_app := autori_record.codauthor;
+            INSERT INTO mtl.author_books(AuthorsFK, BooksFK) VALUES (cod_author_app, isbn_app);
+        end loop;
+    return NULL;
+end;
 $$
-    language plpgsql;
+    LANGUAGE plpgsql;
+
 
 create trigger insert_autori_libri
     after insert
@@ -149,27 +138,26 @@ create trigger insert_autori_libri
 execute procedure mtl.function_4();
 
 
-create or replace function mtl.function_5() returns trigger as
-
+CREATE OR REPLACE FUNCTION mtl.function_5() returnS TRIGGER AS
 $$
 declare
-    doi_app        mtl.article.doi_a%type;
-    autori_record  record;
+    doi_app        mtl.article.doi_a%TYPE;
+    autori_record  mtl.author%ROWTYPE;
     cod_author_app mtl.author.codauthor%TYPE;
-    cod_author cursor for (select *
-                           from mtl.author);
+    cod_author CURSOR FOR SELECT codauthor
+                          FROM mtl.author;
 begin
-    doi_app = new.doi_a;
-    loop
-        fetch cod_author into autori_record;
-        exit when not FOUND;
-        cod_author_app = autori_record.codauthor;
-        insert into mtl.author_article(AuthorsFK, ArticlesFK) VALUES (cod_author_app, doi_app);
-    end loop;
-    return new;
-end
+    doi_app := new.doi_a;
+    for autori_record in cod_author
+        loop
+            cod_author_app := autori_record.codauthor;
+            insert into mtl.author_article (AuthorsFK, ArticlesFK) values (cod_author_app, doi_app);
+        end loop;
+    return NULL;
+end;
 $$
-    language plpgsql;
+    LANGUAGE plpgsql;
+
 
 create trigger insert_autori_articoli
     after insert
@@ -181,20 +169,19 @@ execute procedure mtl.function_5();
 create or replace function mtl.function_6() returns trigger as
 $$
 declare
-    aritcoli_record record;
+    articoli_record record;
     articoli_cursore cursor for (select *
                                  from mtl.article a
-                                 where a.fk_magazine = NEW.issn_m);
+                                 where a.fk_magazine = new.issn_m);
 begin
-    loop
-        fetch articoli_cursore into aritcoli_record;
-        exit when not FOUND;
-        delete
-        from mtl.article
-        where new.yearrelease <> aritcoli_record.releasedate;
-    end loop;
+    for articoli_record in articoli_cursore
+        loop
+            delete
+            from mtl.article
+            where new.yearrelease <> articoli_record.releasedate;
+        end loop;
     return new;
-end
+end;
 $$
     language plpgsql;
 

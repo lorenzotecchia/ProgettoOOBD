@@ -37,4 +37,3 @@ VALUES ('0000-2372', 'Physical Review A', 'physics', 'Callie Underhill', '1981-0
 INSERT INTO mtl.magazine (issn_m, name_m, argument, manager, yearrelease, publicationperiod, accessmode,
                           publishinghouse)
 VALUES ('0000-3247', 'PLOS ONE', 'science', 'Colleen Nobbs', '2008-12-25 04:18:28.000000', 'Yearly', 'Paper', 'AECOM');
-
