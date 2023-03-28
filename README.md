@@ -1,3 +1,6 @@
+Questa repository è ormai un archivio.
+
+
 # Progetto Basi di Dati e Object Orientation
 
 ---
